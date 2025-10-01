@@ -1,0 +1,8 @@
+baseURL = 'https://xtopolis.github.io/tl-mechs-static/'
+languageCode = 'en-us'
+title = 'TL Mechs Guide'
+theme = 'hugo-book'
+
+[params]
+  BookToC = true
+  BookMenuBundle = '/menu'
