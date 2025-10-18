@@ -32,8 +32,15 @@ The development server will be available at `http://localhost:1313/tl-mechs-stat
 
 ## Deployment
 
-The site is automatically deployed to GitHub Pages at:
-https://xtopolis.github.io/tl-mechs-static/
+The site is automatically deployed to GitHub Pages via GitHub Actions on every push to `main`.
+
+- **Live Site**: https://xtopolis.github.io/tl-mechs-static/
+- **CI/CD**: GitHub Actions workflow builds and deploys Hugo site automatically
+- **Workflow**: `.github/workflows/deploy.yml`
+
+### Manual Deployment
+
+The workflow can also be triggered manually from the Actions tab in GitHub.
 
 ## Project Structure
 
