@@ -1,9 +1,9 @@
 ---
-title: "Altar of Calanthia"
+title: "Raid: Calanthia"
 weight: 1
-bookCollapseSection: true
+bookCollapseSection: false
 ---
 
-# Altar of Calanthia
+# Raid: Calanthia
 
-Complete guide for the Altar of Calanthia dungeon across all difficulties and encounters.
+Complete guide for the Altar of Calanthia raid encounters.

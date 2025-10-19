@@ -9,13 +9,13 @@ Your comprehensive resource for dungeon strategies and mechanics.
 
 ## Quick Navigation
 
-### Altar of Calanthia
+### Raid: Altar of Calanthia
 
-Explore the challenges of the Altar across all difficulties
+Boss encounter guides for the Altar of Calanthia raid
 
-- [Normal](/tl-mechs-static/docs/altar-of-calanthia/normal/)
-- [Difficult](/tl-mechs-static/docs/altar-of-calanthia/difficult/)
-- [Nightmare](/tl-mechs-static/docs/altar-of-calanthia/nightmare/)
+- [Dragaryle](/tl-mechs-static/docs/altar-of-calanthia/dragaryle/)
+- [Vulkan and Zairos](/tl-mechs-static/docs/altar-of-calanthia/vulkan-and-zairos/)
+- [Calanthia](/tl-mechs-static/docs/altar-of-calanthia/calanthia/)
 
 ### More Guides Coming Soon
 
