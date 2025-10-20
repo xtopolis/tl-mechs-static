@@ -13,21 +13,14 @@ bookCollapseSection: true
 - 35% Mirrors
 
 **Jobs**
-- Orb Teams (2 anchors, 1 runner)
-- Orbs pull:
-  - Tank (person with aggro): top left
-  - Next closest to boss: top right
-  - ? 2nd Furthest: bottom left
-  - ? Furthest: bottom right
+- Orb Teams: 2 anchors, 1 flex
 - Corner clone baiters (4)
-  - Stand in each corner and bait laser, can run out after it "locks" before shooting
 - Pink Seed baiters (4)
-  - The four closest players to boss, must block when seed becomes black puddle
 
 **Role Mechs**
 - Tank:
   - Stay within range (roughly 15m) at all times
-  - Get back before last Mirror laser finishes or you get choked (12k, 12k, 40k hit)
+  - Get back before last Mirror laser finishes
   - Recommended to have a dash, or enough HP to eat chokes
 - Healers: 
   - 2 Circle, pair block (during roombas)
@@ -60,8 +53,8 @@ Sub 35%
 
 **Jobs**
 - Orb teams
-- Orb special: 4 pulled do Eye reveal mech
-- Zombie killers (1-2), during Fear/Crystals phase
+- Orb special: Eye mech
+- Zombie killers (1-2)
 - Detonators (4 players, each side)
 
 **Rotation**
@@ -81,4 +74,4 @@ Sub 40%
 **After Wings, Enrage Mechs**
 - Double hand slams (jumps)
 - Slam/Swipe with safe area
-- Piano without flying pushback
+- Piano without pushback
