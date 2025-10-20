@@ -6,21 +6,18 @@ weight: 15
 # Tethers
 
 **When**
-- Description of when this mechanic occurs
+- After lightning mech with voiceline: _"There's no point in resisting!"_
 
 **What**
-- Description of what happens during this mechanic
+- Two groups of three players are chained to each other (Tank excluded)
+- While chained, the players take tick damage, as well as anyone touching the tether
 
 **Solution**
-- Steps to resolve the mechanic
+- Players need to spread out so that the length of the tethers between connected players is greater than (TBD) meters
 
 **Penalty**
-- What happens if the mechanic fails
+- The players and anyone inside continuously take tick damage
 
 > [!TIP]
 > **Tip**
-> Helpful tip here
-
-> [!WARNING]
-> **Caution**
-> Important warning here
+> When you get pulled, you can roll dodge to block the initial damage

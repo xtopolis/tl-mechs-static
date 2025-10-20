@@ -11,6 +11,7 @@ weight: 2
 **What**
 - Four clones will spawn in the corners in pairs, with a small delay between the second spawn
 - The player closest to each respective corner will be targeted by the nearest clone
+- The Tank will also get lasers from Calanthia at the same time
 
 **Solution**
 - Stay in the far corner until the laser locks on and prepares to fire

@@ -6,21 +6,23 @@ weight: 5
 # Fake Orbs
 
 **When**
-- Description of when this mechanic occurs
+- Towards the end of the normal rotation
+- Or, at the end of phase 1 after the normal block
 
 **What**
-- Description of what happens during this mechanic
+- Two orbs will appear, one each side of the arena
+- The person with aggro and the person furthest from the boss will get pulled
 
 **Solution**
-- Steps to resolve the mechanic
+- Kill the orbs to release the players
 
 **Penalty**
-- What happens if the mechanic fails
+- Players continuously build stacks
 
 > [!TIP]
 > **Tip**
-> Helpful tip here
+> Be sure to wait for the person to be pulled and lifted before killing the orb to avoid glitches
 
 > [!WARNING]
 > **Caution**
-> Important warning here
+> If you kill the boss around this mech, the pulled players might continue gaining stacks

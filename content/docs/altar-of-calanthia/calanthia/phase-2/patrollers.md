@@ -6,17 +6,13 @@ weight: 10
 # Patrollers
 
 **When**
-- Sub 35%, or as a punishing mech for slow DPS (reaching 90%)
+- During Fear/Crystals phase (briefly)
 
 **What**
 - A mob will appear on each side doing ranged conal attacks that do decent chip damage
 
 **Solution**
-- Heals take aggro and point away from group, or heal through the damage
+- Healers take aggro and point away from group, or heal through the damage
 
 **Penalty**
 - Decent damage to all players in conal
-
-> [!TIP]
-> **Tip**
-> These can be pushed off the edge rather than killing them

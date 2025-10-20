@@ -6,21 +6,20 @@ weight: 14
 # Slam Swipes
 
 **When**
-- Description of when this mechanic occurs
+- After the normal block
 
 **What**
-- Description of what happens during this mechanic
+- Calanthia will charge a blast in one hand
+- She will then slam it into the floor in front of her
+- Then with the same hand she will swipe in front of her, damaging and knocking back players
 
 **Solution**
-- Steps to resolve the mechanic
+- Move opposite of the glowing hand, into the safe section
+- Jump as she slams to avoid some damage
+- You will not be knocked back if you are in the safe area
 
 **Penalty**
-- What happens if the mechanic fails
+- Damage if you are touching the ground during slam
+- Damage and knockback if you are hit with the swipe
 
-> [!TIP]
-> **Tip**
-> Helpful tip here
-
-> [!WARNING]
-> **Caution**
-> Important warning here
+{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/slam-swipes.png" alt="Slam swipes" title="Slam swipes" loading="lazy" class="mech-diagram" >}}

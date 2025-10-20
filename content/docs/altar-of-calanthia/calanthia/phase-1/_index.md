@@ -1,9 +1,9 @@
 ---
-title: "Phase 1"
+title: "Phase 1 Mechs"
 weight: 1
 bookCollapseSection: true
 ---
 
-# Phase 1
+# Phase 1 Mechs
 
 Phase 1 mechanics for the Calanthia encounter.
