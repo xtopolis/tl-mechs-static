@@ -4,3 +4,11 @@ img.mech-diagram {
   margin-right: auto;
   display: block;
 }
+
+// Make Contribute link stand out in sidebar
+.book-menu nav ul li a[href*="contribute"] {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-300);
+  font-weight: 500;
+}
