@@ -6,21 +6,24 @@ weight: 6
 # Feathers Stun
 
 **When**
-- Description of when this mechanic occurs
+- After piano, with voiceline: _"No use running away!"_
+- Stun with screen text: _"Calanthia is radiating a powerful light"_
 
 **What**
-- Description of what happens during this mechanic
+- Calanthia will summon feathers to rain down on players
+- She will stun anyway whose character is facing the boss with a blinding light
 
 **Solution**
-- Steps to resolve the mechanic
+- Spread out lightly so as to not overlap feathers
+- Make your character stop attacking and turn 180degree facing away from boss
 
 **Penalty**
-- What happens if the mechanic fails
+- Stunned while feathers are damaging you if you don't look away
 
 > [!TIP]
 > **Tip**
-> Helpful tip here
+> You don't have to run far away from boss, as long as your character isn't facing her
 
 > [!WARNING]
 > **Caution**
-> Important warning here
+> Ensure your CHARACTER, not just your camera, is looking away from the boss. Untarget, morph, run backwards

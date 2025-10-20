@@ -6,21 +6,23 @@ weight: 13
 # Roombas
 
 **When**
-- Description of when this mechanic occurs
+- After tethers with voiceline: _"Embrace your death!"_
 
 **What**
-- Description of what happens during this mechanic
+- 10 closest players are targeted to receive roombas
+- The roombas spawn in groups of 5, a few seconds apart
 
 **Solution**
-- Steps to resolve the mechanic
+- Kite the roombas in a circle, leaving room for other players
+- The Tank should kite their roombas around the boss in a circle so as to not get out of range of the boss
 
 **Penalty**
-- What happens if the mechanic fails
+- Large amounts of damage ticks rapidly if hit by roombas
 
 > [!TIP]
 > **Tip**
-> Helpful tip here
+> The first group of roombas are "assigned" right after she does the purple aoe circle attack a few seconds before they appear. The first group of closest players can step back at this time
 
 > [!WARNING]
 > **Caution**
-> Important warning here
+> Roombas leave puddles when they stop chasing doing tick damage to anyone who steps in them

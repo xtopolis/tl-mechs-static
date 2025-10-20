@@ -28,16 +28,20 @@ bookCollapseSection: true
 - Tank:
   - Stay within range (roughly 15m) at all times
   - Get back before last Mirror laser finishes or you get choked (12k, 12k, 40k hit)
+  - Recommended to have a dash, or enough HP to eat chokes
 - Healers: 
   - 2 Circle, pair block (during roombas)
+- Ranged:
+  - Recommended to have snare skills for pusher zombies
 
 **Rotation**
 - _(boss start: roll dodge)_
 - Normal block
 - Lightning
 - Tethers
-- Roombas / "2 Circle"
-- Corner Clones and Pink Seed (puddles)
+- 2 Circle
+- Roombas
+- Corner Clones and Pink Seed (puddles) (AKA "Blazors")
 - 4 Pulse Normal Block
 
 Sub 35%
