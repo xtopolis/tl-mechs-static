@@ -11,8 +11,9 @@ weight: 11
 **What**
 - Calanthia summons 7 red orbs spaced along her arena's edge
 - Calanthia does a knockback pushing players into the air, and red orbs randomly into the arena
-- The arena gets covered with 16 columns all of them black except for 1 empty safe column
-- Laser blasts appear at the top of each column, fire, and the move the telegraphed direction twice, firing each time
+- The arena gets covered with 15 black lines and one 1 empty safe line
+- A few seconds after red orbs explode, purple blasts will show up above each black line
+- The sequence will be: blasts fire, lines shift, blasts fire, lines shift, blasts fire
 
 **Solution**
 - During the airborne knockback, look at Calanthia's eyes. The glowing one indicates the direction to move
