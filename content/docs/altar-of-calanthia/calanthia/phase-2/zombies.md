@@ -14,7 +14,7 @@ weight: 16
 **Solution**
 - Send 1-2 players in to kill them
 - Use Roen (from shadow realm) if it's available
-- Leave the shadow realm as soon as the block hits to minimize stacks
+- Leave the shadow realm as soon as the block hits to minimize your own DoT stacks
 
 **Penalty**
 - Any zombies still alive at the end of Crystals when the boss starts _absorbing chaos imbued summons_ add stacks. Boss stacks cause her to do more damage, and take less damage
