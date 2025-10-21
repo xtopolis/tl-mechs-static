@@ -24,6 +24,13 @@ weight: 4
 **Penalty**
 - If either miniboss fails to die, Calanthia wipes the raid
 
+_Example of single-use doorways_
+{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/detonator-doors.png" alt="Detonator door locations" title="Detonator Doors" loading="lazy" class="mech-diagram" >}}
+
+_Example of stacking detonation circles around the miniboss_
+{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/detonator-circles.png" alt="Detonator circle patterns" title="Detonator Circles" loading="lazy" class="mech-diagram" >}}
+
+_Diagram of possible miniboss swarming arrangements: Cardinal directions, and 2 player stacking_
 {{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/phase2-detonators.png" alt="Orbs pattern diagram" title="Orbs circle patterns" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]

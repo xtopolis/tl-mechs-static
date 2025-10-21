@@ -20,6 +20,8 @@ weight: 2
 **Penalty**
 - The laser will knock you down if you fail the dodge roll
 
+{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/corner-bait.png" alt="Corner clone bait positions" title="Corner Clones" loading="lazy" class="mech-diagram" >}}
+
 > [!TIP]
 > **Tip**
 > You can move slightly foward and back until you see when the laser locks on (stops tracking) and then just walk out, towards the boss

@@ -22,6 +22,12 @@ weight: 7
 
 {{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/phase2-orbs.png" alt="Orbs pattern diagram" title="Orbs circle patterns" loading="lazy" class="mech-diagram" >}}
 
+_This red sky pillar animation indicates a fake 4-circle, keep moving_
+{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/bad-4-circle.png" alt="Bad 4 circle (fake)" title="Fake 4 Circle" loading="lazy" class="mech-diagram" >}}
+
+_This simple animation means the 4-circle is real, stay!_
+{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/good-4-circle.png" alt="Good 4 circle (real)" title="Real 4 Circle" loading="lazy" class="mech-diagram" >}}
+
 > [!TIP]
 > **Tip**
 > The circles only appear in two patterns, you can assign roles ahead of time
