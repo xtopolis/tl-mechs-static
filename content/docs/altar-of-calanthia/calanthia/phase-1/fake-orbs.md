@@ -19,6 +19,8 @@ weight: 5
 **Penalty**
 - Players continuously build stacks
 
+{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/fake-orb.png" alt="Fake orb appearance" title="Fake Orbs" loading="lazy" class="mech-diagram" >}}
+
 > [!TIP]
 > **Tip**
 > Be sure to wait for the person to be pulled and lifted before killing the orb to avoid glitches

@@ -10,15 +10,22 @@ weight: 6
 - Stun with screen text: _"Calanthia is radiating a powerful light"_
 
 **What**
-- Calanthia will summon feathers to rain down on players
-- She will stun anyway whose character is facing the boss with a blinding light
+- Deadly marker animations will appear above players heads
+- She will stun anyone whose character is facing the boss with a blinding light
+- She will then begin raining down feathers on players
 
 **Solution**
-- Spread out lightly so as to not overlap feathers
-- Make your character stop attacking and turn 180degree facing away from boss
+- Spread out lightly and keep moving, feathers fall with a slight delay before hitting the player and can mostly be avoided
+- Make your character stop attacking and turn 180degree facing away from boss to avoid stun
 
 **Penalty**
 - Stunned while feathers are damaging you if you don't look away
+
+_Stun being cast_
+{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/powerful-light-stun.png" alt="Powerful light stun" title="Powerful Light" loading="lazy" class="mech-diagram" >}}
+
+_Feathers falling_
+{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/feather-rain.png" alt="Feather rain" title="Feather Rain" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

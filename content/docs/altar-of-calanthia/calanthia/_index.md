@@ -39,6 +39,7 @@ bookCollapseSection: true
 
 Sub 35%
 - AOE Blast / Patrollers / Zombies
+- Lightning
 - Normal Block
 - Fake Orbs
 - ...
