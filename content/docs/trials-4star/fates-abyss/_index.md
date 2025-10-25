@@ -1,6 +1,7 @@
 ---
 title: "Fate's Abyss"
 weight: 1
+bookCollapseSection: true
 ---
 
 # Fate's Abyss
