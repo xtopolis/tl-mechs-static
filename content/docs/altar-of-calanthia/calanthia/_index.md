@@ -19,9 +19,9 @@ bookCollapseSection: true
 
 **Role Mechs**
 - Tank:
-  - Stay within range (roughly 15m) at all times
+  - Stay within range (roughly 20m) at all times
   - Get back before last Mirror laser finishes
-  - Recommended to have a dash, or enough HP to eat chokes
+  - Recommended to have a dash, or 55-60k HP to survive chokes with heals (70k to survive without heals)
 - Healers: 
   - 2 Circle, pair block (during roombas)
 - Ranged:
