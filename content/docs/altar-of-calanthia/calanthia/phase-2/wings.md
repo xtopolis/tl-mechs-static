@@ -18,6 +18,7 @@ weight: 15.5
 - Kill the wing orb within the time limit
 
 **Penalty**
+- Failure to tether wings will cause Calanthia to wipe the raid
 - Bonus damage is not applied
 
 _Interact with a tether_
