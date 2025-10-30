@@ -74,3 +74,7 @@ bookCollapseSection: true
 >  - Dash to opposite side during transitions to avoid cages
 >  - During totem phase, step back slightly before first block/dash to position boss for jump mechanic
 >  - After jump, bait lines toward empty totem side, then walk around lines back to middle for Rancorwood
+
+> [!TIP]
+> **Tank Tip**
+> During the tower phase, don't move for the first charge, swipes, charge as he'll be coming right back. Then take two steps back (North) for the final swipes and pounce and to place the green lines away from center. This maximizes the uptime for ranged DPS to hit the boss.
