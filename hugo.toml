@@ -6,3 +6,5 @@ theme = 'hugo-book'
 [params]
   BookToC = true
   BookMenuBundle = '/menu'
+  # Theme options: 'light', 'dark', or 'auto' (follows system preference)
+  BookTheme = 'auto'
