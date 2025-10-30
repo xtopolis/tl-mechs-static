@@ -15,6 +15,28 @@ A static site documentation project for Throne and Liberty mechanics guides, bui
 - Hugo installed (extended version recommended)
 - Git
 
+#### Installing Hugo on Mac
+
+The easiest way to install Hugo on Mac is using Homebrew:
+
+```bash
+# Install Hugo (includes extended version)
+brew install hugo
+
+# Verify installation
+hugo version
+```
+
+If you don't have Homebrew installed, you can install it first:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Alternative installation methods:
+- Download from [Hugo releases](https://github.com/gohugoio/hugo/releases)
+- Use MacPorts: `sudo port install hugo`
+
 ### Common Commands
 
 ```bash
