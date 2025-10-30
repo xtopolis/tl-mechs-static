@@ -14,8 +14,7 @@ weight: 11
 
 **Solution**
 - Players must match symbols above their head with the floor engraving
-- (todo: key part of mechanic)
+- The order the pillar spawned that gives the symbol is the solve order
 
 **Penalty**
 - Players who enter the wrong symbol die and kill the lifted player
-- Players who enter (todo: key part of the mechanic)

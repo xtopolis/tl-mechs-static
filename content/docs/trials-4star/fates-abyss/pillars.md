@@ -10,7 +10,7 @@ weight: 8
 
 **What**
 - Three pillars spawn around the arena, two at the entrance and on on the far side
-- (todo: key part of the mechanic)
+- Pillar spawn order dictates symbol solve order
 
 **Solution**
 - Destroy the pillars with spinning scythes
