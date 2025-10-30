@@ -2,6 +2,10 @@
 
 A static site documentation project for Throne and Liberty mechanics guides, built with Hugo and the Book theme.
 
+Most of this codebase is generated with [Claude Code](https://claude.com/claude-code).
+
+Vibe coders welcome.
+
 ## Tech Stack
 
 - **Hugo**: Static site generator
