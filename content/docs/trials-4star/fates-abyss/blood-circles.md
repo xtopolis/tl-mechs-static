@@ -16,7 +16,7 @@ weight: 1
 **Solution**
 - Kite circles to avoid damage
 - Do not get knocked over by boss if he jumps to you and attacks
-- (tbd: circles early disappear when...)
+- Puddles stop dropping as soon as the symbols are correctly solved
 
 **Penalty**
 - Circle kill most players within 2-3 ticks

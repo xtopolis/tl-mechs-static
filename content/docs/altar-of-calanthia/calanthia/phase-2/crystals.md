@@ -10,7 +10,7 @@ weight: 3
 
 **What**
 - Players will be feared away from boss
-- Some players will get a Crystal growing over their head
+- The 8 furthest players from the boss will get a Crystal growing over their head
 - The Crystal will drop after a few seconds
 - After she does a breath attack, Crystals will begin a timed radius explosion
 
