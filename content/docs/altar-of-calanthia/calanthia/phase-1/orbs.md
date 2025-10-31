@@ -26,8 +26,8 @@ weight: 9
 > You can control who gets pulled by the Orbs. Facing the boss from the entry stairs:
 > - Northwest: Tank (person with boss aggro)
 > - Northeast: Next physically closest person to the boss
-> - Southwest: 3rd furthest from boss
-> - Southeast: Furthest person from the boss
+> - Southwest: Furthest person from the boss
+> - Southeast: 3rd furthest from boss
 
 {{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/phase1-orbs.png" alt="Orbs pattern diagram" title="Orbs circle patterns" loading="lazy" class="mech-diagram" >}}
 
