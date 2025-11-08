@@ -9,7 +9,7 @@ weight: 7
 - 90%, with voiceline: _"Who wants to die first?"_
 
 **What**
-- 4 players pulled with the same predictability as phase 1
+- 4 players pulled: 2 closest and 2 furthest from boss (different from phase 1, which includes a 3rd furthest "in-between" person)
 - The 4 players who are pulled have to group up for "Eye" mech
 
 **Solution**

@@ -43,7 +43,7 @@ _Diagram of possible miniboss swarming arrangements: Cardinal directions, and 2 
 
 > [!INFO]
 > **Info**
-> (not fully verified) The last person to enter the shadow realm supposedly gets targetted by the delayed laser
+> The closest person to the boss who hasn't yet entered the portal gets targeted by the delayed laser
 
 > [!WARNING]
 > **Caution**
