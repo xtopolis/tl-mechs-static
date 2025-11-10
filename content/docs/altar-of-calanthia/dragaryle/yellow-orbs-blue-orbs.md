@@ -15,7 +15,7 @@ weight: 8
 
 **Solution**
 - Yellow Orbs move away from you when attacked, move them to Yellow Orb pillars
-- Blue Orbs move towards you when attacked, move them to Yellow Orb pillars
+- Blue Orbs move towards you when attacked, move them to Blue Orb pillars
 
 **Penalty**
 - All Orbs can apply Lightning stacks to you, causing increasing DoT based on your stacks
