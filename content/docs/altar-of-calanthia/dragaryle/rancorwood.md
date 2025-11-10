@@ -19,7 +19,7 @@ weight: 6
 **Penalty**
 - Missing a dodge roll will cause you to become caged
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/rancorwood.png" alt="Rancorwood mechanic" title="Rancorwood" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/rancorwood.png" alt="Rancorwood mechanic" title="Rancorwood" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

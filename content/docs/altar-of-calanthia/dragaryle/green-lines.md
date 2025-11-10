@@ -19,4 +19,4 @@ weight: 4
 - Green lines that are on tower spawn points when towers spawn cause the raid to wipe
 - Players who stand in green lines gain petrification stacks rapidly
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/green-line.png" alt="Green line mechanic" title="Green Line" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/green-line.png" alt="Green line mechanic" title="Green Line" loading="lazy" class="mech-diagram" >}}

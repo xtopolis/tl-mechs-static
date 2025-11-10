@@ -22,4 +22,4 @@ weight: 14
 - Damage if you are touching the ground during slam
 - Damage and knockback if you are hit with the swipe
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/slam-swipes.png" alt="Slam swipes" title="Slam swipes" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/slam-swipes.png" alt="Slam swipes" title="Slam swipes" loading="lazy" class="mech-diagram" >}}

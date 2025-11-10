@@ -23,4 +23,4 @@ weight: 5
 - Boss: Reaching 30 stacks from boss/raid mechanics causes you to be trapped in a cage with 1,600 hp, for up to 7 seconds
 - Player circle: Reaching 30 stacks from a player overlapping opposite colors will cause you to be trapped in a cage with 100,000 hp, for up to 7 seconds
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/cage-petrification.png" alt="Cage petrification" title="Petrification Cage" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/cage-petrification.png" alt="Cage petrification" title="Petrification Cage" loading="lazy" class="mech-diagram" >}}

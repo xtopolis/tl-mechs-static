@@ -22,15 +22,15 @@ weight: 15.5
 - Bonus damage is not applied
 
 _Interact with a tether_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/wing-tethers.png" alt="Wing tethers mechanic" title="Wing Tethers" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/wing-tethers.png" alt="Wing tethers mechanic" title="Wing Tethers" loading="lazy" class="mech-diagram" >}}
 
 _Run tether to stake_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/wing-stakes.png" alt="Wing stakes mechanic" title="Wing Stakes" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/wing-stakes.png" alt="Wing stakes mechanic" title="Wing Stakes" loading="lazy" class="mech-diagram" >}}
 
 _Wait near your side's orb to get launch up_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/wings-knock-up.png" alt="Wings knock up mechanic" title="Wings Knock Up" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/wings-knock-up.png" alt="Wings knock up mechanic" title="Wings Knock Up" loading="lazy" class="mech-diagram" >}}
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/wing-orbs.png" alt="Wing orbs mechanic" title="Wing Orbs" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/wing-orbs.png" alt="Wing orbs mechanic" title="Wing Orbs" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

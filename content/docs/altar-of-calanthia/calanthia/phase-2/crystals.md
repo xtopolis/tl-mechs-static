@@ -22,13 +22,13 @@ weight: 3
 - If two crystals are placed too close to each other, they will explode and deal significant damage
 
 _Indicator that a Crystal will drop on you_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/have-crystal.png" alt="Player with crystal" title="Crystal Carrier" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/have-crystal.png" alt="Player with crystal" title="Crystal Carrier" loading="lazy" class="mech-diagram" >}}
 
 _Yellow safe area for hiding during breath_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/safe-crystal-spot.png" alt="Safe spot behind crystal" title="Safe Crystal Position" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/safe-crystal-spot.png" alt="Safe spot behind crystal" title="Safe Crystal Position" loading="lazy" class="mech-diagram" >}}
 
 _Explosion radius to get out of after breath_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/crystal-explode-radius.png" alt="Crystal explosion radius" title="Crystal Explosion" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/crystal-explode-radius.png" alt="Crystal explosion radius" title="Crystal Explosion" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

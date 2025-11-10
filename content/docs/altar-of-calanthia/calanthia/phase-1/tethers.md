@@ -18,7 +18,7 @@ weight: 15
 **Penalty**
 - The players and anyone inside continuously take tick damage
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/tether.png" alt="Tether chains" title="Tethers" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/tether.png" alt="Tether chains" title="Tethers" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

@@ -22,10 +22,10 @@ weight: 8
 - Blue Orbs take damage from players, taking too much damage causes them to explode and wipe the raid
 
 _Push me_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/yellow-orb.png" alt="Yellow orb" title="Yellow Orb" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/yellow-orb.png" alt="Yellow orb" title="Yellow Orb" loading="lazy" class="mech-diagram" >}}
 
 _Pull me_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/blue-orb.png" alt="Blue orb" title="Blue Orb" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/blue-orb.png" alt="Blue orb" title="Blue Orb" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

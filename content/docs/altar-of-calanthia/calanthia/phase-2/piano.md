@@ -24,7 +24,7 @@ weight: 11
 - Being inside a red circle AFTER it explodes and is just a puddle is minor tick damage
 - Being hit by a laser in a black column will cause a knockback off the edge that will most likely kill you
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/piano-hint.png" alt="Piano hint" title="Piano hint" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/piano-hint.png" alt="Piano hint" title="Piano hint" loading="lazy" class="mech-diagram" >}}
 
 
 > [!TIP]

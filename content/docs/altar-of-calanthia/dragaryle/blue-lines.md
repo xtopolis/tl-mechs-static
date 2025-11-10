@@ -22,7 +22,7 @@ weight: 1
 - Poor line placement can wipe the raid
 - Missing the dodge roll is minimal damage, but will knock you back
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/blue-line.png" alt="Blue line mechanic" title="Blue Line" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/blue-line.png" alt="Blue line mechanic" title="Blue Line" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

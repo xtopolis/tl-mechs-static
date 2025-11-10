@@ -54,13 +54,13 @@ hugo
 hugo --minify
 ```
 
-The development server will be available at `http://localhost:1313/tl-mechs-static/`
+The development server will be available at `http://localhost:1313/`
 
 ## Deployment
 
 The site is automatically deployed to GitHub Pages via GitHub Actions on every push to `main`.
 
-- **Live Site**: https://xtopolis.github.io/tl-mechs-static/
+- **Live Site**: https://tl-mechs.com/
 - **CI/CD**: GitHub Actions workflow builds and deploys Hugo site automatically
 - **Workflow**: `.github/workflows/deploy.yml`
 

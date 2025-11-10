@@ -19,4 +19,4 @@ weight: 17
 **Penalty**
 - You win or die trying
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/enrage-slam.png" alt="Enrage slam mechanic" title="Enrage Slam" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/enrage-slam.png" alt="Enrage slam mechanic" title="Enrage Slam" loading="lazy" class="mech-diagram" >}}
