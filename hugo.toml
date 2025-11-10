@@ -1,4 +1,4 @@
-baseURL = 'https://xtopolis.github.io/tl-mechs-static/'
+baseURL = 'https://tl-mechs.com/'
 languageCode = 'en-us'
 title = 'TL Mechs Guide'
 theme = 'hugo-book'
