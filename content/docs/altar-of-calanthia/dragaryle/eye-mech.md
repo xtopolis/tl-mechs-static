@@ -21,6 +21,6 @@ weight: 3.5
 - If the player is too far, the boss may move from the center which can make the following mechs more difficult, as well as placing additional green lines
 
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/purple-eye.png" alt="Purple eye" title="Purple Eye" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/purple-eye.png" alt="Purple eye" title="Purple Eye" loading="lazy" class="mech-diagram" >}}
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/red-eye.png" alt="Red eye" title="Red Eye" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/red-eye.png" alt="Red eye" title="Red Eye" loading="lazy" class="mech-diagram" >}}

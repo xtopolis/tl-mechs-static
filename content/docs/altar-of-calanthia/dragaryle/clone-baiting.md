@@ -21,4 +21,4 @@ weight: 3
 **Penalty**
 - Lines that are not properly placed can wipe the raid, or make it more difficult
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/clone-baiter-assigned.png" alt="Clone baiter assigned" title="Clone Baiter" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/clone-baiter-assigned.png" alt="Clone baiter assigned" title="Clone Baiter" loading="lazy" class="mech-diagram" >}}

@@ -19,7 +19,7 @@ weight: 7
 **Penalty**
 - Usually 1-hits most players if they do not block when the indicator is on them
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/lightning-1.png" alt="Lightning mechanic" title="Lightning" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/lightning-1.png" alt="Lightning mechanic" title="Lightning" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

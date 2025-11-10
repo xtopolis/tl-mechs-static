@@ -28,22 +28,22 @@ weight: 7
 - Failing to unlock each tower stage in time causes them to explode, wiping the raid
 
 _Unstable tower, interact with it!_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/normal-tower.png" alt="Normal tower" title="Normal Tower" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/normal-tower.png" alt="Normal tower" title="Normal Tower" loading="lazy" class="mech-diagram" >}}
 
 _Stabilized tower, leave alone until it changes to a Blocking tower_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/tower-stable.png" alt="Stable tower" title="Stable Tower" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/tower-stable.png" alt="Stable tower" title="Stable Tower" loading="lazy" class="mech-diagram" >}}
 
 _Shielded Tower needing a Blue Orb_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/blue-tower.png" alt="Blue tower" title="Blue Tower" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/blue-tower.png" alt="Blue tower" title="Blue Tower" loading="lazy" class="mech-diagram" >}}
 
 _Shielded Tower needing a Yellow Orb_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/yellow-tower.png" alt="Yellow tower" title="Yellow Tower" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/yellow-tower.png" alt="Yellow tower" title="Yellow Tower" loading="lazy" class="mech-diagram" >}}
 
 _Blue Blocking tower, dodge roll!_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/tower-blue-dodge.png" alt="Blue tower dodge" title="Blue Tower Dodge" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/tower-blue-dodge.png" alt="Blue tower dodge" title="Blue Tower Dodge" loading="lazy" class="mech-diagram" >}}
 
 _Red Blocking tower, normal block!_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/tower-red-block.png" alt="Red tower block" title="Red Tower Block" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/tower-red-block.png" alt="Red tower block" title="Red Tower Block" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

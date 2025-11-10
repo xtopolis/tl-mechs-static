@@ -22,10 +22,10 @@ weight: 6
 - Stunned while feathers are damaging you if you don't look away
 
 _Stun being cast_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/powerful-light-stun.png" alt="Powerful light stun" title="Powerful Light" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/powerful-light-stun.png" alt="Powerful light stun" title="Powerful Light" loading="lazy" class="mech-diagram" >}}
 
 _Feathers falling_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/feather-rain.png" alt="Feather rain" title="Feather Rain" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/feather-rain.png" alt="Feather rain" title="Feather Rain" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

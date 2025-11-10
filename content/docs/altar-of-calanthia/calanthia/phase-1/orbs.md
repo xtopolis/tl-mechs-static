@@ -19,7 +19,7 @@ weight: 9
 **Penalty**
 - Players not correctly in circles will be killed by Calanthia's bomb
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/phase1-orb-pulls.png" alt="Orbs pulls" title="Orbs pulls" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/phase1-orb-pulls.png" alt="Orbs pulls" title="Orbs pulls" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**
@@ -29,7 +29,7 @@ weight: 9
 > - Southwest: Furthest person from the boss
 > - Southeast: 3rd furthest from boss
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/phase1-orbs.png" alt="Orbs pattern diagram" title="Orbs circle patterns" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/phase1-orbs.png" alt="Orbs pattern diagram" title="Orbs circle patterns" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

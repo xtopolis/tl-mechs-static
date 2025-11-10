@@ -19,10 +19,10 @@ weight: 12
 - Anyone inside the circle who doesn't block will die
 
 _Seed above players heads_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/ping-seed.png" alt="Pink seed indicator" title="Pink Seed" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/ping-seed.png" alt="Pink seed indicator" title="Pink Seed" loading="lazy" class="mech-diagram" >}}
 
 _As soon as the black puddle appears, Block!_
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/calanthia/seed-block.png" alt="Blocking seed puddle" title="Seed Block" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/seed-block.png" alt="Blocking seed puddle" title="Seed Block" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

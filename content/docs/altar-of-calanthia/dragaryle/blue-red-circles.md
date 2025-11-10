@@ -19,4 +19,4 @@ weight: 2
 - Mixing circle colors will cause petrification stacks to rapidly be applied
 - Reaching 30 stacks creates a cage with 100,000 HP
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/color-circles.png" alt="Color circles mechanic" title="Color Circles" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/color-circles.png" alt="Color circles mechanic" title="Color Circles" loading="lazy" class="mech-diagram" >}}

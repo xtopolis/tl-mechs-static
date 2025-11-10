@@ -19,9 +19,9 @@ weight: 6.5
 **Penalty**
 - The boss wipes the raid if the shield is not destroyed in time (around 15 seconds)
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/yellow-shield.png" alt="Yellow shield" title="Yellow Shield" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/yellow-shield.png" alt="Yellow shield" title="Yellow Shield" loading="lazy" class="mech-diagram" >}}
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/purple-shield.png" alt="Purple shield" title="Purple Shield" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/purple-shield.png" alt="Purple shield" title="Purple Shield" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

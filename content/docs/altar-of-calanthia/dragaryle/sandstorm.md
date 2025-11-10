@@ -18,4 +18,4 @@ weight: 6.7
 **Penalty**
 - Most players will die to one tick of the sandstorm
 
-{{< image src="/tl-mechs-static/images/altar-of-calanthia/dragaryle/sandstorm.png" alt="Sandstorm mechanic" title="Sandstorm" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/dragaryle/sandstorm.png" alt="Sandstorm mechanic" title="Sandstorm" loading="lazy" class="mech-diagram" >}}
