@@ -19,3 +19,6 @@ weight: 5
 **Penalty**
 - Damage from meteor hitting you
 - Damage from standing in puddle
+
+{{< image src="/images/altar-of-calanthia/vulkan-zairos/fire-meteor.png" alt="Fire Meteors" title="Fire Meteors" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/vulkan-zairos/fire-meteor2.png" alt="Fire Meteor Puddles" title="Fire Meteor Puddles" loading="lazy" class="mech-diagram" >}}

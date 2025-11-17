@@ -16,3 +16,5 @@ weight: 1
 
 **Penalty**
 - Damage, knockback
+
+{{< image src="/images/altar-of-calanthia/vulkan-zairos/fire-conal.png" alt="Fire Conal" title="Fire Conal" loading="lazy" class="mech-diagram" >}}

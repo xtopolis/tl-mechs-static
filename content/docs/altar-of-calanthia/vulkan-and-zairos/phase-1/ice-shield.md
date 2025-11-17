@@ -20,3 +20,5 @@ weight: 12
 > [!TIP]
 > **Tip**
 > Shield cut skills are very effective here
+
+{{< image src="/images/altar-of-calanthia/vulkan-zairos/ice-shield.png" alt="Ice Shield" title="Ice Shield" loading="lazy" class="mech-diagram" >}}

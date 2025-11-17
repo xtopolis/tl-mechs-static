@@ -16,3 +16,5 @@ weight: 8
 
 **Penalty**
 - Damage
+
+{{< image src="/images/altar-of-calanthia/vulkan-zairos/ice-bowler.png" alt="Ice Bowler" title="Ice Bowler" loading="lazy" class="mech-diagram" >}}

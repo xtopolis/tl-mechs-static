@@ -16,3 +16,5 @@ weight: 4
 
 **Penalty**
 - Damage taken is increased the higher your stacks are
+
+{{< image src="/images/altar-of-calanthia/vulkan-zairos/fire-jericho.png" alt="Jericho Missiles" title="Jericho Missiles" loading="lazy" class="mech-diagram" >}}
