@@ -17,3 +17,6 @@ weight: 9
 
 **Penalty**
 - Damage
+
+{{< image src="/images/altar-of-calanthia/vulkan-zairos/ice-cross.png" alt="Ice Cross" title="Ice Cross" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/vulkan-zairos/ice-cross1.png" alt="Ice Cross Pattern" title="Ice Cross Pattern" loading="lazy" class="mech-diagram" >}}

@@ -16,3 +16,5 @@ weight: 7
 
 **Penalty**
 - You will gain stacks or be frozen for 20 or 40 seconds depending on your stacks
+
+{{< image src="/images/altar-of-calanthia/vulkan-zairos/ice-beam.png" alt="Ice Beam" title="Ice Beam" loading="lazy" class="mech-diagram" >}}
