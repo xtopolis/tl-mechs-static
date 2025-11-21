@@ -1,9 +1,9 @@
 ---
-title: "Raid: Calanthia"
+title: "Nightmare: Calanthia"
 weight: 1
 bookCollapseSection: false
 ---
 
-# Raid: Calanthia
+# Nightmare: Calanthia
 
 Complete guide for the Altar of Calanthia raid encounters.
