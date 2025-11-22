@@ -5,6 +5,8 @@ weight: 3
 
 # Clone Baiting
 
+{{< youtube WtBEUQ4M2w0 >}}
+
 **When**
 - Normal pattern: After green lines
 - Tower pattern: After fear, when towers spawn
