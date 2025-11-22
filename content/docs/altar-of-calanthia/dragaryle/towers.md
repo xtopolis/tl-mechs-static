@@ -5,6 +5,12 @@ weight: 7
 
 # Towers
 
+{{< youtube _xNUE5YmfUA >}}
+
+> [!TIP]
+> **Tip**
+> Lightning pillars always spawn in positions 1, 3, 4, 6, 7... where 1 is the tower to the left of the entrance, moving clockwise.
+
 **When**
 - After the last dodge roll in Fear
 
@@ -56,7 +62,3 @@ _Red Blocking tower, normal block!_
 > [!TIP]
 > **Tip**
 > Two players can interact with the same tower to stabilize it faster. Don't mix opposite color circles though!
-
-> [!TIP]
-> **Tip**
-> Lightning pillars always spawn in positions 1, 3, 4, 6, 7... where 1 is the tower to the left of the entrance, moving clockwise.
