@@ -5,6 +5,8 @@ weight: 2
 
 # Corner Clones
 
+{{< youtube YlwFiFAKI1g >}}
+
 **When**
 - After Roombas phase
 
@@ -20,7 +22,7 @@ weight: 2
 **Penalty**
 - The laser will knock you down if you fail the dodge roll
 
-{{< image src="/images/altar-of-calanthia/calanthia/corner-bait.png" alt="Corner clone bait positions" title="Corner Clones" loading="lazy" class="mech-diagram" >}}
+{{< image src="/images/altar-of-calanthia/calanthia/calanthia-clones.jpg" alt="Corner clone bait positions" title="Corner Clones" loading="lazy" class="mech-diagram" >}}
 
 > [!TIP]
 > **Tip**

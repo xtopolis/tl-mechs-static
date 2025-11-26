@@ -5,6 +5,8 @@ weight: 12
 
 # Pink Seed
 
+{{< youtube fSMY_bJ2ES8 >}}
+
 **When**
 - During Corner Clones phase (right after roombas)
 

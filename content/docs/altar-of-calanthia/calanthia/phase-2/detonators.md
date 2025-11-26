@@ -6,6 +6,8 @@ weight: 4
 # Detonators
 > _Possessed Destroyers_
 
+{{< youtube _js-wrZunx8 >}}
+
 **When**
 - Around 60% with screen text: _"Calanthia fills your body with condensed energy"_
 

@@ -5,6 +5,8 @@ weight: 16
 
 # Zombies
 
+{{< youtube 4UzkquEWQ50 >}}
+
 **When**
 - During Fear Crystals phase
 
