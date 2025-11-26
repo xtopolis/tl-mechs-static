@@ -5,6 +5,8 @@ weight: 7
 
 # Lightning
 
+{{< youtube qDIICPstPWs >}}
+
 **When**
 - After a Normal block
 

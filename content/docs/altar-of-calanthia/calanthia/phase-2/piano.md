@@ -5,6 +5,8 @@ weight: 11
 
 # Piano
 
+{{< youtube PSdR9eNQSFI >}}
+
 **When**
 - After Fear/Crystals phase, with voiceline: _"Stand down!"_
 
