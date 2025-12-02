@@ -11,7 +11,7 @@ weight: 1
 - During Roombas assignment phase
 
 **What**
-- The furthest player will get a circle around them with the number 2 above their heads
+- A Healers will always get a circle around them with the number 2 above their heads
 
 **Solution**
 - Another player must enter the circle so that the total number of players inside is 2
