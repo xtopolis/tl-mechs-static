@@ -1,9 +1,9 @@
 ---
-title: "Red Orbs"
-weight: 11
+title: "Orbs"
+weight: 9
 ---
 
-# Red Orbs
+# Orbs
 
 **When**
 - Description of when this mechanic occurs
@@ -16,3 +16,7 @@ weight: 11
 
 **Penalty**
 - What happens if the mechanic fails
+
+![Purple Orb](/images/4-star/colossal-coliseum/orb-purple.png)
+
+![Red Orb](/images/4-star/colossal-coliseum/orb-red.png)

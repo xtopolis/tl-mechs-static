@@ -1,9 +1,9 @@
 ---
-title: "Purple Circles"
-weight: 8
+title: "Radiance Shield Buff"
+weight: 10
 ---
 
-# Purple Circles
+# Radiance Shield Buff
 
 **When**
 - Description of when this mechanic occurs
@@ -17,6 +17,6 @@ weight: 8
 **Penalty**
 - What happens if the mechanic fails
 
-![Purple Circle](/images/4-star/colossal-coliseum/purple-circle.png)
+![Radiance Shield](/images/4-star/colossal-coliseum/radiance-shield.png)
 
-![Curse of Anathema](/images/4-star/colossal-coliseum/curse-of-anathema-purple-circle.png)
+![Radiance Shield Buff](/images/4-star/colossal-coliseum/radiance-shield-buff.png)

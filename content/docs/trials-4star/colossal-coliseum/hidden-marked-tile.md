@@ -1,9 +1,9 @@
 ---
-title: "Mammoth Stampede"
+title: "Hidden Mark Tiles"
 weight: 6
 ---
 
-# Mammoth Stampede
+# Hidden Mark Tiles
 
 **When**
 - Description of when this mechanic occurs
@@ -16,3 +16,7 @@ weight: 6
 
 **Penalty**
 - What happens if the mechanic fails
+
+![Hidden Marked Tile](/images/4-star/colossal-coliseum/hidden-marked-tile.png)
+
+![Hidden Marked Tile Revealed](/images/4-star/colossal-coliseum/hidden-marked-tile-revealed.png)

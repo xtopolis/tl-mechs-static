@@ -1,9 +1,9 @@
 ---
-title: "Purple Orbs"
-weight: 9
+title: "Cursed Purple Tile"
+weight: 2
 ---
 
-# Purple Orbs
+# Cursed Purple Tile
 
 **When**
 - Description of when this mechanic occurs
@@ -16,3 +16,5 @@ weight: 9
 
 **Penalty**
 - What happens if the mechanic fails
+
+![Cursed Purple Tile](/images/4-star/colossal-coliseum/cursed-purple-tile.png)

@@ -1,9 +1,9 @@
 ---
-title: "Suck Conal"
-weight: 14
+title: "Ghost Stampede"
+weight: 6
 ---
 
-# Suck Conal
+# Ghost Stampede
 
 **When**
 - Description of when this mechanic occurs
@@ -16,3 +16,5 @@ weight: 14
 
 **Penalty**
 - What happens if the mechanic fails
+
+![Ghost Stampede](/images/4-star/colossal-coliseum/ghost-stampede.png)

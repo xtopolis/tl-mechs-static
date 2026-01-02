@@ -1,9 +1,9 @@
 ---
-title: "Red Spectre"
-weight: 12
+title: "Conal Attacks"
+weight: 4
 ---
 
-# Red Spectre
+# Conal Attacks
 
 **When**
 - Description of when this mechanic occurs

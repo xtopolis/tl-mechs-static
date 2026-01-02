@@ -1,9 +1,9 @@
 ---
-title: "Hidden Tile"
-weight: 4
+title: "Nerzatum Collapse"
+weight: 8
 ---
 
-# Hidden Tile
+# Nerzatum Collapse
 
 **When**
 - Description of when this mechanic occurs

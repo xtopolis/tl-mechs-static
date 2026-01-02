@@ -1,9 +1,9 @@
 ---
-title: "Purple Block Tile"
-weight: 7
+title: "Charging Ghost Tile"
+weight: 3
 ---
 
-# Purple Block Tile
+# Charging Ghost Tile
 
 **When**
 - Description of when this mechanic occurs

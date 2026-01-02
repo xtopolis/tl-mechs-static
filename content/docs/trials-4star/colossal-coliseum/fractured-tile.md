@@ -1,9 +1,9 @@
 ---
-title: "Dark Purple Tile"
-weight: 1
+title: "Fractured Tile"
+weight: 5
 ---
 
-# Dark Purple Tile
+# Fractured Tile
 
 **When**
 - Description of when this mechanic occurs
@@ -16,3 +16,5 @@ weight: 1
 
 **Penalty**
 - What happens if the mechanic fails
+
+![Fractured Tile](/images/4-star/colossal-coliseum/fractured-tile.png)

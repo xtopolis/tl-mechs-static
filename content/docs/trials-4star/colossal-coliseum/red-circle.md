@@ -16,3 +16,5 @@ weight: 10
 
 **Penalty**
 - What happens if the mechanic fails
+
+![Twisted Red Eye](/images/4-star/colossal-coliseum/twisted-red-eye-red-circle.png)

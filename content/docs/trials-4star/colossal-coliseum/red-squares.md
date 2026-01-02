@@ -16,3 +16,5 @@ weight: 13
 
 **Penalty**
 - What happens if the mechanic fails
+
+![Red Squares](/images/4-star/colossal-coliseum/red-squares.png)

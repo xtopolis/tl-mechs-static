@@ -1,9 +1,9 @@
 ---
-title: "Gold Cracked Tile"
-weight: 3
+title: "Belmore Spectre"
+weight: 1
 ---
 
-# Gold Cracked Tile
+# Belmore Spectre
 
 **When**
 - Description of when this mechanic occurs
@@ -16,3 +16,7 @@ weight: 3
 
 **Penalty**
 - What happens if the mechanic fails
+
+![Belmore Spectre](/images/4-star/colossal-coliseum/belmore-spectre.png)
+
+![Belmore Spectre Path](/images/4-star/colossal-coliseum/belmore-spectre-path.jpg)
