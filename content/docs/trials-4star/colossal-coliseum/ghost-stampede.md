@@ -1,20 +1,27 @@
 ---
 title: "Ghost Stampede"
-weight: 6
+weight: 7
 ---
 
 # Ghost Stampede
 
+{{< youtube oraqgQ_62D0 >}}
+
 **When**
-- Description of when this mechanic occurs
+- Throughout the fight, including during hidden tile mech
 
 **What**
-- Description of what happens during this mechanic
+- Eight ghost elephants spawn (four on each side) in an offset pattern
+- After a few seconds, the elephants charge straight across their lanes
 
 **Solution**
-- Steps to resolve the mechanic
+- Avoid being hit by the charging elephants
 
 **Penalty**
-- What happens if the mechanic fails
+- Feared for 3 seconds and moderate damage
+
+> [!TIP]
+> **Tip**
+> You can run behind an elephant after it passes you to be safe. The most dangerous area is the middle of the arena where both sides meet
 
 ![Ghost Stampede](/images/4-star/colossal-coliseum/ghost-stampede.png)

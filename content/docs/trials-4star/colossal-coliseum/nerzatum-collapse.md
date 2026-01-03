@@ -1,18 +1,24 @@
 ---
 title: "Nerzatum Collapse"
-weight: 8
+weight: 10
 ---
 
 # Nerzatum Collapse
 
+{{< youtube TAH9JfcdoN0 >}}
+
 **When**
-- Description of when this mechanic occurs
+- After claiming the 3rd hidden tile
 
 **What**
-- Description of what happens during this mechanic
+- Nerzatum collapses and does not move for 10 seconds, taking increased damage
 
 **Solution**
-- Steps to resolve the mechanic
+- Maximize DPS during this phase
 
 **Penalty**
-- What happens if the mechanic fails
+- Nerzatum gains 10 Shield stacks upon standing up
+
+> [!TIP]
+> **Tip**
+> Try to be near Nerzatum if you see the last person is about to claim the tile to maximize damage during this opportunity

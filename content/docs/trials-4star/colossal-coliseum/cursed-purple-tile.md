@@ -1,20 +1,21 @@
 ---
 title: "Cursed Purple Tile"
-weight: 2
+weight: 4
 ---
 
 # Cursed Purple Tile
 
 **When**
-- Description of when this mechanic occurs
+- When a player with Curse of Anathema stands on a fractured tile during curse activation
+- When failing the Charging Ghost Tile mechanic
 
 **What**
-- Description of what happens during this mechanic
+- Creates a permanently unusable tile
 
 **Solution**
-- Steps to resolve the mechanic
+- Avoid touching this tile for the remainder of the fight
 
 **Penalty**
-- What happens if the mechanic fails
+- Instant player death
 
 ![Cursed Purple Tile](/images/4-star/colossal-coliseum/cursed-purple-tile.png)

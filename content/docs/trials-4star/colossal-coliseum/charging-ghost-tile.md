@@ -1,18 +1,21 @@
 ---
 title: "Charging Ghost Tile"
-weight: 3
+weight: 2
 ---
 
 # Charging Ghost Tile
 
+{{< youtube WAlF-WFojJM >}}
+
 **When**
-- Description of when this mechanic occurs
+- Occurs occasionally outside of hidden tile mech
 
 **What**
-- Description of what happens during this mechanic
+- Two ghost elephants target squares marked with a light purple glow
+- The ghosts charge the marked tiles a few seconds later
 
 **Solution**
-- Steps to resolve the mechanic
+- Use Q block ability as the ghost elephant enters your tile
 
 **Penalty**
-- What happens if the mechanic fails
+- A random tile becomes cursed and turns dark purple

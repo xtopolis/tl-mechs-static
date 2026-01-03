@@ -1,18 +1,23 @@
 ---
 title: "Conal Attacks"
-weight: 4
+weight: 3
 ---
 
 # Conal Attacks
 
 **When**
-- Description of when this mechanic occurs
+- Throughout the fight
 
 **What**
-- Description of what happens during this mechanic
+- Nerzatum performs a conal attack in a telegraphed area
 
 **Solution**
-- Steps to resolve the mechanic
+- Step out of the telegraphed cone of attack
 
 **Penalty**
-- What happens if the mechanic fails
+- **Suck**: Pulls player into boss, minimal damage
+- **Blast**: 2 second stun, minimal damage
+
+{{< youtube 3-UcLnLOBgw >}}
+
+{{< youtube MV8puCVg1tg >}}

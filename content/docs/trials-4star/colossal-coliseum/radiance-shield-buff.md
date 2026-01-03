@@ -1,21 +1,23 @@
 ---
 title: "Radiance Shield Buff"
-weight: 10
+weight: 14
 ---
 
 # Radiance Shield Buff
 
+{{< youtube P9TZmRg7DX8 >}}
+
 **When**
-- Description of when this mechanic occurs
+- Gained after touching a hidden mark tile while having the Curse of Anathema
 
 **What**
-- Description of what happens during this mechanic
+- A buff that allows you to restore up to 5 fractured tiles
 
 **Solution**
-- Steps to resolve the mechanic
+- Run over fractured tiles to restore them
 
 **Penalty**
-- What happens if the mechanic fails
+- N/A
 
 ![Radiance Shield](/images/4-star/colossal-coliseum/radiance-shield.png)
 
