@@ -1,18 +1,22 @@
 ---
 title: "Red Squares"
-weight: 13
+weight: 16
 ---
 
 # Red Squares
 
+{{< youtube iBXbQGBR_wM >}}
+
 **When**
-- Description of when this mechanic occurs
+- As part of normal rotation, but not during hidden tile mech
 
 **What**
-- Description of what happens during this mechanic
+- The floor telegraphs glowing red tiles that quickly erupt doing damage
 
 **Solution**
-- Steps to resolve the mechanic
+- Move to a non-telegraphed tile
 
 **Penalty**
-- What happens if the mechanic fails
+- A decent chunk of damage
+
+![Red Squares](/images/4-star/colossal-coliseum/red-squares.png)

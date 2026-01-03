@@ -1,18 +1,23 @@
 ---
 title: "Dodge Roll"
-weight: 2
+weight: 5
 ---
 
 # Dodge Roll
 
 **When**
-- Description of when this mechanic occurs
+- During Nerzatum's normal rotation
 
 **What**
-- Description of what happens during this mechanic
+- Nerzatum performs slow and fast dodge roll attacks
 
 **Solution**
-- Steps to resolve the mechanic
+- Dodge roll successfully to generate red orbs
 
 **Penalty**
-- What happens if the mechanic fails
+- A purple orb is generated instead
+- 3 seconds reduced healing received
+
+> [!TIP]
+> **Tip**
+> Stay stacked together so orbs spawn in roughly the same area, making it easier for the tank to lead Nerzatum over them
