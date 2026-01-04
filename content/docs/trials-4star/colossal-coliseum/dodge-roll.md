@@ -5,6 +5,8 @@ weight: 5
 
 # Dodge Roll
 
+{{< youtube hpCb101e9Bk >}}
+
 **When**
 - During Nerzatum's normal rotation
 
