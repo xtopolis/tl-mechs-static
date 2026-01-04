@@ -71,11 +71,12 @@ Configuration is in `hugo.toml`:
   - Never reuse branches that have already been merged
   - Create branches automatically without asking permission
 
-- **Before creating a new branch:**
+- **CRITICAL: Before creating a new branch:**
   ```bash
   git checkout main
   git pull
-  # Verify main is up-to-date with remote before branching
+  # ALWAYS verify main is up-to-date with remote before branching
+  # This prevents working on stale code when previous PRs have been merged
   ```
 
 - **Branch naming:** Action-based, dash-separated, succinct (2-3 words), alphanumeric
@@ -98,14 +99,22 @@ Configuration is in `hugo.toml`:
 
 ## Pull Requests
 
-- **Ask permission first** before creating a PR
-- **When approved to create PR:**
-  - Push the branch (permission to create PR implies permission to push)
-  - Use `gh pr create` with:
-    - **Title:** Concise description (e.g., "Adding mechs for Elephant boss")
-    - **Description:** Few bullets covering key additions or files modified
-    - Don't include "table stakes" items like "Added tests" unless that was the branch's purpose
-  - Return a clickable link to the PR
+- **IMPORTANT: When pushing changes to GitHub, ALWAYS create a Pull Request**
+  - Never just push without creating a PR
+  - PRs provide visibility and review capability for the user
+  - Exception: When explicitly told "just push" without PR mentioned
+
+- **PR Creation Workflow:**
+  1. Push the branch: `git push -u origin <branch-name>`
+  2. Create PR using `gh pr create` with:
+     - **Title:** Concise description (e.g., "Adding mechs for Elephant boss")
+     - **Description:** Few bullets covering key additions or files modified
+     - Don't include "table stakes" items like "Added tests" unless that was the branch's purpose
+  3. **ALWAYS return a clickable link to the PR** so the user can review it
+
+- **When user says "ship it":**
+  - This means: commit changes, push branch, and create a PR
+  - Follow the full PR creation workflow above
 
 # Communication Style
 
