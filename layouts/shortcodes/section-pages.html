@@ -1,0 +1,10 @@
+{{- $pages := .Page.RegularPages -}}
+{{- if $pages -}}
+<ul>
+{{- range $pages.ByWeight -}}
+  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+{{- end -}}
+</ul>
+{{- else -}}
+<p><em>No child pages found.</em></p>
+{{- end -}}
