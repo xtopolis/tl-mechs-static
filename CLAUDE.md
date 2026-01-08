@@ -43,6 +43,11 @@ Each mechanic page is a markdown file with frontmatter containing `title` and `w
   - Supports parameters: `id`, `start`, `end`, `autoplay`, `controls`, `loading`, etc.
   - Example: `{{< youtube _xNUE5YmfUA >}}`
 
+- **section-pages**: Automatically lists all child pages in a section with links
+  - Usage: `{{< section-pages >}}`
+  - Lists pages sorted by their `weight` frontmatter value
+  - Useful for parent/overview pages that have nested mechanic pages
+
 ## Images
 
 Images are stored in `static/images/` following the content hierarchy (e.g., `static/images/altar-of-calanthia/dragaryle/`).
@@ -113,8 +118,9 @@ Configuration is in `hugo.toml`:
   3. **ALWAYS return a clickable link to the PR** so the user can review it
 
 - **When user says "ship it":**
-  - This means: commit changes, push branch, and create a PR
+  - This means: commit and finalize the code, push the branch, create a PR, and provide the PR link for review
   - Follow the full PR creation workflow above
+  - Always return the PR URL so the user can review it
 
 # Communication Style
 
