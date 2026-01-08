@@ -7,3 +7,7 @@ bookCollapseSection: true
 # Phase 2 Mechs
 
 Phase 2 mechanics for the Calanthia encounter.
+
+## Mechanics
+
+{{< section-pages >}}
