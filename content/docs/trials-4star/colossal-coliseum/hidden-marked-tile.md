@@ -22,6 +22,10 @@ weight: 8
 
 *A revealed tile is only visible for a few seconds, but can still be claimed after it goes invisible again.*
 
+> [!TIP]
+> **Tip**
+> If you stand on a normal tile while cursed with the purple circle and it doesn't fracture, it is a hidden tile and just needs to be revealed
+
 ![Hidden Marked Tile](/images/4-star/colossal-coliseum/hidden-marked-tile.png)
 
 > [!TIP]
