@@ -1,6 +1,6 @@
 ---
 title: "Colossal Coliseum"
-weight: 2
+weight: 3
 ---
 
 # Colossal Coliseum

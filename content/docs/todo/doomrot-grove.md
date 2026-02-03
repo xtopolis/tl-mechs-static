@@ -1,6 +1,6 @@
 ---
 title: "Doomrot Grove"
-weight: 2
+weight: 5
 ---
 
 # Doomrot Grove

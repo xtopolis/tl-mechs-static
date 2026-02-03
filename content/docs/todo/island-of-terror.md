@@ -1,6 +1,6 @@
 ---
 title: "Island of Terror"
-weight: 2
+weight: 7
 ---
 
 # Island of Terror

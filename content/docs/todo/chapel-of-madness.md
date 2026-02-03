@@ -1,6 +1,6 @@
 ---
 title: "Chapel of Madness"
-weight: 1
+weight: 2
 ---
 
 # Chapel of Madness

@@ -1,6 +1,6 @@
 ---
 title: "Crypt of Augmentation"
-weight: 3
+weight: 4
 ---
 
 # Crypt of Augmentation
