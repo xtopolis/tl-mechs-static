@@ -1,7 +1,6 @@
 ---
 title: "Torture Chamber of Screams"
-weight: 3
-bookCollapseSection: true
+weight: 9
 ---
 
 # Torture Chamber of Screams
@@ -19,7 +18,7 @@ bookCollapseSection: true
 1. **Unlocking Device**
     - Read the symbols at the bottom of the stairs from left to right
     - Open the jail doors to find matching symbols
-    - Interact with the symbols in the jail cells in the same order they show on the wall. 
+    - Interact with the symbols in the jail cells in the same order they show on the wall.
       - _(Press the first button twice, the first time "turns on" the device)_
 1. **Scream Collection**
     - Defeat (12?) enemies near each screen collection device to activate it
