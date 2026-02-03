@@ -1,7 +1,6 @@
 ---
 title: "Colossal Coliseum"
 weight: 2
-bookCollapseSection: true
 ---
 
 # Colossal Coliseum
