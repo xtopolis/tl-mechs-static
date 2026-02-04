@@ -30,5 +30,4 @@ Feel free to reach out if you're looking for a guide on any of these and I'm hap
 
 ## 4★ Trials
 
-- Colossal Coliseum
 - Crypt of Augmentation
