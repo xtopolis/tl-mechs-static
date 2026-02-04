@@ -1,7 +1,7 @@
 ---
 title: "4★ Trials (T5)"
 weight: 4
-bookCollapseSection: true
+bookCollapseSection: false
 ---
 
 # 4★ Trials (T5)
