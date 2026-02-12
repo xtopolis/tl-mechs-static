@@ -1,0 +1,609 @@
+<div class="mirrors-sim">
+  <style>
+    .mirrors-sim {
+      margin-top: 2em;
+    }
+    .mirrors-sim-controls {
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .mirrors-sim-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .mirrors-sim-row:last-child {
+      margin-bottom: 0;
+    }
+    .mirrors-sim-preset {
+      padding: 8px 16px;
+      cursor: pointer;
+      border: 2px solid var(--gray-500);
+      border-radius: 6px;
+      background: var(--gray-100);
+      color: var(--body-font-color);
+      font-size: 14px;
+      font-family: inherit;
+    }
+    .mirrors-sim-preset:hover {
+      background: var(--gray-200);
+    }
+    .mirrors-sim-preset.active {
+      border-color: #7a2bd6;
+      background: #f0e6ff;
+      color: #111;
+      font-weight: 600;
+    }
+    .mirrors-sim-btn {
+      padding: 6px 12px;
+      cursor: pointer;
+      border: 1px solid var(--gray-500);
+      border-radius: 4px;
+      background: var(--gray-100);
+      color: var(--body-font-color);
+      font-size: 13px;
+      font-family: inherit;
+    }
+    .mirrors-sim-btn:hover {
+      background: var(--gray-200);
+    }
+    .mirrors-sim-time {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      color: var(--body-font-color);
+    }
+    .mirrors-sim canvas {
+      display: block;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+    }
+    .mirrors-sim-scrub {
+      width: 100%;
+      margin: 0;
+    }
+    @media (prefers-color-scheme: dark) {
+      .mirrors-sim-preset.active {
+        background: #3d2066;
+        color: #e9ecef;
+      }
+    }
+  </style>
+
+  <div class="mirrors-sim-controls">
+    <div class="mirrors-sim-row">
+      <button class="mirrors-sim-preset active" data-reds="1,3,5,9" data-purple="6">Three Red</button>
+      <button class="mirrors-sim-preset" data-reds="3,7,9,11" data-purple="12">Late Red</button>
+      <button class="mirrors-sim-preset" data-reds="4,6,8,12" data-purple="9">4 Free</button>
+    </div>
+    <div class="mirrors-sim-row">
+      <button class="mirrors-sim-btn" data-action="play">Play</button>
+      <button class="mirrors-sim-btn" data-action="pause">Pause</button>
+      <button class="mirrors-sim-btn" data-action="restart">Restart</button>
+      <span class="mirrors-sim-time">t=<span data-role="time">0.0</span>s</span>
+    </div>
+    <div class="mirrors-sim-row">
+      <input class="mirrors-sim-scrub" data-role="scrub" type="range" min="0" max="1" step="0.01" value="0" />
+    </div>
+  </div>
+
+  <canvas></canvas>
+
+  <script>
+    (() => {
+      const LOGICAL_W = 820;
+      const LOGICAL_H = 560;
+
+      // ====== CONSTANTS ======
+      const PURPLE_SPAWN_INTERVAL = 3;
+      const INITIAL_PURPLE_FIRE_DELAY = 10;
+      const PURPLE_CHAIN_GAP = 3;
+      const RED_FIRE_DELAY = 3;
+      const LASER_DURATION = 2;
+      const TELEGRAPH_LEAD = 2;
+      const LASER_WIDTH_MULT = 7;
+      const TELEGRAPH_ALPHA = 0.2;
+      const LASER_ALPHA = 0.7;
+
+      const opposite = new Map([
+        [1, 7], [7, 1], [4, 10], [10, 4],
+        [2, 9], [9, 2], [3, 8], [8, 3],
+        [5, 12], [12, 5], [6, 11], [11, 6],
+      ]);
+
+      // ====== DOM (scoped to this instance) ======
+      const root = document.currentScript.parentElement;
+      const canvas = root.querySelector("canvas");
+      const ctx = canvas.getContext("2d");
+      const playBtn = root.querySelector('[data-action="play"]');
+      const pauseBtn = root.querySelector('[data-action="pause"]');
+      const restartBtn = root.querySelector('[data-action="restart"]');
+      const scrub = root.querySelector('[data-role="scrub"]');
+      const tLabel = root.querySelector('[data-role="time"]');
+      const presetBtns = root.querySelectorAll(".mirrors-sim-preset");
+
+      // ====== DARK MODE ======
+      const darkMQ = window.matchMedia("(prefers-color-scheme: dark)");
+      let isDark = darkMQ.matches;
+      darkMQ.addEventListener("change", (e) => { isDark = e.matches; });
+
+      // ====== CURRENT CONFIG ======
+      let currentReds = [1, 3, 5, 9];
+      let currentPurple = 6;
+
+      // ====== RESPONSIVE CANVAS ======
+      let lastContainerW = 0;
+
+      function resizeIfNeeded() {
+        const w = root.clientWidth;
+        if (w < 1 || w === lastContainerW) return;
+        lastContainerW = w;
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round((w * LOGICAL_H) / LOGICAL_W * dpr);
+        canvas.style.width = w + "px";
+        canvas.style.height = Math.round((w * LOGICAL_H) / LOGICAL_W) + "px";
+      }
+
+      // ====== GEOMETRY (logical coordinates) ======
+      function slotPositions() {
+        const cx = LOGICAL_W * 0.5, cy = LOGICAL_H * 0.5;
+        const sq = 190;      // square half-size (matches drawn square)
+        const corner = sq + 8; // corners behind the square
+        const spread = 69;   // edge slot offset from center (~10% wider spacing)
+
+        return new Map([
+          [1,  { x: cx - corner, y: cy - corner }],
+          [2,  { x: cx - spread, y: cy - sq }],
+          [3,  { x: cx + spread, y: cy - sq }],
+          [4,  { x: cx + corner, y: cy - corner }],
+          [5,  { x: cx + sq,     y: cy - spread }],
+          [6,  { x: cx + sq,     y: cy + spread }],
+          [7,  { x: cx + corner, y: cy + corner }],
+          [8,  { x: cx + spread, y: cy + sq }],
+          [9,  { x: cx - spread, y: cy + sq }],
+          [10, { x: cx - corner, y: cy + corner }],
+          [11, { x: cx - sq,     y: cy + spread }],
+          [12, { x: cx - sq,     y: cy - spread }],
+        ]);
+      }
+
+      const pos = slotPositions();
+      const TOTAL_SLOTS = 12;
+
+      // Oval dimensions
+      const OVAL_RX = 42; // long axis
+      const OVAL_RY = 14; // short axis
+
+      // Corner beam targets: each corner aims at the midpoint between two slots
+      const cornerTarget = new Map([
+        [1,  [6, 7]],   // NW aims halfway between 6 and 7
+        [4,  [9, 10]],  // NE aims halfway between 9 and 10
+        [7,  [12, 1]],  // SE aims halfway between 12 and 1
+        [10, [3, 4]],   // SW aims halfway between 3 and 4
+      ]);
+
+      function cornerBeamAngle(slot) {
+        const [s1, s2] = cornerTarget.get(slot);
+        const p = pos.get(slot), p1 = pos.get(s1), p2 = pos.get(s2);
+        return Math.atan2((p1.y + p2.y) / 2 - p.y, (p1.x + p2.x) / 2 - p.x);
+      }
+
+      // Rotation per slot: edge ovals align with their edge,
+      // corner ovals perpendicular to beam direction
+      const slotRotation = new Map([
+        [1,  cornerBeamAngle(1) - Math.PI / 2],
+        [2,  0],
+        [3,  0],
+        [4,  cornerBeamAngle(4) - Math.PI / 2],
+        [5,  Math.PI / 2],
+        [6,  Math.PI / 2],
+        [7,  cornerBeamAngle(7) + Math.PI / 2],
+        [8,  0],
+        [9,  0],
+        [10, cornerBeamAngle(10) + Math.PI / 2],
+        [11, Math.PI / 2],
+        [12, Math.PI / 2],
+      ]);
+
+      // Label placement: outward direction + text alignment per slot
+      const SQ = Math.SQRT1_2; // ~0.707
+      const labelInfo = new Map([
+        [1,  { nx: -SQ, ny: -SQ, align: "right",  base: "bottom" }],
+        [2,  { nx: 0,   ny: -1,  align: "center", base: "bottom" }],
+        [3,  { nx: 0,   ny: -1,  align: "center", base: "bottom" }],
+        [4,  { nx: SQ,  ny: -SQ, align: "left",   base: "bottom" }],
+        [5,  { nx: 1,   ny: 0,   align: "left",   base: "middle" }],
+        [6,  { nx: 1,   ny: 0,   align: "left",   base: "middle" }],
+        [7,  { nx: SQ,  ny: SQ,  align: "left",   base: "top" }],
+        [8,  { nx: 0,   ny: 1,   align: "center", base: "top" }],
+        [9,  { nx: 0,   ny: 1,   align: "center", base: "top" }],
+        [10, { nx: -SQ, ny: SQ,  align: "right",  base: "top" }],
+        [11, { nx: -1,  ny: 0,   align: "right",  base: "middle" }],
+        [12, { nx: -1,  ny: 0,   align: "right",  base: "middle" }],
+      ]);
+      const LABEL_DIST = OVAL_RY + 10; // distance from center to label
+
+      function nextSlotCW(n) {
+        return n === 12 ? 1 : n + 1;
+      }
+
+      // ====== DRAW HELPERS ======
+      function drawArrowMarker(fromSlot, color) {
+        const a = pos.get(fromSlot);
+        const b = pos.get(nextSlotCW(fromSlot));
+        const dx = b.x - a.x,
+          dy = b.y - a.y;
+        const len = Math.hypot(dx, dy) || 1;
+        const ux = dx / len,
+          uy = dy / len;
+
+        const start = { x: a.x + ux * (OVAL_RX + 6), y: a.y + uy * (OVAL_RX + 6) };
+        const end = { x: a.x + ux * (OVAL_RX + 30), y: a.y + uy * (OVAL_RX + 30) };
+
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 3;
+        ctx.lineCap = "round";
+
+        ctx.beginPath();
+        ctx.moveTo(start.x, start.y);
+        ctx.lineTo(end.x, end.y);
+        ctx.stroke();
+
+        const ah = 12;
+        const angle = Math.atan2(uy, ux);
+        ctx.beginPath();
+        ctx.moveTo(end.x, end.y);
+        ctx.lineTo(
+          end.x - ah * Math.cos(angle - Math.PI / 7),
+          end.y - ah * Math.sin(angle - Math.PI / 7)
+        );
+        ctx.lineTo(
+          end.x - ah * Math.cos(angle + Math.PI / 7),
+          end.y - ah * Math.sin(angle + Math.PI / 7)
+        );
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function drawBeam(from, to, color, width, alpha) {
+        const dx = to.x - from.x, dy = to.y - from.y;
+        const len = Math.hypot(dx, dy) || 1;
+        const halfW = width / 2;
+        const nodeInset = 18;
+
+        // Center-line start/end (inset from ovals)
+        const ux = dx / len, uy = dy / len;
+        const sx = from.x + ux * nodeInset, sy = from.y + uy * nodeInset;
+        const ex = to.x - ux * nodeInset, ey = to.y - uy * nodeInset;
+
+        // Perpendicular angles for the two sides of the beam
+        const beamAngle = Math.atan2(dy, dx);
+        const perpA = beamAngle + Math.PI / 2;
+        const perpB = beamAngle - Math.PI / 2;
+        const cA = Math.cos(perpA), sA = Math.sin(perpA);
+        const cB = Math.cos(perpB), sB = Math.sin(perpB);
+
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = color;
+
+        ctx.beginPath();
+        // Flat start edge (side A)
+        ctx.moveTo(sx + cA * halfW, sy + sA * halfW);
+        // Straight edge along side A to end
+        ctx.lineTo(ex + cA * halfW, ey + sA * halfW);
+        // Rounded end: semicircle from side A to side B
+        ctx.arc(ex, ey, halfW, perpA, perpB, true);
+        // Straight edge back along side B to start
+        ctx.lineTo(sx + cB * halfW, sy + sB * halfW);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      // ====== SIMULATION STATE ======
+      let occupants = new Map();
+      let spawnEvents = [];
+      let purpleFireEvents = [];
+      let redFireEvents = [];
+      let fireEvents = [];
+      let tEnd = 1;
+      let playing = false;
+      let t0 = 0;
+      let wall0 = 0;
+
+      function occAt(slot, t) {
+        const o = occupants.get(slot);
+        if (!o) return null;
+        return o.spawnTime <= t ? o : null;
+      }
+
+      function rebuildSimulation(reds, purple) {
+        occupants = new Map();
+        spawnEvents = [];
+        purpleFireEvents = [];
+        redFireEvents = [];
+        fireEvents = [];
+
+        for (const s of reds)
+          occupants.set(s, { type: "R", spawnTime: 0 });
+        occupants.set(purple, {
+          type: "P",
+          spawnTime: 0,
+          isInitialPurple: true,
+        });
+
+        const purpleOrder = [
+          { slot: purple, spawnTime: 0, isInitial: true },
+        ];
+        let placed = occupants.size;
+        let cursor = purple;
+        let tSpawn = PURPLE_SPAWN_INTERVAL;
+
+        while (placed < TOTAL_SLOTS) {
+          cursor = nextSlotCW(cursor);
+          if (!occupants.has(cursor)) {
+            occupants.set(cursor, { type: "P", spawnTime: tSpawn });
+            spawnEvents.push({ time: tSpawn, slot: cursor, type: "P" });
+            purpleOrder.push({
+              slot: cursor,
+              spawnTime: tSpawn,
+              isInitial: false,
+            });
+            placed++;
+            tSpawn += PURPLE_SPAWN_INTERVAL;
+          }
+        }
+
+        let prevFire =
+          purpleOrder[0].spawnTime + INITIAL_PURPLE_FIRE_DELAY;
+        purpleFireEvents.push({
+          time: prevFire,
+          from: purpleOrder[0].slot,
+          to: opposite.get(purpleOrder[0].slot),
+          color: "P",
+        });
+
+        for (let i = 1; i < purpleOrder.length; i++) {
+          const { slot, spawnTime } = purpleOrder[i];
+          const chained = prevFire + PURPLE_CHAIN_GAP;
+          const fireTime = Math.max(chained, spawnTime);
+          purpleFireEvents.push({
+            time: fireTime,
+            from: slot,
+            to: opposite.get(slot),
+            color: "P",
+          });
+          prevFire = fireTime;
+        }
+
+        for (const ev of purpleFireEvents) {
+          const targetOcc = occAt(ev.to, ev.time);
+          if (targetOcc?.type === "R") {
+            redFireEvents.push({
+              time: ev.time + RED_FIRE_DELAY,
+              from: ev.to,
+              to: opposite.get(ev.to),
+              color: "R",
+            });
+          }
+        }
+
+        fireEvents = purpleFireEvents
+          .concat(redFireEvents)
+          .sort(
+            (a, b) =>
+              a.time - b.time ||
+              (a.color > b.color ? 1 : -1) ||
+              a.from - b.from
+          );
+
+        tEnd =
+          Math.max(
+            ...fireEvents.map((e) => e.time + LASER_DURATION),
+            0
+          ) + 0.5;
+
+        scrub.min = "0";
+        scrub.max = String(tEnd);
+        scrub.value = "0";
+        setTime(0);
+      }
+
+      // ====== RENDER ======
+      // Gold ring follows the purple telegraph sequence
+      function getGoldSlot() {
+        let slot = currentPurple;
+        for (const ev of purpleFireEvents) {
+          if (t0 >= ev.time - TELEGRAPH_LEAD) {
+            slot = ev.from;
+          } else {
+            break;
+          }
+        }
+        return slot;
+      }
+
+      function drawBoard() {
+        // canvas background
+        ctx.fillStyle = isDark ? "#343a40" : "#ffffff";
+        ctx.fillRect(0, 0, LOGICAL_W, LOGICAL_H);
+
+        // faint square
+        ctx.save();
+        ctx.globalAlpha = 0.15;
+        ctx.strokeStyle = isDark ? "#ffffff" : "#000000";
+        ctx.lineWidth = 6;
+        ctx.strokeRect(
+          LOGICAL_W * 0.5 - 190,
+          LOGICAL_H * 0.5 - 190,
+          380,
+          380
+        );
+        ctx.restore();
+
+        // Center boss circle
+        const cx = LOGICAL_W * 0.5, cy = LOGICAL_H * 0.5;
+        const bossR = OVAL_RY * 1.5;
+        ctx.beginPath();
+        ctx.arc(cx, cy, bossR, 0, Math.PI * 2);
+        ctx.fillStyle = isDark ? "#000" : "#fff";
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = isDark ? "#fff" : "#000";
+        ctx.stroke();
+
+        const slotFill = isDark ? "#494e54" : "#f4f4f4";
+        const slotStroke = isDark ? "#aaa" : "#333";
+        const labelColor = isDark ? "#e9ecef" : "#111";
+
+        // Draw all ovals, dots, and labels
+        for (let s = 1; s <= 12; s++) {
+          const p = pos.get(s);
+          const o = occAt(s, t0);
+          const rot = slotRotation.get(s);
+
+          // Outer oval
+          ctx.beginPath();
+          ctx.ellipse(p.x, p.y, OVAL_RX, OVAL_RY, rot, 0, Math.PI * 2);
+          ctx.fillStyle = slotFill;
+          ctx.fill();
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = slotStroke;
+          ctx.stroke();
+
+          // Inner colored dot (proportional oval)
+          if (o) {
+            ctx.beginPath();
+            ctx.ellipse(p.x, p.y, 24, 8, rot, 0, Math.PI * 2);
+            ctx.fillStyle = o.type === "R" ? "#d11" : "#7a2bd6";
+            ctx.fill();
+          }
+
+          // Label on outermost edge
+          const li = labelInfo.get(s);
+          const lx = p.x + li.nx * LABEL_DIST;
+          const ly = p.y + li.ny * LABEL_DIST;
+          ctx.fillStyle = labelColor;
+          ctx.font = "bold 18px ui-monospace, Menlo, Consolas, monospace";
+          ctx.textAlign = li.align;
+          ctx.textBaseline = li.base;
+          ctx.fillText(String(s), lx, ly);
+        }
+
+        // Gold ring + arrow on top (follows purple telegraph sequence)
+        const goldSlot = getGoldSlot();
+        const gp = pos.get(goldSlot);
+        const grot = slotRotation.get(goldSlot);
+        ctx.save();
+        ctx.beginPath();
+        ctx.ellipse(gp.x, gp.y, OVAL_RX + 4, OVAL_RY + 4, grot, 0, Math.PI * 2);
+        ctx.strokeStyle = "#d4af37";
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        ctx.restore();
+        drawArrowMarker(goldSlot, "#d4af37");
+      }
+
+      function drawTelegraphsAndLasers() {
+        const beamW = 10 * LASER_WIDTH_MULT;
+
+        for (const ev of fireEvents) {
+          const from = pos.get(ev.from);
+          let to = pos.get(ev.to);
+
+          // Redirect corner beams toward their target midpoint
+          if (cornerTarget.has(ev.from)) {
+            const [s1, s2] = cornerTarget.get(ev.from);
+            const p1 = pos.get(s1), p2 = pos.get(s2);
+            const angle = Math.atan2((p1.y + p2.y) / 2 - from.y, (p1.x + p2.x) / 2 - from.x);
+            const dist = Math.hypot(to.x - from.x, to.y - from.y);
+            to = { x: from.x + dist * Math.cos(angle), y: from.y + dist * Math.sin(angle) };
+          }
+
+          const color = ev.color === "R" ? "#d11" : "#7a2bd6";
+          const telStart = ev.time - TELEGRAPH_LEAD;
+          const showTelegraph = t0 >= telStart && t0 < ev.time;
+          const showLaser = t0 >= ev.time && t0 <= ev.time + LASER_DURATION;
+
+          if (showTelegraph) {
+            drawBeam(from, to, color, beamW, TELEGRAPH_ALPHA);
+          } else if (showLaser) {
+            drawBeam(from, to, color, beamW, LASER_ALPHA);
+          }
+        }
+      }
+
+      function draw() {
+        resizeIfNeeded();
+        const s = canvas.width / LOGICAL_W;
+        ctx.setTransform(s, 0, 0, s, 0, 0);
+        drawBoard();
+        drawTelegraphsAndLasers();
+      }
+
+      // ====== PLAYBACK ======
+      function setTime(t) {
+        t0 = Math.max(0, Math.min(t, tEnd));
+        wall0 = performance.now();
+        scrub.value = String(t0);
+        tLabel.textContent = t0.toFixed(1);
+      }
+
+      function tick(now) {
+        if (playing) {
+          const dt = (now - wall0) / 1000;
+          setTime(t0 + dt);
+        }
+        draw();
+        requestAnimationFrame(tick);
+      }
+
+      // ====== CONTROLS ======
+      playBtn.onclick = () => {
+        playing = true;
+        wall0 = performance.now();
+      };
+      pauseBtn.onclick = () => {
+        playing = false;
+      };
+      restartBtn.onclick = () => {
+        playing = false;
+        setTime(0);
+        draw();
+      };
+
+      scrub.addEventListener("input", () => {
+        playing = false;
+        setTime(parseFloat(scrub.value));
+        draw();
+      });
+
+      // ====== PRESETS ======
+      presetBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          presetBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentReds = btn.dataset.reds.split(",").map(Number);
+          currentPurple = Number(btn.dataset.purple);
+          playing = false;
+          rebuildSimulation(currentReds, currentPurple);
+          draw();
+        });
+      });
+
+      // ====== INIT ======
+      resizeIfNeeded();
+      rebuildSimulation(currentReds, currentPurple);
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</div>
