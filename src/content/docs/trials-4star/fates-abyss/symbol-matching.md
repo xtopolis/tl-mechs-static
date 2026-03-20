@@ -1,0 +1,20 @@
+---
+title: "Symbol Matching"
+sidebar:
+  order: 11
+---
+
+
+**When**
+- After pillars are destroyed
+
+**What**
+- Symbol locations are engraved on the floor in the three small circles
+- Two of the players who destroy pillars gain symbols above their heads
+
+**Solution**
+- Players must match symbols above their head with the floor engraving
+- The order the pillar spawned that gives the symbol is the solve order
+
+**Penalty**
+- Players who enter the wrong symbol die and kill the lifted player

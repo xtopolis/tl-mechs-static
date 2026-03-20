@@ -4,68 +4,121 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 # Project Overview
 
-This is a Hugo-based static site for documenting Throne and Liberty game mechanics. It uses the Hugo Book theme and is deployed to GitHub Pages at https://tl-mechs.com/.
+Static site documenting Throne and Liberty dungeon mechanics, deployed to GitHub Pages at https://tl-mechs.com/. Migrated from Hugo + Book theme to **Astro + Starlight** for richer component support and better DX.
 
 # Tech Stack
 
-- **Hugo**: Static site generator (requires extended version)
-- **Theme**: Hugo Book (included as git submodule in `themes/hugo-book/`)
-- **Deployment**: GitHub Actions automatically builds and deploys to GitHub Pages on push to main
+- **Astro 5** with **Starlight 0.36** — static site generator + documentation theme
+- **MDX** — content files use `.mdx` when they import components, plain `.md` otherwise
+- **Deployment**: GitHub Actions builds and deploys to GitHub Pages on push to `main`
+- **Node 20** — required for builds
 
 # Development Commands
 
 ```bash
-# Start local development server with drafts
-hugo server -D
-
-# Build the site (output to public/)
-hugo
-
-# Build for production with minification
-hugo --minify
+npm run dev       # Start dev server at http://localhost:4321/
+npm run build     # Build to dist/
+npm run preview   # Preview built output
 ```
-
-Development server runs at http://localhost:1313/
 
 # Content Structure
 
-Content is organized in a hierarchical structure under `content/docs/`:
-- `altar-of-calanthia/` - Raid boss mechanics (Dragaryle, Vulkan/Zairos, Calanthia)
-- `trials-2star/`, `trials-3star/`, `trials-4star/` - Trial dungeon mechanics
+All content lives under `src/content/docs/`, mirroring the URL structure:
+- `altar-of-calanthia/` — Raid bosses: Dragaryle, Vulkan & Zairos, Calanthia
+  - Each boss has `phase-1/`, `phase-2/` subdirectories
+- `trials-4star/` — 4★ Trial dungeons: Colossal Coliseum, Fate's Abyss
+- `todo/` — Placeholder section for guides not yet written
+- `about.md`, `index.md` — Top-level pages
 
-Each mechanic page is a markdown file with frontmatter containing `title` and `weight` for ordering in the navigation.
+**Frontmatter conventions:**
+- `title: "..."` — page title
+- `sidebar:\n  order: N` — controls ordering within a section (replaces Hugo's `weight`)
+- `sidebar:\n  collapsed: true` — collapses section in sidebar by default
+- Section index files are `index.md` (not `_index.md`)
 
 # Custom Components
 
-## Shortcodes
+Components live in `src/components/`. Import with a relative path based on nesting depth.
 
-- **youtube**: Embeds YouTube videos. Usage: `{{< youtube VIDEO_ID >}}`
-  - Supports parameters: `id`, `start`, `end`, `autoplay`, `controls`, `loading`, etc.
-  - Example: `{{< youtube _xNUE5YmfUA >}}`
+| Depth from `src/content/docs/` | Import prefix |
+|---|---|
+| 2 levels deep (e.g. `altar-of-calanthia/dragaryle/`) | `../../../../components/` |
+| 3 levels deep (e.g. `altar-of-calanthia/calanthia/phase-1/`) | `../../../../../components/` |
 
-- **section-pages**: Automatically lists all child pages in a section with links
-  - Usage: `{{< section-pages >}}`
-  - Lists pages sorted by their `weight` frontmatter value
-  - Useful for parent/overview pages that have nested mechanic pages
+## YouTubeEmbed
+
+Embeds a responsive YouTube video.
+
+```mdx
+import YouTubeEmbed from '../../../../components/YouTubeEmbed.astro';
+
+<YouTubeEmbed videoId="VIDEO_ID" />
+<YouTubeEmbed videoId="VIDEO_ID" start={30} title="Custom title" />
+```
+
+## MirrorsSim
+
+Canvas-based interactive simulator for the Calanthia mirrors mechanic. No props.
+
+```mdx
+import MirrorsSim from '../../../../../components/MirrorsSim.astro';
+
+<MirrorsSim />
+```
+
+## Starlight built-ins
+
+Use these directly in `.mdx` files without importing:
+
+```mdx
+:::tip[Title]
+Tip content here.
+:::
+
+:::caution[Title]
+Caution content here.
+:::
+
+:::note
+Note content.
+:::
+```
+
+For section index pages listing child pages, use Starlight's `<CardGrid>` and `<LinkCard>`:
+
+```mdx
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <LinkCard title="Page Name" href="/section/page-name/" />
+</CardGrid>
+```
 
 ## Images
 
-Images are stored in `static/images/` following the content hierarchy (e.g., `static/images/altar-of-calanthia/dragaryle/`).
+Images are stored in `public/images/` following the content hierarchy.
 
 Reference images using absolute paths: `/images/altar-of-calanthia/dragaryle/image.png`
 
-# Hugo Configuration
+```md
+<img src="/images/altar-of-calanthia/dragaryle/image.png" loading="lazy" class="mech-diagram" />
+```
 
-Configuration is in `hugo.toml`:
-- `baseURL`: https://tl-mechs.com/
-- `theme`: hugo-book
-- Theme settings: Table of contents enabled, auto theme (follows system preference)
+The `mech-diagram` class (defined in `src/styles/custom.css`) centers the image and limits it to 50% width.
+
+# Configuration
+
+- **`astro.config.mjs`** — site URL, Starlight options, sidebar sections, custom CSS
+- **`src/content.config.ts`** — Starlight content collection definition (do not modify)
+- **`src/styles/custom.css`** — custom CSS loaded globally
+- **`package.json`** — includes npm overrides to pin `zod-to-json-schema` and `@astrojs/sitemap` to Zod v3-compatible versions; do not remove these overrides or the build will break
 
 # Deployment
 
 - **Workflow**: `.github/workflows/deploy.yml`
 - Automatically deploys on push to `main`
 - Can be manually triggered from GitHub Actions tab
+- Build output goes to `dist/` (gitignored); `public/` is committed static assets
 
 # Git Workflow
 

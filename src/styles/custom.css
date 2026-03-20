@@ -1,0 +1,35 @@
+/* Mechanic diagram images: centered, max 50% width */
+img.mech-diagram {
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* Contribute link visual separator in sidebar */
+.sidebar-content a[href$="/about"] {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sl-color-gray-5);
+  font-weight: 500;
+}
+
+/* YouTube embed responsive container */
+.youtube-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  margin: 1.5em 0;
+  border-radius: 8px;
+}
+
+.youtube-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+}
