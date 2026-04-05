@@ -1,6 +1,6 @@
 # TL Mechs Guide
 
-A static site documentation project for Throne and Liberty mechanics guides, built with Hugo and the Book theme.
+A static site documenting Throne and Liberty dungeon mechanics, built with Astro and Starlight.
 
 Most of this codebase is generated with [Claude Code](https://claude.com/claude-code).
 
@@ -8,69 +8,47 @@ Vibe coders welcome.
 
 ## Tech Stack
 
-- **Hugo**: Static site generator
-- **Theme**: [Hugo Book](https://github.com/alex-shpak/hugo-book)
+- **Astro 5** — static site generator
+- **Starlight 0.36** — documentation theme
 - **Deployment**: GitHub Pages
 
 ## Development
 
 ### Prerequisites
 
-- Hugo installed (extended version recommended)
+- Node 20+
 - Git
-
-#### Installing Hugo on Mac
-
-The easiest way to install Hugo on Mac is using Homebrew:
-
-```bash
-# Install Hugo (includes extended version)
-brew install hugo
-
-# Verify installation
-hugo version
-```
-
-If you don't have Homebrew installed, you can install it first:
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-Alternative installation methods:
-- Download from [Hugo releases](https://github.com/gohugoio/hugo/releases)
-- Use MacPorts: `sudo port install hugo`
 
 ### Common Commands
 
 ```bash
-# Start local development server
-hugo server -D
+# Install dependencies
+npm install
+
+# Start local development server (http://localhost:4321/)
+npm run dev
 
 # Build the site
-hugo
+npm run build
 
-# Build for production (with baseURL from config)
-hugo --minify
+# Preview built output
+npm run preview
 ```
-
-The development server will be available at `http://localhost:1313/`
 
 ## Deployment
 
 The site is automatically deployed to GitHub Pages via GitHub Actions on every push to `main`.
 
 - **Live Site**: https://tl-mechs.com/
-- **CI/CD**: GitHub Actions workflow builds and deploys Hugo site automatically
 - **Workflow**: `.github/workflows/deploy.yml`
-
-### Manual Deployment
 
 The workflow can also be triggered manually from the Actions tab in GitHub.
 
 ## Project Structure
 
-- `content/` - Markdown content files
-- `themes/hugo-book/` - Hugo Book theme (as submodule)
-- `hugo.toml` - Hugo configuration
-- `public/` - Generated site output (not committed)
+- `src/content/docs/` — Markdown/MDX content files (mirrors URL structure)
+- `src/components/` — Custom Astro components (YouTubeEmbed, MirrorsSim)
+- `src/styles/custom.css` — Global custom CSS
+- `public/` — Static assets (images, CNAME, 404.html)
+- `astro.config.mjs` — Astro + Starlight configuration, sidebar definition
+- `dist/` — Build output (not committed)
