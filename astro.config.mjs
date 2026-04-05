@@ -68,7 +68,6 @@ export default defineConfig({
                     { label: 'Elemental Tether', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/elemental-tether/' },
                     { label: 'Jump', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/jump/' },
                     { label: 'Shoulder Punches', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/shoulder-punches/' },
-                    { label: 'Wave', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/wave/' },
                   ],
                 },
               ],
