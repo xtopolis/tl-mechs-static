@@ -13,7 +13,7 @@ sidebar:
 - While chained, the players take tick damage, as well as anyone touching the tether
 
 **Solution**
-- Players need to spread out so that the length of the tethers between connected players is greater than (TBD) meters
+- Players need to spread out so that the length of the tethers between each connected player is greater than ~20 meters
 
 **Penalty**
 - The players and anyone inside continuously take tick damage

@@ -6,7 +6,7 @@ sidebar:
 
 
 **When**
-- tbd
+- Around 40-50% — spawn around the arena (roughly 3 on one half, 2 on the other), granting the boss a Damage Reduction buff
 
 **What**
 - Elemental Crystals spawn, with a protection shield

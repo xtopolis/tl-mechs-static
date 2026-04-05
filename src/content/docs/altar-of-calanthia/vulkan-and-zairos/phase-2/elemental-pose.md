@@ -6,7 +6,7 @@ sidebar:
 
 
 **When**
-- tbd
+- At the end of each normal rotation cycle, after Meteors and the second Dodge roll
 
 **What**
 - The boss strikes a pose, gaining a shield

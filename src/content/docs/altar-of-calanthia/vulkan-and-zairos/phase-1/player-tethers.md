@@ -1,5 +1,5 @@
 ---
-title: "Player Tethers"
+title: "Tethers"
 sidebar:
   order: 14
 ---

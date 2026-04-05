@@ -1,5 +1,5 @@
 ---
-title: "-- Contribute --"
+title: "About"
 sidebar:
   order: 999
 ---
@@ -7,18 +7,14 @@ sidebar:
 
 This guide is created and maintained by players from **NA West** who are passionate about sharing knowledge and helping the Throne and Liberty community.
 
-## Contributing
-
-We welcome contributions from the community! Here are ways you can help:
-
 ### Report Issues
 Found a mistake or outdated information? [Open an issue](https://github.com/xtopolis/tl-mechs-static/issues) on GitHub to let us know.
 
-### Submit Changes
+### Contributing
 Have corrections or new content to add?
 
 1. Fork the repository on [GitHub](https://github.com/xtopolis/tl-mechs-static)
-2. Make your changes to the markdown files in the `content/` directory
+2. Make your changes to the markdown files in the `src/content/docs/` directory
 3. Submit a pull request with a clear description of your changes
 
 ### Content Guidelines

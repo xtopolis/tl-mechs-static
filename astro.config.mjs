@@ -8,6 +8,7 @@ export default defineConfig({
       title: 'TL Mechs Guide',
       description: 'Comprehensive dungeon strategies and mechanics for Throne and Liberty',
       defaultLocale: 'en',
+      tableOfContents: false,
       sidebar: [
         {
           label: 'Altar of Calanthia',
@@ -40,7 +41,6 @@ export default defineConfig({
                   label: 'Phase 1',
                   collapsed: true,
                   items: [
-                    { label: 'OVERVIEW', link: '/altar-of-calanthia/vulkan-and-zairos/phase-1/', attrs: { style: 'font-weight: bold' } },
                     { label: '(Fire) Conal', link: '/altar-of-calanthia/vulkan-and-zairos/phase-1/fire-conal/' },
                     { label: '(Fire) Donuts', link: '/altar-of-calanthia/vulkan-and-zairos/phase-1/fire-donuts/' },
                     { label: '(Fire) Floor Eruptions', link: '/altar-of-calanthia/vulkan-and-zairos/phase-1/fire-floor-eruptions/' },
@@ -54,7 +54,7 @@ export default defineConfig({
                     { label: '(Ice) Q Blocks', link: '/altar-of-calanthia/vulkan-and-zairos/phase-1/ice-q-blocks/' },
                     { label: '(Ice) Shield', link: '/altar-of-calanthia/vulkan-and-zairos/phase-1/ice-shield/' },
                     { label: 'Aura/Stacks', link: '/altar-of-calanthia/vulkan-and-zairos/phase-1/aura-stacks/' },
-                    { label: 'Player Tethers', link: '/altar-of-calanthia/vulkan-and-zairos/phase-1/player-tethers/' },
+                    { label: 'Tethers', link: '/altar-of-calanthia/vulkan-and-zairos/phase-1/player-tethers/' },
                     { label: 'Wave', link: '/altar-of-calanthia/vulkan-and-zairos/phase-1/wave/' },
                   ],
                 },
@@ -62,20 +62,11 @@ export default defineConfig({
                   label: 'Phase 2',
                   collapsed: true,
                   items: [
-                    { label: 'OVERVIEW', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/', attrs: { style: 'font-weight: bold' } },
                     { label: 'Elemental Crystals', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/elemental-crystals/' },
                     { label: 'Elemental Orbs', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/elemental-orbs/' },
                     { label: 'Elemental Pose', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/elemental-pose/' },
-                    { label: 'Elemental Protection', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/elemental-protection/' },
                     { label: 'Elemental Tether', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/elemental-tether/' },
-                    { label: 'Fire Conal', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/fire-conal/' },
-                    { label: 'Fire Donuts', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/fire-donuts/' },
-                    { label: 'Floor Eruptions', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/floor-eruptions/' },
-                    { label: 'Ice Beam', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/ice-beam/' },
-                    { label: 'Ice Cross', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/ice-cross/' },
-                    { label: 'Ice Prisons', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/ice-prisons/' },
                     { label: 'Jump', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/jump/' },
-                    { label: 'Meteors', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/meteors/' },
                     { label: 'Shoulder Punches', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/shoulder-punches/' },
                     { label: 'Wave', link: '/altar-of-calanthia/vulkan-and-zairos/phase-2/wave/' },
                   ],
@@ -91,7 +82,6 @@ export default defineConfig({
                   label: 'Phase 1',
                   collapsed: true,
                   items: [
-                    { label: 'OVERVIEW', link: '/altar-of-calanthia/calanthia/phase-1/', attrs: { style: 'font-weight: bold' } },
                     { label: 'Lightning', link: '/altar-of-calanthia/calanthia/phase-1/lightning/' },
                     { label: 'Tethers', link: '/altar-of-calanthia/calanthia/phase-1/tethers/' },
                     { label: '2 Circle', link: '/altar-of-calanthia/calanthia/phase-1/2-circle/' },
@@ -109,7 +99,6 @@ export default defineConfig({
                   label: 'Phase 2',
                   collapsed: true,
                   items: [
-                    { label: 'OVERVIEW', link: '/altar-of-calanthia/calanthia/phase-2/', attrs: { style: 'font-weight: bold' } },
                     { label: 'Slam Swipes', link: '/altar-of-calanthia/calanthia/phase-2/slam-swipes/' },
                     { label: 'Tethers', link: '/altar-of-calanthia/calanthia/phase-2/tethers/' },
                     { label: 'Crystals', link: '/altar-of-calanthia/calanthia/phase-2/crystals/' },
@@ -176,7 +165,24 @@ export default defineConfig({
         { label: 'About', link: '/about' },
       ],
       customCss: ['./src/styles/custom.css'],
-      head: [],
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            async: true,
+            src: 'https://www.googletagmanager.com/gtag/js?id=G-GZ1WNQEVLV',
+          },
+        },
+        {
+          tag: 'script',
+          content: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-GZ1WNQEVLV');
+          `,
+        },
+      ],
     }),
   ],
 });

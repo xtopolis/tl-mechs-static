@@ -14,6 +14,17 @@ img.mech-diagram {
   font-weight: 500;
 }
 
+/* Boss portrait links on home page */
+.boss-card img {
+  opacity: 0.5;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.boss-card:hover img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
 /* YouTube embed responsive container */
 .youtube-embed {
   position: relative;
