@@ -1,0 +1,14 @@
+---
+import Default from '@astrojs/starlight/components/Head.astro';
+---
+<Default {...Astro.props}><slot /></Default>
+<script>
+  import mediumZoom from 'medium-zoom';
+
+  function init() {
+    mediumZoom('.zoomable', { background: 'rgba(0,0,0,0.85)', margin: 24 });
+  }
+
+  init();
+  document.addEventListener('astro:page-load', init);
+</script>

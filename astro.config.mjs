@@ -165,10 +165,14 @@ export default defineConfig({
           label: 'Nebula Island',
           items: [
             { label: 'Chests/Stones', link: '/nebula/' },
+            { label: 'Spawn Locations', link: '/nebula/spawn-locations/' },
           ],
         },
         { label: 'About', link: '/about' },
       ],
+      components: {
+        Head: './src/components/MediumZoom.astro',
+      },
       customCss: ['./src/styles/custom.css'],
       head: [
         {
