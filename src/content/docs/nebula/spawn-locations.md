@@ -8,7 +8,7 @@ Chests always spawn in one of a fixed set of cluster spots per zone — two ches
 
 ## Orc Village
 
-<img src="/images/nebula/orc-village.jpg" loading="lazy" class="mech-diagram" />
+<img src="/images/nebula/orc-village.jpg" loading="lazy" class="mech-diagram zoomable" />
 
 - ○ North — on wood overhanging edge of hill
 - △ South — on top of medium tower wood overhang with piton
@@ -17,7 +17,7 @@ Chests always spawn in one of a fixed set of cluster spots per zone — two ches
 
 ## Arkeum
 
-<img src="/images/nebula/arekum.jpg" loading="lazy" class="mech-diagram" />
+<img src="/images/nebula/arekum.jpg" loading="lazy" class="mech-diagram zoomable" />
 
 - □ South — inside church
 
@@ -37,4 +37,4 @@ Seal's layout is visually repetitive, so rather than named clusters, scan all po
 
 ## Shrine
 
-<img src="/images/nebula/shrine.jpg" loading="lazy" class="mech-diagram" />
+<img src="/images/nebula/shrine.jpg" loading="lazy" class="mech-diagram zoomable" />
