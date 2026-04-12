@@ -170,6 +170,9 @@ export default defineConfig({
         },
         { label: 'About', link: '/about' },
       ],
+      components: {
+        Head: './src/components/MediumZoom.astro',
+      },
       customCss: ['./src/styles/custom.css'],
       head: [
         {

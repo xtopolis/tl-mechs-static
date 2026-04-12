@@ -8,37 +8,18 @@ Chests always spawn in one of a fixed set of cluster spots per zone — two ches
 
 ## Orc Village
 
-Three clusters. Codenamed by callout:
+<img src="/images/nebula/orc-village.jpg" loading="lazy" class="mech-diagram" />
 
-### Center Spawn
-
-<!-- Visual coming soon -->
-
-### Beach Spawn
-
-<!-- Visual coming soon -->
-
-### Right / Far Side Spawn
-
-<!-- Visual coming soon -->
+- ○ North — on wood overhanging edge of hill
+- △ South — on top of medium tower wood overhang with piton
 
 ---
 
 ## Arkeum
 
-Three clusters:
+<img src="/images/nebula/arekum.jpg" loading="lazy" class="mech-diagram" />
 
-### Tents
-
-<!-- Visual coming soon -->
-
-### Church Spawn
-
-<!-- Visual coming soon -->
-
-### Post / Far Side Spawn
-
-<!-- Visual coming soon -->
+- □ South — inside church
 
 ---
 
@@ -56,6 +37,4 @@ Seal's layout is visually repetitive, so rather than named clusters, scan all po
 
 ## Shrine
 
-One chest always spawns **in the circle**, the other always on the **outer walkway**. Prioritize the outer walkway first, then move to the circle.
-
-<!-- Visual coming soon -->
+<img src="/images/nebula/shrine.jpg" loading="lazy" class="mech-diagram" />

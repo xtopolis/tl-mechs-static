@@ -25,6 +25,13 @@ img.mech-diagram {
   transform: scale(1.05);
 }
 
+/* Offset medium-zoom from sidebar on desktop */
+@media (min-width: 50rem) {
+  .medium-zoom-image--opened {
+    translate: calc(var(--sl-sidebar-width) / 2) 0 !important;
+  }
+}
+
 /* YouTube embed responsive container */
 .youtube-embed {
   position: relative;
