@@ -1,0 +1,395 @@
+---
+// NebulaPlanner: spawn timing and location calculator for Nebula Island events.
+---
+
+<div class="np not-content">
+
+  <!-- Controls -->
+  <div class="np-panel">
+
+    <div class="np-row">
+      <span class="np-row-label">Current time</span>
+      <input class="np-time" type="time" id="np-time" />
+    </div>
+
+    <div class="np-row">
+      <span class="np-row-label">Current spawns</span>
+      <div class="np-type-group">
+        <button class="np-type-btn" id="np-btn-chest" title="Chests" aria-label="Chests"><span>🎁</span></button>
+        <button class="np-type-btn" id="np-btn-stone" title="Stones" aria-label="Stones"><span>🪨</span></button>
+      </div>
+    </div>
+
+    <div class="np-row">
+      <span class="np-row-label">Location</span>
+      <div class="np-loc-group" id="np-loc-group">
+        <span class="np-loc-btn np-loc-disabled" data-loc="0">Shrine</span>
+        <span class="np-loc-btn np-loc-disabled" data-loc="1">Arkeum</span>
+        <span class="np-loc-btn np-loc-disabled" data-loc="2">Orc Village</span>
+        <span class="np-loc-btn np-loc-disabled" data-loc="3">Seal Sanctuary</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Output -->
+  <div class="np-output" id="np-output">
+
+    <div>
+      <p class="np-section-title">Current Hour</p>
+      <div class="np-current-row">
+        <div id="np-timing"></div>
+        <table class="np-table np-current-table">
+          <thead><tr><th>Location</th><th>Type</th></tr></thead>
+          <tbody id="np-current-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <p class="np-section-title">Next 4 Hours</p>
+      <table class="np-table">
+        <thead>
+          <tr>
+            <th class="np-col-hour">12hr</th>
+            <th class="np-col-hour">24hr</th>
+            <th>🎁 Chests</th>
+            <th>🪨 Stones</th>
+          </tr>
+        </thead>
+        <tbody id="np-forecast-tbody"></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script is:inline>
+    (() => {
+      const ROTATION = ['Shrine', 'Arkeum', 'Orc Village', 'Seal Sanctuary'];
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+      function fmtHour(h24, mins) {
+        const h = h24 % 24;
+        const suffix = h < 12 ? 'AM' : 'PM';
+        const h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
+        return mins !== undefined
+          ? `${h12}:${pad(mins)} ${suffix}`
+          : `${h12} ${suffix}`;
+      }
+      function fmtMins(m) { return m === 1 ? '1 min' : m + ' mins'; }
+
+      let selectedType = null;
+      let selectedLoc  = null;
+
+      const timeInput     = document.getElementById('np-time');
+      const btnChest      = document.getElementById('np-btn-chest');
+      const btnStone      = document.getElementById('np-btn-stone');
+      const locBtns       = document.querySelectorAll('#np-loc-group .np-loc-btn');
+      const output        = document.getElementById('np-output');
+      const timingDiv     = document.getElementById('np-timing');
+      const currentTbody  = document.getElementById('np-current-tbody');
+      const forecastTbody = document.getElementById('np-forecast-tbody');
+
+      const now = new Date();
+      timeInput.value = pad(now.getHours()) + ':' + pad(now.getMinutes());
+
+      function setType(type) {
+        selectedType = type;
+        btnChest.classList.toggle('np-active', type === 'chest');
+        btnStone.classList.toggle('np-active', type === 'stone');
+        locBtns.forEach(b => b.classList.remove('np-loc-disabled'));
+        tryCalculate();
+      }
+
+      btnChest.addEventListener('click', () => setType('chest'));
+      btnStone.addEventListener('click', () => setType('stone'));
+
+      locBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('np-loc-disabled')) return;
+          locBtns.forEach(b => b.classList.remove('np-active'));
+          btn.classList.add('np-active');
+          selectedLoc = parseInt(btn.dataset.loc, 10);
+          tryCalculate();
+        });
+      });
+
+      timeInput.addEventListener('change', tryCalculate);
+      timeInput.addEventListener('input', tryCalculate);
+
+      function tryCalculate() {
+        if (selectedType === null || selectedLoc === null) return;
+        const val = timeInput.value;
+        if (!val) return;
+        const [hStr, mStr] = val.split(':');
+        const h = parseInt(hStr, 10);
+        const m = parseInt(mStr, 10);
+        if (isNaN(h) || isNaN(m)) return;
+
+        // Spawn timing
+        const spawnMins = [0, 20, 40];
+        let lastSpawn = 0;
+        for (const s of spawnMins) { if (m >= s) lastSpawn = s; }
+        let nextSpawn = spawnMins.find(s => s > m);
+        const nextHour = nextSpawn !== undefined ? h : (h + 1) % 24;
+        if (nextSpawn === undefined) nextSpawn = 0;
+        const minsSince = m - lastSpawn;
+        const minsUntil = nextSpawn - m + (nextSpawn <= m ? 60 : 0);
+
+        const spawnRows = [0, 20, 40].map(sm => {
+          const minsAgo = m - sm;
+          const stale = minsAgo > 5;
+          const upcoming = sm > m;
+          const label = upcoming
+            ? `in ${fmtMins(sm - m)}`
+            : minsAgo === 0 ? 'now' : `${fmtMins(minsAgo)} ago`;
+          return `<tr class="${stale ? 'np-timing-stale' : ''}">
+            <td>${fmtHour(h, sm)}</td>
+            <td>${pad(h)}:${pad(sm)}</td>
+            <td class="np-timing-status">${label}</td>
+          </tr>`;
+        }).join('');
+        timingDiv.innerHTML = `
+          <table class="np-table np-timing-table">
+            <thead><tr><th>12hr</th><th>24hr</th><th>Status</th></tr></thead>
+            <tbody>${spawnRows}</tbody>
+          </table>
+        `;
+
+        let chestIdx, stoneIdx;
+        if (selectedType === 'chest') {
+          chestIdx = selectedLoc;
+          stoneIdx = (selectedLoc + 1) % 4;
+        } else {
+          stoneIdx = selectedLoc;
+          chestIdx = (selectedLoc + 3) % 4;
+        }
+
+        currentTbody.innerHTML = `
+          <tr>
+            <td>${ROTATION[chestIdx]}</td>
+            <td>🎁 Chests</td>
+          </tr>
+          <tr>
+            <td>${ROTATION[stoneIdx]}</td>
+            <td>🪨 Stones</td>
+          </tr>
+        `;
+
+        forecastTbody.innerHTML = '';
+        for (let i = 1; i <= 4; i++) {
+          const fChestIdx = (chestIdx + i) % 4;
+          const fStoneIdx = (fChestIdx + 1) % 4;
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td class="np-col-hour"><strong>${fmtHour((h + i) % 24)}</strong></td>
+            <td class="np-col-hour">${pad((h + i) % 24)}:00</td>
+            <td>${ROTATION[fChestIdx]}</td>
+            <td>${ROTATION[fStoneIdx]}</td>
+          `;
+          forecastTbody.appendChild(tr);
+        }
+
+        output.classList.add('np-visible');
+      }
+    })();
+  </script>
+
+</div>
+
+<style is:global>
+  .np {
+    margin-top: 1em;
+  }
+
+  /* ── Controls panel ── */
+  .np-panel {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .np-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .np-row-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sl-color-gray-2);
+    white-space: nowrap;
+    min-width: 130px;
+  }
+
+  /* Time input */
+  .np-time {
+    padding: 6px 10px;
+    border: 1px solid var(--sl-color-gray-4);
+    border-radius: 6px;
+    background: var(--sl-color-gray-7);
+    color: var(--sl-color-text);
+    font-size: 15px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  /* ── Type emoji buttons ── */
+  .np-type-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .np-type-btn {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 2px solid var(--sl-color-gray-5);
+    border-radius: 8px;
+    background: var(--sl-color-gray-7);
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .np-type-btn span {
+    font-size: 22px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    user-select: none;
+  }
+  .np-type-btn:hover {
+    border-color: var(--sl-color-gray-3);
+    background: var(--sl-color-gray-6);
+  }
+  .np-type-btn.np-active {
+    border-color: var(--sl-color-accent);
+    background: color-mix(in srgb, var(--sl-color-accent) 15%, transparent);
+  }
+
+  /* ── Location radio pills ── */
+  .np-loc-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .np-loc-btn {
+    padding: 6px 14px;
+    border: 2px solid var(--sl-color-gray-5);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--sl-color-text);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, opacity 0.15s;
+    user-select: none;
+    line-height: 1.4;
+  }
+  .np-loc-btn.np-loc-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .np-loc-btn:hover:not(.np-loc-disabled) {
+    border-color: var(--sl-color-gray-3);
+    background: var(--sl-color-gray-6);
+  }
+  .np-loc-btn.np-active {
+    border-color: var(--sl-color-accent);
+    background: color-mix(in srgb, var(--sl-color-accent) 15%, transparent);
+    font-weight: 700;
+  }
+
+  /* ── Output ── */
+  .np-output {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .np-output.np-visible {
+    display: flex;
+  }
+
+  /* ── Current Hour: side-by-side layout ── */
+  .np-current-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .np-current-table {
+    max-width: 240px;
+  }
+
+  /* ── Timing table ── */
+  .np-timing-table {
+    max-width: 300px;
+  }
+  .np-timing-stale td {
+    opacity: 0.35;
+  }
+  .np-timing-status {
+    color: var(--sl-color-gray-2);
+    font-size: 13px;
+  }
+
+  /* ── Section titles ── */
+  .np-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sl-color-gray-2);
+    margin: 0 0 10px;
+  }
+
+  /* ── Tables ── */
+  .np-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 480px;
+    font-size: 14px;
+  }
+  .np-table th,
+  .np-table td {
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--sl-color-gray-6);
+    color: var(--sl-color-text);
+    text-align: left;
+  }
+  .np-table th:first-child,
+  .np-table td:first-child {
+    padding-left: 12px;
+  }
+  .np-table th:last-child,
+  .np-table td:last-child {
+    padding-right: 12px;
+  }
+  .np-table thead th {
+    background: var(--sl-color-gray-6);
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--sl-color-gray-5);
+  }
+  .np-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .np-table .np-row-highlight td {
+    background: color-mix(in srgb, var(--sl-color-accent) 8%, transparent);
+  }
+  .np-col-hour {
+    text-align: center !important;
+  }
+</style>

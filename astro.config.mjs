@@ -161,6 +161,12 @@ export default defineConfig({
             },
           ],
         },
+        {
+          label: 'Nebula Island',
+          items: [
+            { label: 'Chests/Stones', link: '/nebula/' },
+          ],
+        },
         { label: 'About', link: '/about' },
       ],
       customCss: ['./src/styles/custom.css'],
