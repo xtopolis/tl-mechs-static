@@ -4,6 +4,8 @@ sidebar:
   order: 1
 ---
 
+import { Image } from 'astro:assets';
+
 import YouTubeEmbed from '../../../../../components/YouTubeEmbed.astro';
 
 
@@ -23,7 +25,7 @@ import YouTubeEmbed from '../../../../../components/YouTubeEmbed.astro';
 - Failure to complete the mech/block damage will kill the player(s)
 - The circle will then jump to the nearest player and kill them too if they don't block, repeating
 
-<img src="/images/altar-of-calanthia/calanthia/2-circle.png" alt="2 Circle mechanic" loading="lazy" class="mech-diagram" />
+<Image src="/images/altar-of-calanthia/calanthia/2-circle.png" width={571} height={472} alt="2 Circle mechanic" class="mech-diagram" />
 
 :::tip[Tip]
 Healers are typically good to assign to this mechanic

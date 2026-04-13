@@ -5,10 +5,10 @@ import Default from '@astrojs/starlight/components/Head.astro';
 <script>
   import mediumZoom from 'medium-zoom';
 
-  function init() {
-    mediumZoom('.zoomable', { background: 'rgba(0,0,0,0.85)', margin: 24 });
-  }
+  let zoom = mediumZoom('.zoomable', { background: 'rgba(0,0,0,0.85)', margin: 24 });
 
-  init();
-  document.addEventListener('astro:page-load', init);
+  document.addEventListener('astro:page-load', () => {
+    zoom.detach();
+    zoom = mediumZoom('.zoomable', { background: 'rgba(0,0,0,0.85)', margin: 24 });
+  });
 </script>
