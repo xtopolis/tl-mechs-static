@@ -168,6 +168,12 @@ export default defineConfig({
             { label: 'Spawn Locations', link: '/nebula/spawn-locations/' },
           ],
         },
+        {
+          label: 'Tower of Greed',
+          items: [
+            { label: 'Planner', link: '/tower-of-greed/' },
+          ],
+        },
         { label: 'About', link: '/about' },
       ],
       components: {

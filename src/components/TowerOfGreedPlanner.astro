@@ -1,0 +1,584 @@
+---
+// TowerOfGreedPlanner: tracker for Tower of Greed progression across all stages.
+---
+
+<div class="tg not-content">
+
+  <div class="tg-topbar">
+    <div class="tg-jar">
+      <span class="tg-jar-heading">Orb Lv: <span id="tg-jar-level">0</span>/5</span>
+      <button class="tg-jar-btn" id="tg-jar-dec" aria-label="Downgrade jar">−</button>
+      <button class="tg-jar-btn" id="tg-jar-inc" aria-label="Upgrade jar">+</button>
+      <span class="tg-jar-upgrade-cost" id="tg-jar-upgrade-cost"></span>
+    </div>
+
+    <div class="tg-pts-display">
+      <span id="tg-pts-spent">0</span>
+      <span class="tg-pts-sep">/</span>
+      <span id="tg-pts-cap">150</span>
+      <span class="tg-pts-label">pts spent</span>
+    </div>
+
+    <button class="tg-reset-btn" id="tg-reset">↺ Reset</button>
+  </div>
+
+  <div class="tg-stages" id="tg-stages"></div>
+
+</div>
+
+<script is:inline>
+(() => {
+  const STAGES = [
+    { id: 'awakening', label: 'Awakening', floors: 5,  freeCost: 30, greedCost: 50  },
+    { id: 'dawn',      label: 'Dawn',      floors: 10, freeCost: 30, greedCost: 50  },
+    { id: 'dusk',      label: 'Dusk',      floors: 15, freeCost: 30, greedCost: 50  },
+    { id: 'twilight',  label: 'Twilight',  floors: 10, freeCost: 50, greedCost: 100 },
+    { id: 'abyss',     label: 'Abyss',     floors: 10, freeCost: 50, greedCost: 100 },
+  ];
+
+  const JAR_CAPS        = { 1: 150, 2: 250, 3: 500, 4: 1000, 5: 2000, 6: 2500 };
+  // Cost in greed jars to upgrade FROM this level to the next
+  const JAR_UPGRADE_COST = { 1: 2, 2: 2, 3: 3, 4: 6, 5: 10 };
+  const JAR_MAX = 6;
+
+  // Greed jar drops per floor. free/greed = number of jars rewarded from that track.
+  const JAR_DROPS = {
+    awakening: { 1:{free:1}, 2:{free:1}, 3:{free:1}, 4:{greed:1} },
+    dawn:      { 1:{free:1}, 2:{greed:1}, 4:{free:1}, 7:{greed:1}, 10:{greed:1} },
+    dusk:      { 1:{free:1}, 4:{greed:1}, 6:{free:1}, 8:{greed:1}, 11:{free:1}, 12:{greed:1} },
+    twilight:  { 1:{free:1,greed:2}, 5:{greed:2}, 6:{free:1}, 9:{greed:2} },
+  };
+
+  const LS_KEY     = 'tg-progress';
+  const LS_JAR_KEY = 'tg-jar-level';
+
+  // ── State ─────────────────────────────────────────────────────────────────
+  function load() {
+    try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); }
+    catch { return {}; }
+  }
+  function save(state) { localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+
+  function loadJar() {
+    const v = parseInt(localStorage.getItem(LS_JAR_KEY) || '1', 10);
+    return (v >= 1 && v <= 5) ? v : 1;
+  }
+  function saveJar(lvl) { localStorage.setItem(LS_JAR_KEY, String(lvl)); }
+
+  function getFloor(state, sid, f) {
+    return (state[sid] || {})[f] || { free: false, greed: false };
+  }
+  function setFloor(state, sid, f, patch) {
+    if (!state[sid]) state[sid] = {};
+    state[sid][f] = { ...getFloor(state, sid, f), ...patch };
+  }
+
+  // ── Render ────────────────────────────────────────────────────────────────
+  function render(state, jarLevel) {
+    buildStages(state);
+    updateTopbar(state, jarLevel);
+  }
+
+  function buildStages(state) {
+    const container = document.getElementById('tg-stages');
+    const openMap = {};
+    container.querySelectorAll('details[data-stage-id]').forEach(d => {
+      openMap[d.dataset.stageId] = d.open;
+    });
+    container.innerHTML = '';
+
+    for (let stageIdx = 0; stageIdx < STAGES.length; stageIdx++) {
+      const stage = STAGES[stageIdx];
+      let allDone = true;
+      for (let f = 1; f <= stage.floors; f++) {
+        const fl = getFloor(state, stage.id, f);
+        if (!fl.free || !fl.greed) { allDone = false; break; }
+      }
+
+      const details = document.createElement('details');
+      details.className = 'tg-stage' + (allDone ? ' tg-stage-done' : '');
+      details.dataset.stageId = stage.id;
+      details.open = stage.id in openMap ? openMap[stage.id] : (stage.id === STAGES[0].id);
+
+      const summary = document.createElement('summary');
+      summary.className = 'tg-stage-summary';
+      const badgeClass = stage.freeCost !== 30 ? 'tg-badge-cost' : 'tg-badge-std';
+      const costBadge = `<span class="tg-badge ${badgeClass}">${stage.freeCost} / +${stage.greedCost} pts</span>`;
+      summary.innerHTML =
+        `<span class="tg-stage-name">${stage.label}</span>${costBadge}`;
+
+      const selectAllBtn = document.createElement('button');
+      selectAllBtn.className = 'tg-stage-select-all';
+      selectAllBtn.setAttribute('aria-label', `Select all ${stage.label}`);
+      selectAllBtn.textContent = '✓ All';
+      selectAllBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        const st = load();
+        const jarLevel = loadJar();
+        for (let si = 0; si <= stageIdx; si++) {
+          const s = STAGES[si];
+          for (let i = 1; i <= s.floors; i++) {
+            setFloor(st, s.id, i, { free: true, greed: true });
+          }
+        }
+        save(st);
+        render(st, jarLevel);
+      });
+      summary.appendChild(selectAllBtn);
+
+      const resetBtn = document.createElement('button');
+      resetBtn.className = 'tg-stage-reset';
+      resetBtn.setAttribute('aria-label', `Reset ${stage.label}`);
+      resetBtn.textContent = '↺';
+      resetBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        const st = load();
+        const jarLevel = loadJar();
+        for (let i = stageIdx; i < STAGES.length; i++) delete st[STAGES[i].id];
+        save(st);
+        render(st, jarLevel);
+      });
+      summary.appendChild(resetBtn);
+      details.appendChild(summary);
+
+      const listDiv = document.createElement('div');
+      listDiv.className = 'tg-floor-list';
+
+      const hdr = document.createElement('div');
+      hdr.className = 'tg-floor-row tg-floor-hdr';
+      hdr.innerHTML =
+        `<div class="tg-col-free">Free</div>` +
+        `<div class="tg-col-num">Floor</div>` +
+        `<div class="tg-col-greed">Greed</div>`;
+      listDiv.appendChild(hdr);
+
+      for (let f = 1; f <= stage.floors; f++) {
+        listDiv.appendChild(buildRow(state, stage.id, f));
+      }
+
+      details.appendChild(listDiv);
+      container.appendChild(details);
+    }
+  }
+
+  function buildRow(state, sid, f) {
+    const fl   = getFloor(state, sid, f);
+    const drop = (JAR_DROPS[sid] && JAR_DROPS[sid][f]) || {};
+    const freeJars  = drop.free  || 0;
+    const greedJars = drop.greed || 0;
+
+    const row = document.createElement('div');
+    row.className = 'tg-floor-row';
+    row.dataset.stage = sid;
+    row.dataset.floor = f;
+
+    const freeBtn = document.createElement('button');
+    freeBtn.className = 'tg-track-btn tg-free-btn' +
+      (fl.free ? ' tg-claimed tg-btn-done' : '') +
+      (freeJars > 0 ? ' tg-has-jar' : '') +
+      (freeJars >= 2 ? ' tg-jar-x2' : '');
+    freeBtn.dataset.action = 'free';
+    freeBtn.setAttribute('aria-label', fl.free ? 'Unmark free' : 'Mark free claimed');
+    freeBtn.innerHTML = fl.free ? `<span class="tg-check tg-check-free">✓</span>` : `<span class="tg-circle"></span>`;
+
+    const numDiv = document.createElement('div');
+    numDiv.className = 'tg-col-num';
+    numDiv.textContent = f;
+
+    const greedBtn = document.createElement('button');
+    greedBtn.className = 'tg-track-btn tg-greed-btn' +
+      (fl.greed ? ' tg-claimed tg-btn-done' : '') +
+      (greedJars > 0 ? ' tg-has-jar' : '') +
+      (greedJars >= 2 ? ' tg-jar-x2' : '');
+    greedBtn.dataset.action = 'greed';
+    greedBtn.setAttribute('aria-label', fl.greed ? 'Unmark greed' : 'Mark greed claimed');
+    greedBtn.innerHTML = fl.greed
+      ? `<span class="tg-check tg-check-greed">✓</span>`
+      : `<span class="tg-circle"></span>`;
+
+    row.appendChild(freeBtn);
+    row.appendChild(numDiv);
+    row.appendChild(greedBtn);
+    return row;
+  }
+
+  function updateTopbar(state, jarLevel) {
+    let totalPts = 0;
+    for (const s of STAGES) {
+      for (let f = 1; f <= s.floors; f++) {
+        const fl = getFloor(state, s.id, f);
+        if (fl.free)  totalPts += s.freeCost;
+        if (fl.greed) totalPts += s.greedCost;
+      }
+    }
+    const cap     = JAR_CAPS[jarLevel];
+    const spentEl = document.getElementById('tg-pts-spent');
+    document.getElementById('tg-jar-level').textContent = jarLevel - 1;
+    spentEl.textContent = totalPts.toLocaleString();
+    document.getElementById('tg-pts-cap').textContent   = cap.toLocaleString();
+    document.getElementById('tg-jar-dec').disabled = jarLevel <= 1;
+    const incBtn = document.getElementById('tg-jar-inc');
+    incBtn.disabled = jarLevel >= JAR_MAX;
+    incBtn.textContent = '+';
+    const costEl = document.getElementById('tg-jar-upgrade-cost');
+    costEl.textContent = jarLevel >= JAR_MAX ? '' : `Cost: ${JAR_UPGRADE_COST[jarLevel]} Jars`;
+    spentEl.closest('.tg-pts-display').classList.toggle('tg-pts-over', totalPts > cap);
+  }
+
+  // ── Events ────────────────────────────────────────────────────────────────
+  document.getElementById('tg-stages').addEventListener('click', e => {
+    const btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    const row = btn.closest('[data-stage]');
+    if (!row) return;
+
+    const sid    = row.dataset.stage;
+    const f      = parseInt(row.dataset.floor, 10);
+    const action = btn.dataset.action;
+    const state  = load();
+    const fl     = getFloor(state, sid, f);
+
+    const stageIdx = STAGES.findIndex(s => s.id === sid);
+    const stage    = STAGES[stageIdx];
+
+    function fillFree(targetId, upToFloor) {
+      for (let i = 1; i <= upToFloor; i++) {
+        setFloor(state, targetId, i, { free: true, greed: getFloor(state, targetId, i).greed });
+      }
+    }
+    function fillPrecedingStages() {
+      for (let si = 0; si < stageIdx; si++) {
+        fillFree(STAGES[si].id, STAGES[si].floors);
+      }
+    }
+
+    if (action === 'free') {
+      if (!fl.free) {
+        fillPrecedingStages();
+        fillFree(sid, f);
+      } else {
+        for (let i = f; i <= stage.floors; i++) {
+          setFloor(state, sid, i, { free: false, greed: false });
+        }
+        for (let si = stageIdx + 1; si < STAGES.length; si++) {
+          const s = STAGES[si];
+          for (let i = 1; i <= s.floors; i++) {
+            setFloor(state, s.id, i, { free: false, greed: false });
+          }
+        }
+      }
+    } else if (action === 'greed') {
+      if (!fl.greed) {
+        fillPrecedingStages();
+        fillFree(sid, f);
+        setFloor(state, sid, f, { greed: true });
+      } else {
+        setFloor(state, sid, f, { greed: false });
+      }
+    }
+
+    save(state);
+    render(state, loadJar());
+  });
+
+  document.getElementById('tg-jar-dec').addEventListener('click', () => {
+    const lvl = Math.max(1, loadJar() - 1);
+    saveJar(lvl);
+    render(load(), lvl);
+  });
+  document.getElementById('tg-jar-inc').addEventListener('click', () => {
+    const lvl = Math.min(JAR_MAX, loadJar() + 1);
+    saveJar(lvl);
+    render(load(), lvl);
+  });
+
+  document.getElementById('tg-reset').addEventListener('click', () => {
+    if (!confirm('Reset all Tower of Greed progress?')) return;
+    localStorage.removeItem(LS_KEY);
+    localStorage.removeItem(LS_JAR_KEY);
+    render(load(), loadJar());
+  });
+
+  // ── Init ──────────────────────────────────────────────────────────────────
+  render(load(), loadJar());
+})();
+</script>
+
+<style is:global>
+  .tg { margin-top: 1em; }
+
+  /* ── Top bar ── */
+  .tg-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 10px 16px;
+    background: var(--sl-color-gray-7);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 8px;
+    margin-bottom: 14px;
+  }
+
+  /* Jar control */
+  .tg-jar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tg-jar-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--sl-color-text);
+  }
+  .tg-jar-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--sl-color-gray-4);
+    border-radius: 6px;
+    background: var(--sl-color-gray-6);
+    color: var(--sl-color-text);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: border-color 0.1s, background 0.1s;
+  }
+  .tg-jar-btn:hover:not(:disabled) {
+    border-color: var(--sl-color-accent);
+    background: color-mix(in srgb, var(--sl-color-accent) 12%, transparent);
+  }
+  .tg-jar-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .tg-jar-upgrade-cost {
+    font-size: 11px;
+    color: var(--sl-color-gray-3);
+    min-width: 24px;
+  }
+  /* Points display */
+  .tg-pts-display {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--sl-color-text);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  .tg-pts-sep { color: var(--sl-color-gray-4); }
+  .tg-pts-label {
+    font-size: 12px;
+    font-weight: 400;
+    font-family: inherit;
+    color: var(--sl-color-gray-3);
+    margin-left: 2px;
+  }
+  .tg-pts-over #tg-pts-spent { color: var(--sl-color-red); }
+
+  /* Reset button */
+  .tg-reset-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--sl-color-gray-4);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--sl-color-gray-3);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .tg-reset-btn:hover {
+    border-color: var(--sl-color-red);
+    color: var(--sl-color-red);
+  }
+
+  /* ── Stage sections ── */
+  .tg-stages {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tg-stage {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .tg-stage-done {
+    border-color: color-mix(in srgb, var(--sl-color-accent) 40%, transparent);
+    opacity: 0.6;
+  }
+
+  .tg-stage-summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    background: var(--sl-color-gray-6);
+    user-select: none;
+    list-style: none;
+  }
+  .tg-stage-summary::-webkit-details-marker { display: none; }
+  .tg-stage-summary::before {
+    content: '▶';
+    font-size: 10px;
+    color: var(--sl-color-gray-3);
+    transition: transform 0.15s;
+    flex-shrink: 0;
+  }
+  details[open] > .tg-stage-summary::before { transform: rotate(90deg); }
+  .tg-stage-summary:hover { background: var(--sl-color-gray-5); }
+
+  .tg-stage-select-all {
+    margin-left: auto;
+    padding: 2px 8px;
+    border: 1px solid var(--sl-color-gray-5);
+    background: transparent;
+    color: var(--sl-color-gray-3);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    line-height: 1.4;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .tg-stage-select-all:hover {
+    color: var(--sl-color-accent-high);
+    border-color: var(--sl-color-accent);
+    background: color-mix(in srgb, var(--sl-color-accent) 10%, transparent);
+  }
+
+  .tg-stage-reset {
+    margin-left: 4px;
+    padding: 2px 6px;
+    border: none;
+    background: transparent;
+    color: var(--sl-color-gray-4);
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    line-height: 1;
+    transition: color 0.15s, background 0.15s;
+  }
+  .tg-stage-reset:hover {
+    color: var(--sl-color-red);
+    background: color-mix(in srgb, var(--sl-color-red) 10%, transparent);
+  }
+
+  .tg-stage-name {
+    font-weight: 700;
+    font-size: 14px;
+    flex: 1;
+  }
+
+  .tg-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .tg-badge-std {
+    background: color-mix(in srgb, var(--sl-color-gray-4) 20%, transparent);
+    color: var(--sl-color-gray-2);
+    border: 1px solid var(--sl-color-gray-5);
+  }
+  .tg-badge-cost {
+    background: color-mix(in srgb, var(--sl-color-red) 12%, transparent);
+    color: var(--sl-color-red);
+    border: 1px solid color-mix(in srgb, var(--sl-color-red) 30%, transparent);
+  }
+
+  /* ── Floor rows ── */
+  .tg-floor-list { display: flex; flex-direction: column; }
+
+  .tg-floor-row {
+    display: grid;
+    grid-template-columns: 1fr 52px 1fr;
+    align-items: center;
+    border-top: 1px solid var(--sl-color-gray-6);
+  }
+  .tg-floor-row:hover:not(.tg-floor-hdr) { background: var(--sl-color-gray-7); }
+  .tg-btn-done { opacity: 0.4; }
+
+  .tg-floor-hdr {
+    background: var(--sl-color-gray-7);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sl-color-gray-3);
+    padding: 5px 0;
+  }
+
+  .tg-col-free,
+  .tg-col-greed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tg-col-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sl-color-gray-2);
+    padding: 8px 0;
+  }
+
+  /* ── Track buttons ── */
+  .tg-track-btn {
+    width: 100%;
+    padding: 9px 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tg-track-btn:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--sl-color-accent) 10%, transparent);
+  }
+  .tg-track-btn:disabled { cursor: default; }
+
+  .tg-circle {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--sl-color-gray-5);
+  }
+
+  .tg-check { font-size: 15px; font-weight: 700; line-height: 1; }
+  .tg-check-free  { color: var(--sl-color-accent-high); }
+  .tg-check-greed { color: #c9a227; }
+
+  /* ── Greed jar drop indicators ── */
+  .tg-track-btn.tg-has-jar {
+    background: rgba(168, 85, 247, 0.12);
+    position: relative;
+  }
+  .tg-track-btn.tg-has-jar:hover:not(:disabled) {
+    background: rgba(168, 85, 247, 0.22);
+  }
+  .tg-track-btn.tg-jar-x2::after {
+    content: '×2';
+    position: absolute;
+    top: 3px;
+    right: 6px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #a855f7;
+    pointer-events: none;
+  }
+</style>
