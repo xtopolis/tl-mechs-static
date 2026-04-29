@@ -1,0 +1,405 @@
+---
+// SessionPlanner.astro — plan a single session after purifying to a stage
+---
+
+<div class="sp not-content" id="sp-root"></div>
+
+<script is:inline>
+(() => {
+  const STAGES = [
+    { id: 'awakening', label: 'Awakening', floors: 5,  freeCost: 30,  greedCost: 50  },
+    { id: 'dawn',      label: 'Dawn',      floors: 10, freeCost: 30,  greedCost: 50  },
+    { id: 'dusk',      label: 'Dusk',      floors: 15, freeCost: 30,  greedCost: 50  },
+    { id: 'twilight',  label: 'Twilight',  floors: 10, freeCost: 50,  greedCost: 100 },
+    { id: 'abyss',     label: 'Abyss',     floors: 10, freeCost: 50,  greedCost: 100 },
+  ];
+
+  const JAR_CAPS = { 1: 150, 2: 250, 3: 500, 4: 1000, 5: 2000, 6: 2500 };
+
+  const JAR_DROPS = {
+    awakening: { 1:{free:1}, 2:{free:1}, 3:{free:1}, 4:{greed:1} },
+    dawn:      { 1:{free:1}, 2:{greed:1}, 4:{free:1}, 7:{greed:1}, 10:{greed:1} },
+    dusk:      { 1:{free:1}, 4:{greed:1}, 6:{free:1}, 8:{greed:1}, 11:{free:1}, 12:{greed:1} },
+    twilight:  { 1:{free:1,greed:2}, 5:{greed:2}, 6:{free:1}, 9:{greed:2} },
+  };
+
+  const PURIFY_VALUES = {
+    awakening: 0,
+    dawn:      150,
+    dusk:      450,
+    twilight:  900,
+    abyss:     1400,
+  };
+
+  let purifyId = 'dusk';
+  let orbLevel = 6;
+  let claimed  = {};
+
+  function getFloor(sid, f) {
+    return (claimed[sid] || {})[f] || { free: false, greed: false };
+  }
+
+  function setFree(sid, upTo) {
+    if (!claimed[sid]) claimed[sid] = {};
+    for (let i = 1; i <= upTo; i++)
+      claimed[sid][i] = { ...getFloor(sid, i), free: true };
+  }
+
+  function toggle(sid, f, track) {
+    const stageIdx = STAGES.findIndex(s => s.id === sid);
+    const stage    = STAGES[stageIdx];
+    const fl       = getFloor(sid, f);
+
+    if (track === 'greed') {
+      if (!fl.greed) {
+        setFree(sid, f);
+        claimed[sid][f] = { ...getFloor(sid, f), greed: true };
+      } else {
+        claimed[sid][f] = { ...fl, greed: false };
+      }
+      return;
+    }
+
+    if (!fl.free) {
+      setFree(sid, f);
+      return;
+    }
+
+    for (let i = f; i <= stage.floors; i++)
+      claimed[sid][i] = { free: false, greed: false };
+    for (let si = stageIdx + 1; si < STAGES.length; si++) {
+      const s = STAGES[si];
+      if (!claimed[s.id]) claimed[s.id] = {};
+      for (let i = 1; i <= s.floors; i++)
+        claimed[s.id][i] = { free: false, greed: false };
+    }
+  }
+
+  function computeSpend() {
+    let total = 0;
+    for (const s of STAGES) {
+      for (let f = 1; f <= s.floors; f++) {
+        const fl = getFloor(s.id, f);
+        if (fl.free)  total += s.freeCost;
+        if (fl.greed) total += s.greedCost;
+      }
+    }
+    return total;
+  }
+
+  function makeCell(isClaimed, jarCount, cantAfford, sid, f, track) {
+    const jarCls   = jarCount >= 2 ? ' sp-has-jar sp-jar-x2' : jarCount ? ' sp-has-jar' : '';
+    const stateCls = isClaimed ? ' sp-claimed' : cantAfford ? ' sp-cant' : '';
+    const isGreed  = track === 'greed';
+    return `<button
+      class="sp-track-btn${jarCls}${stateCls}"
+      data-sid="${sid}" data-floor="${f}" data-track="${track}"
+      ${cantAfford && !isClaimed ? 'disabled' : ''}
+      aria-label="${isClaimed ? 'Unmark' : 'Mark'} ${isGreed ? 'greed' : 'free'} floor ${f}"
+    >${isClaimed
+      ? `<span class="sp-check ${isGreed ? 'sp-check-greed' : 'sp-check-free'}">✓</span>`
+      : `<span class="sp-circle"></span>`
+    }</button>`;
+  }
+
+  function render() {
+    const root  = document.getElementById('sp-root');
+    const spend = computeSpend();
+    const cap   = JAR_CAPS[orbLevel];
+    const start = PURIFY_VALUES[purifyId];
+    const fill  = start + spend;
+    const rem   = cap - fill;
+    const over  = fill > cap;
+    const pIdx  = STAGES.findIndex(s => s.id === purifyId);
+
+    const purifyOpts = STAGES.map(s =>
+      `<option value="${s.id}"${s.id === purifyId ? ' selected' : ''}>${s.label}</option>`
+    ).join('');
+
+    const orbOpts = Object.entries(JAR_CAPS).map(([lv, c]) => {
+      const n = parseInt(lv);
+      return `<option value="${n}"${n === orbLevel ? ' selected' : ''}>Lv ${n - 1} (${c.toLocaleString()})</option>`;
+    }).join('');
+
+    const stagesHtml = STAGES.slice(pIdx).map(stage => {
+      const drops = JAR_DROPS[stage.id] || {};
+      const rows  = Array.from({ length: stage.floors }, (_, i) => {
+        const f  = i + 1;
+        const fl = getFloor(stage.id, f);
+        const d  = drops[f] || {};
+        return `<div class="sp-row">
+          ${makeCell(fl.free,  d.free  || 0, rem < stage.freeCost,  stage.id, f, 'free')}
+          <div class="sp-num">${f}</div>
+          ${makeCell(fl.greed, d.greed || 0, rem < stage.greedCost, stage.id, f, 'greed')}
+        </div>`;
+      }).join('');
+
+      const badgeCls = stage.freeCost !== 30 ? 'sp-badge-cost' : 'sp-badge-std';
+      return `<div class="sp-stage">
+        <div class="sp-stage-hdr">
+          <span class="sp-stage-name">${stage.label}</span>
+          <span class="sp-badge ${badgeCls}">${stage.freeCost} / +${stage.greedCost} pts</span>
+        </div>
+        <div class="sp-floor-list">
+          <div class="sp-row sp-row-hdr">
+            <div class="sp-hdr-cell">Required</div>
+            <div class="sp-num"></div>
+            <div class="sp-hdr-cell">Greed</div>
+          </div>
+          ${rows}
+        </div>
+      </div>`;
+    }).join('');
+
+    root.innerHTML = `
+      <div class="sp-bar">
+        <label class="sp-ctrl">
+          <span class="sp-ctrl-label">Purified to</span>
+          <select id="sp-purify" class="sp-select">${purifyOpts}</select>
+        </label>
+        <label class="sp-ctrl">
+          <span class="sp-ctrl-label">Orb Level</span>
+          <select id="sp-orb" class="sp-select">${orbOpts}</select>
+        </label>
+        <div class="sp-fill-display${over ? ' sp-over' : ''}">
+          <span class="sp-fill-val">${fill.toLocaleString()} / ${cap.toLocaleString()}</span>
+          ${over ? `<span class="sp-fill-sub">over cap!</span>` : ''}
+        </div>
+        <button class="sp-reset-btn" id="sp-reset">↺ Reset</button>
+      </div>
+      <div id="sp-stages">${stagesHtml}</div>
+    `;
+
+    document.getElementById('sp-purify').addEventListener('change', e => {
+      purifyId = e.target.value;
+      claimed  = {};
+      render();
+    });
+
+    document.getElementById('sp-orb').addEventListener('change', e => {
+      orbLevel = parseInt(e.target.value);
+      render();
+    });
+
+    document.getElementById('sp-reset').addEventListener('click', () => {
+      claimed = {};
+      render();
+    });
+
+    document.getElementById('sp-stages').addEventListener('click', e => {
+      const btn = e.target.closest('[data-track]');
+      if (!btn || btn.disabled) return;
+      toggle(btn.dataset.sid, parseInt(btn.dataset.floor), btn.dataset.track);
+      render();
+    });
+  }
+
+  render();
+})();
+</script>
+
+<style is:global>
+  .sp { margin-top: 1em; }
+
+  /* ── Controls bar ── */
+  .sp-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 10px 16px;
+    background: var(--sl-color-gray-7);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 8px;
+    margin-bottom: 14px;
+  }
+
+  .sp-ctrl {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .sp-ctrl-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sl-color-gray-3);
+  }
+  .sp-select {
+    padding: 4px 8px;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 6px;
+    background: var(--sl-color-gray-6);
+    color: var(--sl-color-text);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  /* Budget display */
+  .sp-fill-display {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-left: auto;
+  }
+  .sp-fill-val {
+    font-size: 15px;
+    font-weight: 700;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: var(--sl-color-text);
+  }
+  .sp-fill-sub {
+    font-size: 11px;
+    color: var(--sl-color-gray-3);
+  }
+  .sp-fill-display.sp-over .sp-fill-val,
+  .sp-fill-display.sp-over .sp-fill-sub { color: var(--sl-color-red); }
+
+  /* Reset */
+  .sp-reset-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--sl-color-gray-4);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--sl-color-gray-3);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .sp-reset-btn:hover {
+    border-color: var(--sl-color-red);
+    color: var(--sl-color-red);
+  }
+
+  /* ── Stage sections ── */
+  #sp-stages {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sp-stage {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .sp-stage-hdr {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: color-mix(in srgb, var(--sl-color-accent) 8%, var(--sl-color-gray-6));
+    border-bottom: 1px solid color-mix(in srgb, var(--sl-color-accent) 20%, var(--sl-color-gray-5));
+  }
+  .sp-stage-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--sl-color-accent-high);
+  }
+
+  .sp-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    margin-left: auto;
+  }
+  .sp-badge-std {
+    background: color-mix(in srgb, var(--sl-color-gray-4) 20%, transparent);
+    color: var(--sl-color-gray-2);
+    border: 1px solid var(--sl-color-gray-5);
+  }
+  .sp-badge-cost {
+    background: color-mix(in srgb, var(--sl-color-red) 12%, transparent);
+    color: var(--sl-color-red);
+    border: 1px solid color-mix(in srgb, var(--sl-color-red) 30%, transparent);
+  }
+
+  /* ── Floor rows ── */
+  .sp-floor-list { display: flex; flex-direction: column; }
+
+  .sp-row {
+    display: grid;
+    grid-template-columns: 1fr 52px 1fr;
+    align-items: center;
+    border-top: 1px solid var(--sl-color-gray-6);
+  }
+  .sp-row-hdr {
+    background: var(--sl-color-gray-7);
+    border-top: none;
+  }
+  .sp-row:hover:not(.sp-row-hdr) { background: var(--sl-color-gray-7); }
+
+  .sp-hdr-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sl-color-gray-3);
+    padding: 5px 0;
+  }
+
+  .sp-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sl-color-gray-2);
+    padding: 8px 0;
+  }
+
+  /* ── Track buttons ── */
+  .sp-track-btn {
+    width: 100%;
+    padding: 9px 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background 0.1s;
+  }
+  .sp-track-btn:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--sl-color-accent) 10%, transparent);
+  }
+  .sp-track-btn:disabled { cursor: default; }
+  .sp-track-btn.sp-cant { opacity: 0.25; }
+  .sp-track-btn.sp-claimed { opacity: 0.5; }
+
+  .sp-circle {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--sl-color-gray-5);
+  }
+
+  .sp-check { font-size: 15px; font-weight: 700; line-height: 1; }
+  .sp-check-free  { color: var(--sl-color-accent-high); }
+  .sp-check-greed { color: #c9a227; }
+
+  /* ── Jar indicators ── */
+  .sp-track-btn.sp-has-jar { background: rgba(168, 85, 247, 0.12); }
+  .sp-track-btn.sp-has-jar:hover:not(:disabled) { background: rgba(168, 85, 247, 0.22); }
+  .sp-track-btn.sp-jar-x2::after {
+    content: '×2';
+    position: absolute;
+    top: 3px;
+    right: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #a855f7;
+    pointer-events: none;
+  }
+</style>
