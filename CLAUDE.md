@@ -8,10 +8,10 @@ Static site documenting Throne and Liberty dungeon mechanics, deployed to GitHub
 
 # Tech Stack
 
-- **Astro 5** with **Starlight 0.36** — static site generator + documentation theme
+- **Astro 6** with **Starlight 0.38** — static site generator + documentation theme
 - **MDX** — content files use `.mdx` when they import components, plain `.md` otherwise
 - **Deployment**: GitHub Actions builds and deploys to GitHub Pages on push to `main`
-- **Node 20** — required for builds
+- **Node 22** — required for builds (Astro 6 requires Node >=22.12.0)
 
 # Development Commands
 
