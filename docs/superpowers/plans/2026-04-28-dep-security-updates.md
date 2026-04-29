@@ -135,5 +135,5 @@ Current state (after PRs 49–53 + Astro 6 commit):
 | 2026-04-29 | PR #53 (postcss) merged | ✅ |
 | 2026-04-29 | Astro 5→6 + Node 22 committed | ✅ pushed, ❌ build failed |
 | 2026-04-29 | Fix: remove @astrojs/sitemap override | ✅ build passed |
-| 2026-04-29 | CLAUDE.md updated (override note corrected) | ⏳ |
-| 2026-04-29 | Phase 2: security alerts review | ⏳ |
+| 2026-04-29 | CLAUDE.md updated (override note corrected) | ✅ |
+| 2026-04-29 | Phase 2: security alerts review | ✅ 0 vulns; PR #55 stale (h3 already 1.15.11 in lockfile) |
