@@ -111,7 +111,7 @@ The `mech-diagram` class (defined in `src/styles/custom.css`) centers the image 
 - **`astro.config.mjs`** — site URL, Starlight options, sidebar sections, custom CSS
 - **`src/content.config.ts`** — Starlight content collection definition (do not modify)
 - **`src/styles/custom.css`** — custom CSS loaded globally
-- **`package.json`** — includes npm overrides to pin `zod-to-json-schema` and `@astrojs/sitemap` to Zod v3-compatible versions; do not remove these overrides or the build will break
+- **`package.json`** — includes an npm override to pin `zod-to-json-schema: 3.24.3` for Zod v3 compatibility; do not remove this override or the build will break. (The `@astrojs/sitemap` override was removed during the Astro 6 upgrade — Starlight 0.38 requires sitemap `^3.7.1` and the old pin caused a build crash.)
 
 # Deployment
 
