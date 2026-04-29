@@ -16,7 +16,6 @@
       <span id="tg-pts-spent">0</span>
       <span class="tg-pts-sep">/</span>
       <span id="tg-pts-cap">150</span>
-      <span class="tg-pts-label">pts spent</span>
     </div>
 
     <button class="tg-reset-btn" id="tg-reset">↺ Reset</button>
@@ -147,7 +146,7 @@
       const hdr = document.createElement('div');
       hdr.className = 'tg-floor-row tg-floor-hdr';
       hdr.innerHTML =
-        `<div class="tg-col-free">Free</div>` +
+        `<div class="tg-col-free">Required</div>` +
         `<div class="tg-col-num">Floor</div>` +
         `<div class="tg-col-greed">Greed</div>`;
       listDiv.appendChild(hdr);

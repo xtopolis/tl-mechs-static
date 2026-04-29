@@ -5,13 +5,24 @@ sidebar:
 ---
 
 import TowerOfGreedPlanner from '../../../components/TowerOfGreedPlanner.astro';
+import SessionPlanner from '../../../components/SessionPlanner.astro';
 
-Tower of Greed is a 5-stage progression system with two reward tracks per floor:
+Each floor has a **Free** reward you claim to advance, and an optional **Greed** bonus — you cannot exceed your Orb's capacity for either.
 
-- **Free** — spend **30 pts** to progress through a floor and claim the free reward
-- **Greed** — spend an additional **+50 pts** on any progressed floor to claim a bonus item
+| Stage | Required | Greed | │ | Purifies to... |
+|-------|----------|-------|---|----------------|
+| Awakening | 30 | +50 | │ | 0 |
+| Dawn | 30 | +50 | │ | 150 |
+| Dusk | 30 | +50 | │ | 450 |
+| Twilight | 50 | +100 | │ | 900 |
+| Abyss | 50 | +100 | │ | 1,400 |
 
-Your point pool has a cap that can be upgraded as you accumulate items. Progress is saved automatically.
-
+## Planner
 
 <TowerOfGreedPlanner />
+
+## Purify Planner
+
+Select the stage you purified to and your current Orb Level to see what you can claim this session. Cells grey out when you can no longer afford them.
+
+<SessionPlanner />
