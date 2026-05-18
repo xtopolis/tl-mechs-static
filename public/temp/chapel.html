@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circle Arena</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #010409; }
+  body { display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; }
+</style>
+</head>
+<body>
+<div id="wrap" style="max-width:560px;margin:0 auto;font-family:system-ui,sans-serif;color:#c9d1d9;">
+  <svg id="arena" viewBox="-40 -40 480 480" xmlns="http://www.w3.org/2000/svg"
+       style="width:100%;height:auto;display:block;touch-action:none;user-select:none;background:transparent;">
+    <!-- arena -->
+    <circle id="bg" fill="#0d1117" stroke="#58a6ff" stroke-width="3"/>
+    <!-- light-red half-disc, yellow side of the dashed line -->
+    <path id="sector" fill="#ff3b3b" fill-opacity="0.16"/>
+    <!-- inset circles + labels injected by JS -->
+    <g id="insets"></g>
+    <g id="labels" fill="#fff" font-family="system-ui,sans-serif" font-size="18"
+       font-weight="700" text-anchor="middle" dominant-baseline="central"></g>
+    <!-- dashed line, perpendicular to center->yellow -->
+    <line id="dash" stroke="#fff" stroke-width="2" stroke-dasharray="8 6"/>
+    <!-- red center -->
+    <circle id="red" fill="#ff0000"/>
+    <!-- yellow (passive, just rendered) -->
+    <circle id="yellow" fill="#ffff00"/>
+    <!-- drag handles outside the arena, one at each end of the dashed line -->
+    <g id="handles">
+      <circle id="h1" r="7" fill="#8b949e" stroke="#fff" stroke-width="2" style="cursor:grab"/>
+      <circle id="h1hit" r="18" fill="transparent" style="cursor:grab"/>
+      <circle id="h2" r="7" fill="#8b949e" stroke="#fff" stroke-width="2" style="cursor:grab"/>
+      <circle id="h2hit" r="18" fill="transparent" style="cursor:grab"/>
+    </g>
+  </svg>
+  <p style="text-align:center;font-size:13px;opacity:.7;margin:8px 0 0;">
+    drag either grey handle to rotate the line, sector and yellow dot around the center
+  </p>
+</div>
+
+<script>
+(function () {
+  const SVG = document.getElementById('arena');
+  const C   = 200;          // center x/y
+  const R   = 180;          // arena radius (everything keys off this)
+  const insetR   = 0.10 * R;        // numbered circle radius (18)
+  const insetD   = 0.60 * R;        // numbered circle center distance (108)
+  const redR     = insetR / 2;      // 9
+  const yellowR  = insetR * 0.10 * 2; // 3.6 (10% of inset r, x2)
+  const orbit    = 16;              // yellow distance from center (near red)
+  const lineLen  = 0.90 * R;        // 162 each way
+  const handleD  = R + 20;          // handle distance from center (outside arena, 200)
+
+  // arena bg
+  const bg = document.getElementById('bg');
+  bg.setAttribute('cx', C); bg.setAttribute('cy', C); bg.setAttribute('r', R);
+
+  // numbered circles: c1=TL c2=TR c3=BL c4=BR
+  const defs = [
+    { n: 1, deg: 225 }, { n: 2, deg: 315 },
+    { n: 3, deg: 135 }, { n: 4, deg: 45 },
+  ];
+  const insetsG = document.getElementById('insets');
+  const labelsG = document.getElementById('labels');
+  for (const d of defs) {
+    const a = d.deg * Math.PI / 180;
+    const x = C + insetD * Math.cos(a);
+    const y = C + insetD * Math.sin(a);
+    insetsG.insertAdjacentHTML('beforeend',
+      `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${insetR}" fill="#1f6feb" stroke="#79c0ff" stroke-width="2"/>`);
+    labelsG.insertAdjacentHTML('beforeend',
+      `<text x="${x.toFixed(2)}" y="${y.toFixed(2)}">${d.n}</text>`);
+  }
+
+  // static red center
+  const red = document.getElementById('red');
+  red.setAttribute('cx', C); red.setAttribute('cy', C); red.setAttribute('r', redR);
+
+  const yellow = document.getElementById('yellow');
+  const dash   = document.getElementById('dash');
+  const sector = document.getElementById('sector');
+  const h1 = document.getElementById('h1'),  h2 = document.getElementById('h2');
+  const h1hit = document.getElementById('h1hit'), h2hit = document.getElementById('h2hit');
+  yellow.setAttribute('r', yellowR);
+
+  let angle = 110.14 * Math.PI / 180; // start angle (continuity w/ prev version)
+
+  function render() {
+    const yx = C + orbit * Math.cos(angle);
+    const yy = C + orbit * Math.sin(angle);
+    yellow.setAttribute('cx', yx); yellow.setAttribute('cy', yy);
+
+    // dashed line perpendicular to center->yellow: dir = (-sin, cos)
+    const px = -Math.sin(angle), py = Math.cos(angle);
+    const x1 = C + lineLen * px, y1 = C + lineLen * py;
+    const x2 = C - lineLen * px, y2 = C - lineLen * py;
+    dash.setAttribute('x1', x1); dash.setAttribute('y1', y1);
+    dash.setAttribute('x2', x2); dash.setAttribute('y2', y2);
+
+    // light-red half-disc: flat side = dashed line, radius = lineLen (0.9R),
+    // arc bulges toward yellow (center->yellow normal). sweep-flag 0 = yellow side.
+    sector.setAttribute('d',
+      `M ${x1.toFixed(2)} ${y1.toFixed(2)} ` +
+      `A ${lineLen} ${lineLen} 0 0 0 ${x2.toFixed(2)} ${y2.toFixed(2)} Z`);
+
+    // handles sit on the same axis as the dashed line, just outside the arena
+    const hx1 = C + handleD * px, hy1 = C + handleD * py;
+    const hx2 = C - handleD * px, hy2 = C - handleD * py;
+    h1.setAttribute('cx', hx1); h1.setAttribute('cy', hy1);
+    h1hit.setAttribute('cx', hx1); h1hit.setAttribute('cy', hy1);
+    h2.setAttribute('cx', hx2); h2.setAttribute('cy', hy2);
+    h2hit.setAttribute('cx', hx2); h2hit.setAttribute('cy', hy2);
+  }
+  render();
+
+  // map a client point to SVG coords
+  function toSvg(evt) {
+    const pt = SVG.createSVGPoint();
+    pt.x = evt.clientX; pt.y = evt.clientY;
+    return pt.matrixTransform(SVG.getScreenCTM().inverse());
+  }
+
+  // dashed-line dir is (-sin a, cos a) => its screen angle = a + 90deg.
+  // Grabbing h1 (the +dir end): keep it under the pointer => a = ptrAngle - 90deg.
+  // Grabbing h2 (the -dir, opposite end):                    a = ptrAngle + 90deg.
+  let dragging = false, offset = 0;
+  function move(e) {
+    if (!dragging) return;
+    const p = toSvg(e);
+    angle = Math.atan2(p.y - C, p.x - C) + offset;
+    render();
+    e.preventDefault();
+  }
+  function end(el) { dragging = false; el.style.cursor = 'grab'; }
+
+  function bindHandle(hitEl, visEl, off) {
+    hitEl.addEventListener('pointerdown', e => {
+      dragging = true; offset = off; visEl.style.cursor = 'grabbing';
+      hitEl.setPointerCapture(e.pointerId); move(e);
+    });
+    hitEl.addEventListener('pointermove', move);
+    hitEl.addEventListener('pointerup',     () => end(visEl));
+    hitEl.addEventListener('pointercancel', () => end(visEl));
+  }
+  bindHandle(h1hit, h1, -Math.PI / 2);
+  bindHandle(h2hit, h2,  Math.PI / 2);
+})();
+</script>
+</body>
+</html>
