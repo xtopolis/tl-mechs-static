@@ -23,6 +23,8 @@
        font-weight="700" text-anchor="middle" dominant-baseline="central"></g>
     <!-- dashed line, perpendicular to center->yellow -->
     <line id="dash" stroke="#fff" stroke-width="2" stroke-dasharray="8 6"/>
+    <!-- red dashed line: from center, directly opposite the yellow dot -->
+    <line id="redline" stroke="#ff0000" stroke-width="2" stroke-dasharray="8 6"/>
     <!-- red center -->
     <circle id="red" fill="#ff0000"/>
     <!-- yellow (passive, just rendered) -->
@@ -80,6 +82,7 @@
 
   const yellow = document.getElementById('yellow');
   const dash   = document.getElementById('dash');
+  const redline = document.getElementById('redline');
   const sector = document.getElementById('sector');
   const h1 = document.getElementById('h1'),  h2 = document.getElementById('h2');
   const h1hit = document.getElementById('h1hit'), h2hit = document.getElementById('h2hit');
@@ -98,6 +101,11 @@
     const x2 = C - lineLen * px, y2 = C - lineLen * py;
     dash.setAttribute('x1', x1); dash.setAttribute('y1', y1);
     dash.setAttribute('x2', x2); dash.setAttribute('y2', y2);
+
+    // red dashed line: from center, opposite the yellow dot (dir = -(cos,sin))
+    redline.setAttribute('x1', C); redline.setAttribute('y1', C);
+    redline.setAttribute('x2', C - lineLen * Math.cos(angle));
+    redline.setAttribute('y2', C - lineLen * Math.sin(angle));
 
     // light-red half-disc: flat side = dashed line, radius = lineLen (0.9R),
     // arc bulges toward yellow (center->yellow normal). sweep-flag 0 = yellow side.
