@@ -162,6 +162,12 @@ export default defineConfig({
           ],
         },
         {
+          label: 'Cheat Sheets',
+          items: [
+            { label: 'Doomrot Grove', link: '/cheat-sheets/doomrot-grove/' },
+          ],
+        },
+        {
           label: 'Nebula Island',
           items: [
             { label: 'Chests/Stones', link: '/nebula/' },

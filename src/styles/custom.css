@@ -32,6 +32,102 @@ img.mech-diagram {
   }
 }
 
+/* Doomrot Grove cheat sheet — pill flow (Variation 3) */
+.dr-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--sl-color-hairline-shade);
+  border-radius: 0.5rem;
+  background: var(--sl-color-bg-sidebar);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+.dr-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.dr-phase-label {
+  font-size: 0.7em;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--sl-color-text-accent);
+  border-bottom: 1px solid var(--sl-color-hairline);
+  padding-bottom: 0.2rem;
+  margin-top: 0.5rem;
+}
+.dr-phase-label:first-child { margin-top: 0; }
+.dr-sep {
+  border: none;
+  border-top: 2px dashed var(--sl-color-hairline-shade);
+  margin: 0.5rem 0;
+}
+.dr-pill {
+  display: inline-block;
+  padding: 0.15em 0.65em;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.85em;
+  color: #fff;
+  white-space: nowrap;
+}
+.dr-auto   { background-color: #4b5563; }
+.dr-green  { background-color: #16a34a; }
+.dr-roll   { background-color: #2563eb; }
+.dr-jump   { background-color: #d97706; }
+.dr-mech   { background-color: #dc2626; }
+.dr-uppies { background-color: #7c3aed; }
+.dr-arrow {
+  color: var(--sl-color-text);
+  opacity: 0.4;
+  font-size: 1.1em;
+}
+.dr-cond {
+  font-size: 0.75em;
+  opacity: 0.65;
+  font-style: italic;
+}
+/* Cheat sheet phase separators inside a single card */
+.dr-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sl-color-hairline);
+}
+.dr-section:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+.dr-sep-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--sl-text-lg);
+  font-weight: 600;
+  line-height: var(--sl-line-height-headings);
+  margin-bottom: 0.6rem;
+}
+
+.dr-indent {
+  margin-left: 1.25rem;
+}
+.dr-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+.dr-v-arrow {
+  color: var(--sl-color-text);
+  opacity: 0.4;
+  font-size: 1.1em;
+  padding-left: 0.6em;
+}
+
 /* YouTube embed responsive container */
 .youtube-embed {
   position: relative;
