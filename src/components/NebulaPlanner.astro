@@ -32,40 +32,40 @@
 
   </div>
 
+  <!-- Validity message -->
+  <p id="np-validity-msg" class="np-validity-msg"></p>
+
   <!-- Output -->
   <div class="np-output" id="np-output">
 
+    <!-- Current Hour: combined timing + location table -->
     <div>
       <p class="np-section-title">Current Hour</p>
-      <div class="np-current-row">
-        <div id="np-timing"></div>
-        <table class="np-table np-current-table">
-          <thead><tr><th>Location</th><th>Type</th></tr></thead>
-          <tbody id="np-current-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div>
-      <p class="np-section-title">Next 8 Hours</p>
-      <table class="np-table">
+      <table class="np-table np-current-table">
         <thead>
           <tr>
-            <th class="np-col-hour">12hr</th>
-            <th class="np-col-hour">24hr</th>
-            <th>🎁 Chests</th>
-            <th>🪨 Stones</th>
+            <th>12hr</th>
+            <th>24hr</th>
+            <th>🎁</th>
+            <th>🪨</th>
           </tr>
         </thead>
-        <tbody id="np-forecast-tbody"></tbody>
+        <tbody id="np-current-tbody"></tbody>
       </table>
     </div>
+
+    <!-- Forecast: today open, remaining days collapsed -->
+    <div id="np-forecast-container"></div>
 
   </div>
 
   <script is:inline>
     (() => {
       const ROTATION = ['Shrine', 'Arkeum', 'Orc Village', 'Seal Sanctuary'];
+      const LS_KEY = 'nebula-v1';
+
+      const MS_PER_HOUR = 3_600_000;
+      const MS_PER_WEEK = 7 * 24 * MS_PER_HOUR;
 
       function pad(n) { return String(n).padStart(2, '0'); }
       function fmtHour(h24, mins) {
@@ -76,19 +76,57 @@
           ? `${h12}:${pad(mins)} ${suffix}`
           : `${h12} ${suffix}`;
       }
-      function fmtMins(m) { return m === 1 ? '1 min' : m + ' mins'; }
+
+      // Server reset = every Thursday 00:00 PDT = Thursday 07:00 UTC
+      function getNextReset() {
+        const now = new Date();
+        const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 7, 0, 0, 0));
+        const diff = (4 - d.getUTCDay() + 7) % 7;
+        d.setUTCDate(d.getUTCDate() + diff);
+        if (d <= now) d.setUTCDate(d.getUTCDate() + 7);
+        return d;
+      }
+
+      function loadSaved() {
+        try {
+          const raw = localStorage.getItem(LS_KEY);
+          if (!raw) return null;
+          const data = JSON.parse(raw);
+          if (!data.type || data.loc == null || !data.timestamp) return null;
+          if (data.timestamp < getNextReset().getTime() - MS_PER_WEEK) return null;
+          return data;
+        } catch { return null; }
+      }
+
+      function saveCurrent(type, loc) {
+        try {
+          localStorage.setItem(LS_KEY, JSON.stringify({ type, loc, timestamp: Date.now() }));
+        } catch {}
+      }
+
+      function buildDayTable(rows) {
+        return `<table class="np-table">
+          <thead><tr>
+            <th class="np-col-hour">12hr</th>
+            <th class="np-col-hour">24hr</th>
+            <th>🎁</th>
+            <th>🪨</th>
+          </tr></thead>
+          <tbody>${rows.join('')}</tbody>
+        </table>`;
+      }
 
       let selectedType = null;
       let selectedLoc  = null;
 
-      const timeInput     = document.getElementById('np-time');
-      const btnChest      = document.getElementById('np-btn-chest');
-      const btnStone      = document.getElementById('np-btn-stone');
-      const locBtns       = document.querySelectorAll('#np-loc-group .np-loc-btn');
-      const output        = document.getElementById('np-output');
-      const timingDiv     = document.getElementById('np-timing');
-      const currentTbody  = document.getElementById('np-current-tbody');
-      const forecastTbody = document.getElementById('np-forecast-tbody');
+      const timeInput         = document.getElementById('np-time');
+      const btnChest          = document.getElementById('np-btn-chest');
+      const btnStone          = document.getElementById('np-btn-stone');
+      const locBtns           = document.querySelectorAll('#np-loc-group .np-loc-btn');
+      const output            = document.getElementById('np-output');
+      const currentTbody      = document.getElementById('np-current-tbody');
+      const forecastContainer = document.getElementById('np-forecast-container');
+      const validityMsg       = document.getElementById('np-validity-msg');
 
       const now = new Date();
       timeInput.value = pad(now.getHours()) + ':' + pad(now.getMinutes());
@@ -101,16 +139,22 @@
         tryCalculate();
       }
 
+      function setLoc(loc) {
+        const btn = document.querySelector(`#np-loc-group .np-loc-btn[data-loc="${loc}"]`);
+        if (!btn) return;
+        locBtns.forEach(b => b.classList.remove('np-active'));
+        btn.classList.add('np-active');
+        selectedLoc = loc;
+        tryCalculate();
+      }
+
       btnChest.addEventListener('click', () => setType('chest'));
       btnStone.addEventListener('click', () => setType('stone'));
 
       locBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           if (btn.classList.contains('np-loc-disabled')) return;
-          locBtns.forEach(b => b.classList.remove('np-active'));
-          btn.classList.add('np-active');
-          selectedLoc = parseInt(btn.dataset.loc, 10);
-          tryCalculate();
+          setLoc(parseInt(btn.dataset.loc, 10));
         });
       });
 
@@ -126,71 +170,102 @@
         const m = parseInt(mStr, 10);
         if (isNaN(h) || isNaN(m)) return;
 
-        // Spawn timing
-        const spawnMins = [0, 20, 40];
-        let lastSpawn = 0;
-        for (const s of spawnMins) { if (m >= s) lastSpawn = s; }
-        let nextSpawn = spawnMins.find(s => s > m);
-        const nextHour = nextSpawn !== undefined ? h : (h + 1) % 24;
-        if (nextSpawn === undefined) nextSpawn = 0;
-        const minsSince = m - lastSpawn;
-        const minsUntil = nextSpawn - m + (nextSpawn <= m ? 60 : 0);
+        const chestIdx = selectedType === 'chest' ? selectedLoc : (selectedLoc + 3) % 4;
+        const stoneIdx = (chestIdx + 1) % 4;
 
-        const spawnRows = [0, 20, 40].map(sm => {
-          const minsAgo = m - sm;
-          const stale = minsAgo > 5;
-          const upcoming = sm > m;
-          const label = upcoming
-            ? `in ${fmtMins(sm - m)}`
-            : minsAgo === 0 ? 'now' : `${fmtMins(minsAgo)} ago`;
+        saveCurrent(selectedType, selectedLoc);
+
+        currentTbody.innerHTML = [0, 20, 40].map(sm => {
+          const stale = (m - sm) > 5;
           return `<tr class="${stale ? 'np-timing-stale' : ''}">
             <td>${fmtHour(h, sm)}</td>
             <td>${pad(h)}:${pad(sm)}</td>
-            <td class="np-timing-status">${label}</td>
+            <td>${ROTATION[chestIdx]}</td>
+            <td>${ROTATION[stoneIdx]}</td>
           </tr>`;
         }).join('');
-        timingDiv.innerHTML = `
-          <table class="np-table np-timing-table">
-            <thead><tr><th>12hr</th><th>24hr</th><th>Status</th></tr></thead>
-            <tbody>${spawnRows}</tbody>
-          </table>
-        `;
 
-        let chestIdx, stoneIdx;
-        if (selectedType === 'chest') {
-          chestIdx = selectedLoc;
-          stoneIdx = (selectedLoc + 1) % 4;
-        } else {
-          stoneIdx = selectedLoc;
-          chestIdx = (selectedLoc + 3) % 4;
-        }
+        const nextReset = getNextReset();
+        buildForecast(chestIdx, h, nextReset);
+        updateValidityMsg(nextReset);
+        output.classList.add('np-visible');
+      }
 
-        currentTbody.innerHTML = `
-          <tr>
-            <td>${ROTATION[chestIdx]}</td>
-            <td>🎁 Chests</td>
-          </tr>
-          <tr>
-            <td>${ROTATION[stoneIdx]}</td>
-            <td>🪨 Stones</td>
-          </tr>
-        `;
+      function buildForecast(chestIdx, currentHour, nextReset) {
+        const now = new Date();
+        const baseDate = new Date(now);
+        baseDate.setHours(currentHour, 0, 0, 0);
 
-        forecastTbody.innerHTML = '';
-        for (let i = 1; i <= 8; i++) {
+        const dayMap = new Map();
+        const todayKey = now.toDateString();
+
+        for (let i = 1; ; i++) {
+          const fd = new Date(baseDate.getTime() + i * MS_PER_HOUR);
+          if (fd >= nextReset) break;
+          if (fd <= now) continue;
+
           const fChestIdx = (chestIdx + i) % 4;
           const fStoneIdx = (fChestIdx + 1) % 4;
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td class="np-col-hour"><strong>${fmtHour((h + i) % 24)}</strong></td>
-            <td class="np-col-hour">${pad((h + i) % 24)}:00</td>
+          const dateKey   = fd.toDateString();
+
+          let entry = dayMap.get(dateKey);
+          if (!entry) {
+            const label = dateKey === todayKey
+              ? 'Today'
+              : fd.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+            entry = { label, isToday: dateKey === todayKey, rows: [] };
+            dayMap.set(dateKey, entry);
+          }
+
+          const h24 = fd.getHours();
+          entry.rows.push(`<tr>
+            <td class="np-col-hour"><strong>${fmtHour(h24)}</strong></td>
+            <td class="np-col-hour">${pad(h24)}:00</td>
             <td>${ROTATION[fChestIdx]}</td>
             <td>${ROTATION[fStoneIdx]}</td>
-          `;
-          forecastTbody.appendChild(tr);
+          </tr>`);
         }
 
-        output.classList.add('np-visible');
+        forecastContainer.innerHTML = '';
+
+        if (dayMap.size === 0) {
+          forecastContainer.innerHTML = '<p class="np-validity-msg">Reset is approaching — no remaining forecast hours.</p>';
+          return;
+        }
+
+        [...dayMap.values()].forEach((day, idx) => {
+          if (day.isToday) {
+            const div = document.createElement('div');
+            div.innerHTML = `<p class="np-section-title">Today</p>${buildDayTable(day.rows)}`;
+            forecastContainer.appendChild(div);
+          } else {
+            const details = document.createElement('details');
+            details.className = 'np-forecast-details';
+            if (idx === 0) details.open = true;
+            details.innerHTML = `<summary class="np-forecast-summary">${day.label}</summary>${buildDayTable(day.rows)}`;
+            forecastContainer.appendChild(details);
+          }
+        });
+      }
+
+      function updateValidityMsg(nextReset) {
+        if (!nextReset) {
+          validityMsg.textContent = '';
+          return;
+        }
+        const msLeft    = nextReset.getTime() - Date.now();
+        const hoursLeft = Math.floor(msLeft / MS_PER_HOUR);
+        const daysLeft  = Math.floor(hoursLeft / 24);
+        validityMsg.textContent = daysLeft >= 1
+          ? `Forecast valid for ${daysLeft} day${daysLeft !== 1 ? 's' : ''}`
+          : `Forecast valid for ${hoursLeft} hour${hoursLeft !== 1 ? 's' : ''}`;
+      }
+
+      // Restore saved state on load
+      const saved = loadSaved();
+      if (saved) {
+        setType(saved.type);
+        setLoc(saved.loc);
       }
     })();
   </script>
@@ -210,7 +285,7 @@
     display: flex;
     flex-direction: column;
     gap: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
 
   .np-row {
@@ -310,6 +385,14 @@
     font-weight: 700;
   }
 
+  /* ── Validity message ── */
+  .np-validity-msg {
+    font-size: 12px;
+    color: var(--sl-color-gray-3);
+    margin: 0 0 16px;
+    min-height: 1em;
+  }
+
   /* ── Output ── */
   .np-output {
     display: none;
@@ -320,27 +403,12 @@
     display: flex;
   }
 
-  /* ── Current Hour: side-by-side layout ── */
-  .np-current-row {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-    align-items: flex-start;
-  }
+  /* ── Current hour table ── */
   .np-current-table {
-    max-width: 240px;
-  }
-
-  /* ── Timing table ── */
-  .np-timing-table {
-    max-width: 300px;
+    max-width: 420px;
   }
   .np-timing-stale td {
     opacity: 0.35;
-  }
-  .np-timing-status {
-    color: var(--sl-color-gray-2);
-    font-size: 13px;
   }
 
   /* ── Section titles ── */
@@ -386,10 +454,44 @@
   .np-table tbody tr:last-child td {
     border-bottom: none;
   }
-  .np-table .np-row-highlight td {
-    background: color-mix(in srgb, var(--sl-color-accent) 8%, transparent);
-  }
   .np-col-hour {
     text-align: center !important;
+  }
+  .np-table thead th:nth-child(n+3),
+  .np-table tbody td:nth-child(n+3) {
+    text-align: center;
+  }
+
+  /* ── Forecast day sections ── */
+  .np-forecast-details {
+    max-width: 480px;
+  }
+  .np-forecast-summary {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sl-color-gray-2);
+    cursor: pointer;
+    padding: 6px 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+  }
+  .np-forecast-summary::-webkit-details-marker { display: none; }
+  .np-forecast-summary::before {
+    content: '›';
+    font-size: 16px;
+    line-height: 1;
+    transition: transform 0.15s;
+    display: inline-block;
+  }
+  .np-forecast-details[open] > .np-forecast-summary::before {
+    transform: rotate(90deg);
+  }
+  .np-forecast-details > .np-table {
+    margin-top: 8px;
   }
 </style>
