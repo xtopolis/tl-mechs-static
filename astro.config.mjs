@@ -174,6 +174,7 @@ export default defineConfig({
             { label: 'Planner', link: '/tower-of-greed/' },
           ],
         },
+        { label: 'Boss Hit Times', link: '/boss-hit-times/' },
         { label: 'About', link: '/about' },
       ],
       components: {
