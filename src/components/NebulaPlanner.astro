@@ -65,7 +65,6 @@
       const LS_KEY = 'nebula-v1';
 
       const MS_PER_HOUR = 3_600_000;
-      const MS_PER_WEEK = 7 * 24 * MS_PER_HOUR;
 
       function pad(n) { return String(n).padStart(2, '0'); }
       function fmtHour(h24, mins) {
@@ -77,15 +76,13 @@
           : `${h12} ${suffix}`;
       }
 
-      // Server reset = every Thursday 00:00 PDT = Thursday 07:00 UTC
-      function getNextReset() {
-        const now = new Date();
-        const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 7, 0, 0, 0));
-        const diff = (4 - d.getUTCDay() + 7) % 7;
-        d.setUTCDate(d.getUTCDate() + diff);
-        if (d <= now) d.setUTCDate(d.getUTCDate() + 7);
-        return d;
+      function localMidnight(dayOffset) {
+        const n = new Date();
+        return new Date(n.getFullYear(), n.getMonth(), n.getDate() + dayOffset, 0, 0, 0, 0);
       }
+
+      function locToChestIdx(type, loc) { return type === 'chest' ? loc : (loc + 3) % 4; }
+      function chestIdxToLoc(type, idx) { return type === 'chest' ? idx : (idx + 1) % 4; }
 
       function loadSaved() {
         try {
@@ -93,7 +90,7 @@
           if (!raw) return null;
           const data = JSON.parse(raw);
           if (!data.type || data.loc == null || !data.timestamp) return null;
-          if (data.timestamp < getNextReset().getTime() - MS_PER_WEEK) return null;
+          if (data.timestamp < localMidnight(0).getTime()) return null;
           return data;
         } catch { return null; }
       }
@@ -170,7 +167,7 @@
         const m = parseInt(mStr, 10);
         if (isNaN(h) || isNaN(m)) return;
 
-        const chestIdx = selectedType === 'chest' ? selectedLoc : (selectedLoc + 3) % 4;
+        const chestIdx = locToChestIdx(selectedType, selectedLoc);
         const stoneIdx = (chestIdx + 1) % 4;
 
         saveCurrent(selectedType, selectedLoc);
@@ -185,13 +182,13 @@
           </tr>`;
         }).join('');
 
-        const nextReset = getNextReset();
-        buildForecast(chestIdx, h, nextReset);
-        updateValidityMsg(nextReset);
+        const endOfDay = localMidnight(1);
+        buildForecast(chestIdx, h, endOfDay);
+        updateValidityMsg(endOfDay);
         output.classList.add('np-visible');
       }
 
-      function buildForecast(chestIdx, currentHour, nextReset) {
+      function buildForecast(chestIdx, currentHour, cutoff) {
         const now = new Date();
         const baseDate = new Date(now);
         baseDate.setHours(currentHour, 0, 0, 0);
@@ -201,7 +198,7 @@
 
         for (let i = 1; ; i++) {
           const fd = new Date(baseDate.getTime() + i * MS_PER_HOUR);
-          if (fd >= nextReset) break;
+          if (fd >= cutoff) break;
           if (fd <= now) continue;
 
           const fChestIdx = (chestIdx + i) % 4;
@@ -229,7 +226,7 @@
         forecastContainer.innerHTML = '';
 
         if (dayMap.size === 0) {
-          forecastContainer.innerHTML = '<p class="np-validity-msg">Reset is approaching — no remaining forecast hours.</p>';
+          forecastContainer.innerHTML = '<p class="np-validity-msg">No remaining hours to forecast today.</p>';
           return;
         }
 
@@ -248,24 +245,25 @@
         });
       }
 
-      function updateValidityMsg(nextReset) {
-        if (!nextReset) {
+      function updateValidityMsg(endOfDay) {
+        if (!endOfDay) {
           validityMsg.textContent = '';
           return;
         }
-        const msLeft    = nextReset.getTime() - Date.now();
+        const msLeft    = endOfDay.getTime() - Date.now();
         const hoursLeft = Math.floor(msLeft / MS_PER_HOUR);
-        const daysLeft  = Math.floor(hoursLeft / 24);
-        validityMsg.textContent = daysLeft >= 1
-          ? `Forecast valid for ${daysLeft} day${daysLeft !== 1 ? 's' : ''}`
-          : `Forecast valid for ${hoursLeft} hour${hoursLeft !== 1 ? 's' : ''}`;
+        validityMsg.textContent = hoursLeft >= 1
+          ? `Forecast valid for ${hoursLeft} hour${hoursLeft !== 1 ? 's' : ''} (resets at midnight)`
+          : 'Forecast expires soon (midnight)';
       }
 
-      // Restore saved state on load
+      // Restore saved state on load, propagating the rotation forward by elapsed hours
       const saved = loadSaved();
       if (saved) {
+        const hoursElapsed    = Math.floor((Date.now() - saved.timestamp) / MS_PER_HOUR);
+        const currentChestIdx = (locToChestIdx(saved.type, saved.loc) + hoursElapsed) % 4;
         setType(saved.type);
-        setLoc(saved.loc);
+        setLoc(chestIdxToLoc(saved.type, currentChestIdx));
       }
     })();
   </script>
