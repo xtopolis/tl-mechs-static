@@ -1,0 +1,83 @@
+---
+title: "Doomrot Grove"
+sidebar:
+  order: 1
+---
+
+import { Aside, Card, Icon } from '@astrojs/starlight/components';
+
+<Card title="Mechs">
+
+<div class="dr-section">
+  <div class="dr-sep-head"><Icon name="approve-check-circle" /><span>Protect the Seed</span></div>
+  <p>Players with flat green symbols form a triangle around the player with the vertical green symbol. After a few seconds, each flat green player spawns a thorn barrier extending to both sides. Keep the protected player inside the triangle with everyone facing inward.</p>
+  <p>Under ~40% HP, only 2 players receive green seeds. The red seed player must quickly touch the sprinkler to grow their seed, then run to take the last position and complete the triangle.</p>
+</div>
+
+<div class="dr-section">
+  <div class="dr-sep-head"><Icon name="rocket" /><span>Uppies</span></div>
+  <p>Everyone but the tank is launched into the sky and poisoned. Five red lines radiate from the boss in an evenly spaced star pattern — seeds travel along each line for a few shots. Stand in a line's path to get hit by a seed and cure your poison.</p>
+</div>
+
+</Card>
+
+<Card title="Rotation">
+
+<div class="dr-section">
+  <div class="dr-sep-head"><Icon name="rocket" /><span>Opener</span></div>
+  <div class="dr-col">
+    <span class="dr-pill dr-auto">6× AUTO</span>
+    <span class="dr-pill dr-green dr-indent">GREEN</span>
+    <div class="dr-row dr-indent">
+      <span class="dr-pill dr-mech">MECH</span>
+      <span class="dr-cond">HP &lt; 90%</span>
+      <span class="dr-arrow">/</span>
+      <span class="dr-pill dr-roll">ROLL</span>
+      <span class="dr-pill dr-jump">BLOCK / JUMP</span>
+      <span class="dr-pill dr-uppies">UPPIES</span>
+    </div>
+  </div>
+</div>
+
+<Aside type="danger" title="Core Mech">
+  <div class="dr-col">
+    <span class="dr-pill dr-mech">MECH</span>
+    <span class="dr-pill dr-green dr-indent">GREEN</span>
+    <span class="dr-pill dr-roll dr-indent">ROLL</span>
+    <span class="dr-pill dr-jump dr-indent">BLOCK / JUMP</span>
+  </div>
+</Aside>
+
+<Aside type="note" title="Small DPS Phase">
+  <div class="dr-col">
+    <span class="dr-pill dr-auto">3× AUTO</span>
+    <span class="dr-pill dr-green dr-indent">GREEN</span>
+    <span class="dr-pill dr-auto">2× AUTO</span>
+    <span class="dr-pill dr-roll dr-indent">ROLL</span>
+  </div>
+</Aside>
+
+<Aside type="tip" title="UPPIES">
+  <div class="dr-col">
+    <span class="dr-pill dr-uppies">UPPIES</span>
+    <span class="dr-pill dr-auto">2× AUTO</span>
+    <span class="dr-pill dr-green dr-indent">GREEN</span>
+    <span class="dr-pill dr-jump dr-indent">BLOCK / JUMP</span>
+  </div>
+</Aside>
+
+<Aside type="note" title="Big DPS Phase">
+  <div class="dr-col">
+    <span class="dr-pill dr-auto">2× AUTO</span>
+    <span class="dr-pill dr-roll dr-indent">ROLL</span>
+    <span class="dr-pill dr-auto dr-indent">AUTO</span>
+    <span class="dr-pill dr-green dr-indent">GREEN</span>
+    <span class="dr-pill dr-auto">3× AUTO</span>
+    <div class="dr-row dr-indent">
+      <span class="dr-pill dr-mech">MECH</span>
+      <span class="dr-cond">↺ loop</span>
+    </div>
+  </div>
+</Aside>
+
+</Card>
