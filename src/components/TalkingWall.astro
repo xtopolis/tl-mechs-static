@@ -1,0 +1,430 @@
+---
+// TalkingWall: searchable list of Nix "Talking Wall" true/false statements.
+// Event pops every 3h20m. Data sourced from in-game wall riddles.
+---
+
+<div class="tw not-content">
+  <input
+    type="search"
+    id="tw-search"
+    class="tw-search"
+    placeholder="Search statements…"
+    autocomplete="off"
+    aria-label="Filter statements"
+  />
+  <p class="tw-count"><span id="tw-shown">0</span> shown</p>
+  <ul class="tw-list" id="tw-list"></ul>
+  <p class="tw-empty" id="tw-empty" hidden>No matching statements.</p>
+</div>
+
+<script is:inline>
+(() => {
+  const DATA = [
+    [1, "The Snow Fiends are demons that appear in the Scar of Sacrifice."],
+    [1, "The Frozen Nightlands of Nix are home to packs of werewolves."],
+    [1, "Vulcanus is a variant created by combining a Snowfield Gorilla and an Acid Beetle."],
+    [1, "There is no Arkeum Legion in Nix."],
+    [1, "In the aftermath of the ancient war between the elves and the giants, a rift to Diabolica opened in Nix."],
+    [1, "The coldest place in Nix is Shemir's Tower."],
+    [1, "Nix has a special method of travel called the Auroral Path."],
+    [1, "The Frost Crone in the Scar of Sacrifice was originally a wizard dispatched to Nix for a greater cause."],
+    [1, "Masarax wears a red mask."],
+    [1, "Kaylle Noctus is the only younger brother of Cerise Noctus, the Border Zone Vigilante Leader."],
+    [1, "Kaylle Noctus is at the Border Zone."],
+    [1, "Tumgir was the Brave Giant who created mechanical soldiers and the Ember Giant during the ancient tribal war."],
+    [1, "Cerise Noctus is the Nix Border Zone Vigilante Leader."],
+    [1, "The Blacksword Company Captain is in the Entropic Tundra of Nix."],
+    [1, "The Blacksword Company Captain is looking for capable underlings."],
+    [1, "The Border Zone of Nix can endure the bitter cold thanks to the manastone at its center."],
+    [1, "The Auroral Path is called that because the stars appear to flow like a river."],
+    [1, "Sylaveth was sealed by Einar, the Creator God."],
+    [1, "The Star Fragments of Sylaveth were originally one."],
+    [1, "The tribes that fought against the giants in the ancient tribal war were humans, orcs, elves, and goblins."],
+    [1, "The war between elves and humans began when humans pursued forbidden magic."],
+    [1, "Archwizard Sion Tegeroth ended the elf-human war."],
+    [1, "Deluzhnoa used the heart of Quietis to defeat the enemy, but was consumed by its power."],
+    [1, "Hale Verpheus is the first Archwizard of Venelux."],
+    [1, "After the Temple of Light was destroyed, it came to be known as the Temple of Deluzhnoa."],
+    [1, "Kazar's Arkeum Legion invaded Whisp Island to obtain Star Fragments."],
+    [1, "The heart of Quietis was originally kept by the elves in the Temple of Light."],
+    [1, "The element of water resonates with Deluzhnoa."],
+    [1, "Ruffello's bracelets originally belonged to comrades who fell in battle ten years ago."],
+    [1, "Kazar sent Calanthia and the orc legion to invade Whisp Island in pursuit of Star Fragments."],
+    [1, "The elves once gifted language and magic to humans."],
+    [1, "An Abyssal Meteor rose from the Talandre seabed."],
+    [1, "The Great Sage Tree, the world tree of the elves, is dying because of the red fog."],
+    [1, "The Guardians' Tomb holds the relics of the seven wizards who sealed Deluzhnoa."],
+    [1, "Yann Junath took in orphans who bore Star Fragments on Whisp Island."],
+    [1, "The reason the Arkeum Legion tried to steal the power of the Star Fragment from the children was to use it as a tool of war."],
+    [1, "Sea turtles breathe outside of water."],
+    [1, "Sea turtles are reptiles."],
+    [1, "The former name of the Shattered Temple in Laslan is the Temple of Light."],
+    [1, "The desert of Stonegard was created by the cursed rain brought down by Skultus."],
+    [1, "The Sanctum of Desire is located in the Manawastes."],
+    [1, "Whisp Island is a sacred island protected by the World Tree Whisperion."],
+    [1, "Talandre is a region famous for the Breezeline."],
+    [1, "There is a passage to the Port from Stonegard Castle."],
+    [1, "Most of the mines in Talandre are currently occupied by the Black Anvil Dwarves."],
+    [1, "The Ruins of Turayne were originally a thriving commercial district."],
+    [1, "The rumors of a little monster in the Swamp of Silence were actually about Giselle, a mutated girl."],
+    [1, "The Holy Tree's Sanctuary is the inner world of the Great Sage Tree."],
+    [1, "The name of the ship that travels between Kastleton and Vienta Port is the Marind."],
+    [1, "The name of the sundries merchant in Vienta Village is Deborah."],
+    [1, "The Aethersuit is a device used to rapidly descend from the Aetherion to the ground."],
+    [1, "Martinay Casill is Adriana Casill's younger sister."],
+    [1, "The temple built by the lycanthropes of Nix is on the opposite side of the waterfall in the Frozen Nightlands."],
+    [1, "When you cook, you get a great success sometimes."],
+    [1, "A Guardian's Pledge is an object imbued with a Guardian through a special ceremony."],
+    [1, "The red fog originates from Abyssal Meteor fragments and causes mutations in living creatures."],
+    [1, "When the red fog is condensed, it becomes red bitumen."],
+    [1, "Underlying principles of white magic and dark magic are the same."],
+    [1, "A Diston is a magical tool capable of storing magical energy and recording knowledge."],
+    [1, "There is a phenomenon called the Abyssal Contract that occurs in places dominated by darkness."],
+    [1, "Burning the herb called Crimosa causes an adverse reaction in demons."],
+    [1, "Lunar-0 has been storing information and prophecies from books in Venelux."],
+    [1, "Lunar-0 has Janice's deductive abilities programmed in as a magic schema."],
+    [1, "The Star-Born can be mentally connected to one another."],
+    [1, "When the connection among the Star-Born grows stronger, even spacetime displacement can occur."],
+    [1, "Spirits arise from extreme elemental imbalances."],
+    [1, "When Deluzhnoa's power erupts, Quietis's Demesne can completely freeze over."],
+    [1, "According to Theodor's research records, Bladewind Flowers are needed to charge the Wind Relic."],
+    [1, "Since many bees gather around Bladewind Flowers, you must put on some bee repellent before harvesting them."],
+    [1, "In the Holy Tree's Sanctuary, it is the Twilight Flame that can burn the tree branches tainted by the red fog."],
+    [1, "A branch from the Lifebringer Tree is needed to grow a new tree branch in the Holy Tree's Sanctuary."],
+    [1, "One of the key materials for the Queen Bellandir luring device is a sharp armadillo scale."],
+    [1, "The presence of Mitrans means the Land of the Dead is being purified."],
+    [1, "Queen Bellandir is a giant sandworm in Stonegard."],
+    [1, "The largest basilisk in Stonegard is Chernobog."],
+    [1, "Lycans grow stronger near the moonstone during the Harvest Moon ritual."],
+    [1, "Each of the two heads of a Two-Headed Ogre has a brain."],
+    [1, "Lacune is the giant ant queen of Stonegard."],
+    [1, "The Ant Nest is home to giant ants such as Soldier Ants, Explosive Ants, and Acid Ants."],
+    [1, "Queen Bellandir was originally nothing more than a small sandworm."],
+    [1, "Queen Bellandir has a tendency to be drawn to strong magical power."],
+    [1, "When Roen was swallowed by Queen Bellandir, she transformed into a violet bird and escaped from within."],
+    [1, "Bee venom helps regulate the toxicity within mana."],
+    [1, "A contaminated beetle horn makes a tonic several times stronger than a regular horn."],
+    [1, "A sandworm's venom sac releases a signaling substance when it detects another creature's mana"],
+    [1, "The souls of dead elves wander the Forest of the Great Tree."],
+    [1, "Venelux is the center of magical academia, home to a repository of forbidden texts."],
+    [1, "The Lightbringer Society is a wizard organization that opposes dark magic."],
+    [1, "The Akidu orcs are shadow orcs allied with the Arkeum Legion."],
+    [1, "The Fonos orcs believe they grow stronger through a ritual called the Festival of Fire."],
+    [1, "The Resistance used Laslan as a stepping stone to grow their power and liberate Stonegard."],
+    [1, "The Arkeum Legion is waging war across all of Solisium to obtain the Star Fragments of Sylaveth."],
+    [1, "The Akidu orcs abducted the Fonos orcs and turned them into shadow orcs."],
+    [1, "The Sandflame Bandits are outlaws of the Monolith Wastelands."],
+    [1, "The plan written on the kidnapping orders left by Arkeum was titled Calanthia's Plan."],
+    [1, "Resistance Contract Coins are only given to those who complete contracts."],
+    [1, "The Oath of the Resistance tablet contains a vow to stand and fight against the enemy."],
+    [1, "Junobote is the ninth Grand Elder of the Sylavean Order."],
+    [1, "Junobote offered one eye to Havres and gained forbidden knowledge."],
+    [1, "The sixth Grand Elder of the Sylavean Order is Ahzreil."],
+    [1, "When Junobote summoned Havres, the resulting mana leak caused a mana frenzy in the Manawastes."],
+    [1, "On the day Junobote entered the sanctuary, the evil eye Malakar appeared and destroyed the barrier magic circle."],
+    [1, "Nirma gained the power to summon tempests and lightning as a result of the experiment."],
+    [1, "If no one is there to receive Nirma's electric sphere, it explodes on the ground and deals lethal damage."],
+    [1, "Clay is the son of the legendary Archwizard Janice Cartair."],
+    [1, "Lunar-0 is a Diston created by Janice Cartair during her studies at Venelux."],
+    [1, "Calanthia follows Reville Lupius because he took her in as a child"],
+    [1, "Captain DaVinci arrived in Laslan after Reville had banned guilds."],
+    [1, "Janice Cartair was the first female chancellor candidate of Venelux."],
+    [1, "Lavelle can replicate not only the appearance and voice, but even some of the target's abilities."],
+    [1, "Morokai's heart is hanging from his staff."],
+    [1, "Rutaine and Sophia lost their parents to Reville Lupius."],
+    [1, "Sophia, Rutaine, and Robert were rescued by Captain DaVinci as children."],
+    [1, "Lazarus is the eldest son of the Crimson family and was lovers with Norn Bercant."],
+    [1, "Captain DaVinci's real name is DaVinci Aron."],
+    [1, "DaVinci first defeated the Arkeum alongside Lord Hobs in Kastleton at the southern tip of Laslan."],
+    [1, "Clay was once abducted by the Arkeum."],
+    [1, "When founding the Order of the Swan, Roen wanted a jet-black crow as the seal."],
+    [1, "Roen has a special mark on her right hand."],
+    [1, "Iska, whom Clay introduced to you, possesses the power of the Star Fragment."],
+    [1, "Iska came to Nix following Clay."],
+    [1, "The name of the Vampire Slayer and Ezekiel's master is Scarla."],
+    [1, "Ezekiel hunted vampires to the point of nearly driving them to extinction across the continent."],
+    [1, "Leonardas, the person you met in Vienta, was posing as a benevolent doctor."],
+    [1, "Doctor Leonardas of Vienta spread a fake plague to secure patients as sacrifices for the Blood Ritual."],
+    [1, "Helpie is an Amitoi on Whisp Island."],
+    [1, "Helpie's first owner was Diana, the Star-Born girl."],
+    [1, "Helpie fell into slumber beneath Whisperion after Diana passed away."],
+    [1, "Melvin is Theodor's apprentice and a prodigious wizard recognized even in Venelux."],
+    [1, "Theodor was once imprisoned by the Wolpertingers"],
+    [1, "Theodor tried to repair the Lunar-Bell but ended up making it explode."],
+    [1, "Theodor always boasts that he was an Archwizard candidate in Venelux."],
+    [1, "Azra studied the red fog and created a bitumen purification device."],
+    [1, "The first gift Azra thought of giving Giselle was a camel."],
+    [1, "Giselle is a girl whose arm was mutated by the red fog."],
+    [1, "Giselle lived with her grandmother, but her grandmother left and never came back."],
+    [1, "Giselle loved apricot pie the first time she tried it."],
+    [1, "Sophia always worries about Robert but hides her feelings."],
+    [1, "Sophia and Rutaine once fell into a spider den as children and were left dangling from spider webs."],
+    [1, "Robert calls himself a lone wolf."],
+    [1, "Rutaine's Diston name is Lunar-17."],
+    [1, "The Terrific Trio were gifted a flag that DaVinci used during his trainee days."],
+    [1, "Calanthia used the corpses from northern Laslan to create soldiers for the Arkeum Legion."],
+    [1, "Yann Junath was like a father to the children taken in on Whisp Island."],
+    [1, "Yann Junath is currently dead."],
+    [1, "The demon Risieth's goal was to find and kill Havres."],
+    [1, "Havres hid within the body of a young Resistance Soldier named Lukas."],
+    [1, "Minezerok is the first lich ever created."],
+    [1, "Ahzreil destroyed the Temple of Light during Hale Verpheus's funeral."],
+    [1, "Chamir is a Resistance spy with the codename Canary."],
+    [1, "Chamir's signature menu includes Sandworm Larva Pudding and Quillix Duodenum Soup."],
+    [1, "Bonia Naru, the daughter of Pakilo Naru, secretly maintained a contract with the Arkeum Legion."],
+    [1, "After being abducted, Clay became a red fog test subject and briefly turned into a rampaging weapon."],
+    [1, "Janice disguised herself as a dwarf when infiltrating the Black Anvil Forge."],
+    [1, "Morrin is a Wolpertinger and the gatekeeper of the Great Sage Tree in Talandre."],
+    [1, "Morrin calls humans tall-tingers."],
+    [1, "Aramo is a Wolpertinger, a high-ranking elemental spirit that guards the World Tree in the Holy Tree's Sanctuary."],
+    [1, "Ramsey Webster, a monk who serves Einar, says that mutant monsters were once human."],
+    [1, "Marcia Richill is the captain of the Sandworm Raid Group."],
+    [1, "Even after death, Glenn Richill remained as a wandering spirit, worrying about his daughter Marcia."],
+    [1, "Porfos actually had a bright and cheerful personality when he was alive."],
+    [1, "The demon Blath guards Shaikal of Darkness in the Cursed Wasteland."],
+    [1, "Amitoi Solia has experience working at the royal castle."],
+    [1, "The Lycan Scouts are guarding a monument stone related to the Moonlight Spell."],
+    [1, "Dwarf Henderson composed songs about his past adventures."],
+    [1, "The Golem's Heart is a device that holds the powerful force of a Star Fragment."],
+    [1, "Henderson's comrade, Sienna Parsons, is a Resistance wizard."],
+    [1, "Henderson, Sienna Parsons, and Louie Hayson were comrades who completed many missions and adventures together."],
+    [1, "Janice Cartair vanished without a trace on the day of her inauguration as chancellor of Venelux."],
+    [1, "Clay knew that his mother, Janice, disappeared because of the Chaos of Mana."],
+    [1, "The one who built the Golem Cart of Fortress Aron was the dwarf Bermetz."],
+    [1, "Remy was the son of Lazarus Crimson and Norn Bercant."],
+    [1, "Hela injected Lazarus's soul into Remy, turning him into a massive vengeful spirit."],
+    [1, "When Norn's journal and Lazarus's Guardian's Pledge resonated and emitted light, Remy's curse was lifted."],
+    [1, "Lazarus left a letter for Norn suggesting they secretly flee together."],
+    [1, "Lazarus and Norn tried to escape on a smuggling ship but ultimately failed."],
+    [1, "Berge is the Nightmare Herald of Arkeum who uses the power to petrify the Resistance."],
+    [1, "When Kazar appeared through a massive portal at the Shattered Temple, Clay stayed behind alone to stop Kazar."],
+    [1, "Zaroth was the commander of the Arkeum Legion in Laslan."],
+    [1, "Paola is a wizard researching dimensional circles in Vienta Village."],
+    [1, "Gideon is the guard captain of Canina Village."],
+    [1, "Benny was once abducted by the Akidu orcs while disguised as an orc."],
+    [1, "Baize, who asked for help collecting equipment lithographs, is a member of the Endless Collectors Association."],
+    [1, "Watch Captain Ruffello acts immediately when it involves the Arkeum."],
+    [1, "Henson is a former watch captain with the nickname One-Eyed Hawk."],
+    [1, "Josephine Craft is investigating Queen Bellandir."],
+    [1, "Harden from Canina Village once went missing after being lured into the forest by a strange sound?"],
+    [1, "Ashien has the power to paint images that allow travel through space."],
+    [1, "The Arkeum Legion morphs into various animals to infiltrate Laslan."],
+    [0, "Tumgir, who fell in Tumgir's Grave, is the name of a giant golem."],
+    [0, "The reason Nix froze over was because of a dragon's breath."],
+    [0, "Fellinex is a war golem created by Tumgir."],
+    [0, "Only humans live in the Border Zone of Nix."],
+    [0, "Shemir was a dwarf wizard."],
+    [0, "After Shemir's sacrifice, Nix became a land of abundance."],
+    [0, "Flamakan is the god of wind."],
+    [0, "Einar is the god who governs both creation and destruction."],
+    [0, "The Abyssal Meteor is a weapon of war made by the elves."],
+    [0, "The Abyssal Meteor was split into three pieces and sealed away."],
+    [0, "Theodor graduated top of Venelux Class 293."],
+    [0, "The Crimson family was a peaceful farming family."],
+    [0, "Reville Lupius is the third Elder of the Sylavean Order."],
+    [0, "When Deluzhnoa went berserk, Hale Verpheus immediately returned and sealed her."],
+    [0, "Deluzhnoa's seal enforcement ritual requires relics containing the three prime elements."],
+    [0, "It was Calanthia who banned the creation of guilds throughout Solisium."],
+    [0, "The Abyssal Meteor is a weapon forged by condensing the hopes and joys of the dead."],
+    [0, "Mushrooms are plants."],
+    [0, "Mushrooms make their own nutrients through photosynthesis."],
+    [0, "Whales are fish."],
+    [0, "Coral is a plant."],
+    [0, "A day is exactly 24 hours long."],
+    [0, "Sound is faster than light."],
+    [0, "Spiders are insects."],
+    [0, "Tomatoes are fruits, not vegetables."],
+    [0, "Kastleton is where the Arkeum Legion resides."],
+    [0, "The specialty of Vienta Village is oranges."],
+    [0, "The Golden Hammer dwarves supply minerals to the Black Anvil dwarves."],
+    [0, "There are only five ships in Kastleton Port."],
+    [0, "A small island off the Laslan Coast is home to an enormous flock of sheep."],
+    [0, "There is a crematorium in the Moonlight Desert region."],
+    [0, "Nixian Berries grow in the Entropic Tundra."],
+    [0, "The giants coexisted peacefully after defeating the dragon."],
+    [0, "There's an area called the Golem Ruins in front of Stonegard Castle."],
+    [0, "There is a broken statue of Kazar in the center of Kastleton."],
+    [0, "The Sanctum of Desire is associated with the element of water."],
+    [0, "The first Diston was named Stone-0."],
+    [0, "Crimosa's nickname is the Dragon's Tongue."],
+    [0, "Queen Bellandir grew to that size naturally."],
+    [0, "Adentus was created by Shadowmancers using corpses."],
+    [0, "Lacune was transformed by a power other than the Star Fragment of Sylaveth."],
+    [0, "Skultus called Lacune the Desert Overlord."],
+    [0, "It was Belluatan who first enlarged the Ant Nest."],
+    [0, "The source of Queen Bellandir's power is a Diston."],
+    [0, "The Lycan Scout is an orc."],
+    [0, "The leader of the Arkeum Legion is Kazar."],
+    [0, "The leader of the Allied Resistance Forces, Captain DaVinci, is from the Arkeum Legion."],
+    [0, "The Kowazan clan is an orc tribe."],
+    [0, "Arthur Talon was a loyal guild leader of the Resistance."],
+    [0, "Havres is the Demon of Deceit."],
+    [0, "Six Shadowmancers summoned Risieth, and only one of them survived in the end."],
+    [0, "The demon who stole Elleia's body is Havres."],
+    [0, "The Grand Elder who brought the cursed rain upon Solisium is Ahzreil."],
+    [0, "Junobote summoned Havres in the Sanctum of Desire and then came outside."],
+    [0, "There are three barrier magic circles set up in the Sanctum of Desire."],
+    [0, "Nirma was infused with the fire element during a Shadowmancer's experiment."],
+    [0, "You can get Lime Powder by gathering Yellow Rock."],
+    [0, "There are swamps among the Amitoi Expedition areas."],
+    [0, "Clay, Roen, and Gerad Burnell are members of the Order of the Black Swan."],
+    [0, "Calanthia is a wizard who uses only healing abilities."],
+    [0, "Kazar is a living human."],
+    [0, "Lavelle is the daughter of a human noble."],
+    [0, "Ezekiel was a Vampire from birth."],
+    [0, "Tevent is a wraith that awakened in the Shattered Temple."],
+    [0, "The one who created the barrier holding back Tevent was the Archwizard Janice."],
+    [0, "Jacque Hander is the castellan of Stonegard."],
+    [0, "Lazarus died of a hereditary disease that runs in his family."],
+    [0, "Captain DaVinci is from the Solisium army."],
+    [0, "Clay gave the graduation speech as the student representative at his Venelux graduation ceremony."],
+    [0, "Roen spread pure white wings and flew when escaping from Belphoret."],
+    [0, "Baron Leonardas, the vampire who killed Scarla, has lived for a hundred years."],
+    [0, "The hideout of Vienta's doctor, Leonardas, was in an underground cave in Talandre."],
+    [0, "Melvin always speaks to his master Theodor with extreme politeness and respect."],
+    [0, "Azra is an ambitious scholar with a great interest in money and fame."],
+    [0, "Giselle and Azra were close from the very beginning."],
+    [0, "It was Captain DaVinci, passing nearby, who first discovered the Sophia siblings in the spider den."],
+    [0, "Robert lives with Sophia and Rutaine in the same house in Vienta Village."],
+    [0, "The Terrific Trio of the Resistance refers to Sophia, Rutaine, and Clay"],
+    [0, "Yann Junath survived the Kazar invasion unscathed."],
+    [0, "Elleia was never possessed by a demon from start to finish."],
+    [0, "Risieth and Havres were working together, collecting Star Fragments."],
+    [0, "Minezerok collects animal souls to maintain its form."],
+    [0, "Chamir is currently disguised as a barber at the Black Anvil Dwarf outpost."],
+    [0, "Black Anvil Dwarf Commander Pakilo Naru's favorite food is spicy chicken."],
+    [0, "It was Theodor who completed the Purification Potion to save Clay."],
+    [0, "Ordinary humans can freely enter the Holy Tree's Sanctuary."],
+    [0, "Ramsey Webster's goal is to annihilate the mutant monsters with powerful destruction magic."],
+    [0, "Glenn Richill lost both arms to Queen Bellandir."],
+    [0, "Ariella can morph into a giant orc."],
+    [0, "There were ten shards of the Golem's Heart in total."],
+    [0, "Remy, having become a wraith of Lazarus, obediently followed Hela's commands."],
+    [0, "After the curse was lifted, Remy became an adventurer, wandering the world."],
+    [0, "Zarek was a loyal wizard of the Resistance."],
+    [0, "Marcia Richill gets along so well with her brother that they have never once fought."],
+    [0, "The thing on Emperfang's head is a crown made by orcs."],
+    [0, "The name of the Diston who relays information in front of the Milestone Stele is Lunar Crier."],
+    [0, "All Storage Managers are dwarves."],
+    [0, "There is a pet cat next to Wilson, the Herbalist at Windhill Shores."],
+  ];
+
+  const listEl  = document.getElementById('tw-list');
+  const inputEl = document.getElementById('tw-search');
+  const shownEl = document.getElementById('tw-shown');
+  const emptyEl = document.getElementById('tw-empty');
+
+  // Build all rows once; filtering just toggles visibility.
+  // Each row keeps its words pre-split + lowercased for fuzzy matching.
+  const rows = DATA.map(([v, text]) => {
+    const li = document.createElement('li');
+    li.className = 'tw-item';
+    const icon = document.createElement('span');
+    icon.className = 'tw-icon';
+    icon.textContent = v ? '\uD83D\uDD35' : '\u274C';
+    const span = document.createElement('span');
+    span.className = 'tw-text';
+    span.textContent = text;
+    li.append(icon, span);
+    listEl.appendChild(li);
+    const lower = text.toLowerCase();
+    return { li, words: lower.match(/[a-z0-9]+/g) || [] };
+  });
+
+  // Levenshtein edit distance, bailing out once it exceeds `max`.
+  function withinEdits(a, b, max) {
+    const la = a.length, lb = b.length;
+    if (Math.abs(la - lb) > max) return false;
+    let prev = new Array(lb + 1);
+    let curr = new Array(lb + 1);
+    for (let j = 0; j <= lb; j++) prev[j] = j;
+    for (let i = 1; i <= la; i++) {
+      curr[0] = i;
+      let rowMin = curr[0];
+      for (let j = 1; j <= lb; j++) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        curr[j] = Math.min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost);
+        if (curr[j] < rowMin) rowMin = curr[j];
+      }
+      if (rowMin > max) return false; // no cell in this row can recover
+      [prev, curr] = [curr, prev];
+    }
+    return prev[lb] <= max;
+  }
+
+  // A query token matches a word by substring, fuzzy whole-word, or fuzzy prefix.
+  function tokenMatchesWord(token, word) {
+    if (word.includes(token)) return true;
+    const k = token.length < 4 ? 0 : token.length < 7 ? 1 : 2;
+    if (k === 0) return false;
+    if (withinEdits(token, word, k)) return true;
+    if (word.length > token.length &&
+        withinEdits(token, word.slice(0, token.length), k)) return true;
+    return false;
+  }
+
+  // Every token must match some word in the statement (AND across tokens).
+  function rowMatches(tokens, words) {
+    for (const token of tokens) {
+      let hit = false;
+      for (const word of words) {
+        if (tokenMatchesWord(token, word)) { hit = true; break; }
+      }
+      if (!hit) return false;
+    }
+    return true;
+  }
+
+  function filter() {
+    const tokens = inputEl.value.toLowerCase().match(/[a-z0-9]+/g) || [];
+    let shown = 0;
+    for (const r of rows) {
+      const match = tokens.length === 0 || rowMatches(tokens, r.words);
+      r.li.hidden = !match;
+      if (match) shown++;
+    }
+    shownEl.textContent = shown;
+    emptyEl.hidden = shown !== 0;
+  }
+
+  inputEl.addEventListener('input', filter);
+  filter();
+})();
+</script>
+
+<style>
+  .tw-search {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.8rem;
+    font-size: 1rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background: var(--sl-color-black);
+    color: var(--sl-color-white);
+  }
+  .tw-count {
+    margin: 0.5rem 0;
+    font-size: 0.85rem;
+    color: var(--sl-color-gray-3);
+  }
+  .tw-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .tw-item {
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    padding: 0.4rem 0.2rem;
+    border-bottom: 1px solid var(--sl-color-gray-6);
+  }
+  .tw-item[hidden] { display: none; }
+  .tw-icon { flex: 0 0 auto; }
+  .tw-text { line-height: 1.4; }
+  .tw-empty {
+    color: var(--sl-color-gray-3);
+    font-style: italic;
+  }
+</style>
