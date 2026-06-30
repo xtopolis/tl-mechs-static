@@ -162,10 +162,9 @@ export default defineConfig({
           ],
         },
         {
-          label: 'Nebula Island',
+          label: 'Nix',
           items: [
-            { label: 'Chests/Stones', link: '/nebula/' },
-            { label: 'Spawn Locations', link: '/nebula/spawn-locations/' },
+            { label: 'Talking Wall', link: '/nix/talking-wall/' },
           ],
         },
         {
