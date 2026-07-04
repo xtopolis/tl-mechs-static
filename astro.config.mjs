@@ -165,6 +165,7 @@ export default defineConfig({
           label: 'Nix',
           items: [
             { label: 'Talking Wall', link: '/nix/talking-wall/' },
+            { label: 'Watermark', link: '/nix/watermark/' },
           ],
         },
         {
