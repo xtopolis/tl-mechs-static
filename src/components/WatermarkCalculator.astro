@@ -1,0 +1,390 @@
+---
+// WatermarkCalculator: interactive estimator for the Nix "Watermark" gearing system.
+// Three category cards (Weapon / Armor / Accessory), each 51–80, with pill steppers.
+// (Assumes you're already at 51 — getting there is the early tier-3 grind.)
+// Watermark = ROUND(AVERAGE(weapon, armor, accessory)) — the source spreadsheet's
+// formula. Not editable.
+// Shows the chance the next drop is +1 level, and flags lagging categories that are
+// holding your watermark down (you can only ever drop watermark+1 in any category).
+
+const cats = [
+  { key: 'weapon', label: 'Weapon', icon: 'i-weapon' },
+  { key: 'armor', label: 'Armor', icon: 'i-armor' },
+  { key: 'accessory', label: 'Accessory', icon: 'i-accessory' },
+];
+---
+
+<div class="wm not-content">
+  <!-- icon sprite (referenced via <use>) -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <symbol id="i-weapon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5" /><line x1="13" y1="19" x2="19" y2="13" /><line x1="16" y1="16" x2="20" y2="20" /><line x1="19" y1="21" x2="21" y2="19" />
+    </symbol>
+    <symbol id="i-armor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </symbol>
+    <symbol id="i-accessory" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 3h12l4 6-10 13L2 9z" /><path d="M11 3 8 9l4 13 4-13-3-6" /><path d="M2 9h20" />
+    </symbol>
+  </svg>
+
+  <div class="wm-row">
+    {cats.map((c) => (
+      <div class="wm-cat" data-cat-card={c.key} data-label={c.label}>
+        <span class="wm-flag" hidden aria-hidden="true" title="Lowest gear — farm this category to raise your watermark">&#9650;</span>
+        <div class="wm-head"><svg class="wm-icon"><use href={`#${c.icon}`} /></svg><span class="wm-label">{c.label}</span></div>
+        <div class="wm-num" data-cat={c.key}>51</div>
+        <div class="wm-group">
+          <button class="wm-btn" data-cat={c.key} data-dir="-1" aria-label={`Decrease ${c.label}`}>&minus;</button>
+          <button class="wm-btn" data-cat={c.key} data-dir="1" aria-label={`Increase ${c.label}`}>+</button>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <p class="wm-warn" data-role="warn"></p>
+
+  <div class="wm-result">
+    <div class="wm-mark">
+      <div class="wm-mark-ring"><span data-role="watermark">51</span></div>
+      <span class="wm-mark-label">Watermark</span>
+    </div>
+    <div class="wm-next" data-role="next">
+      <svg class="wm-next-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="6" y1="18" x2="18" y2="6" /><polyline points="8 6 18 6 18 16" />
+      </svg>
+      <div class="wm-next-text">
+        <span class="wm-next-lvl" data-role="nextlvl">Level 52</span>
+        <span class="wm-next-pct" data-role="prob">66.67%</span>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (() => {
+      const root = document.currentScript.parentElement;
+
+      const MIN = 51;
+      const MAX = 80;
+      const LS_KEY = 'wm-levels';
+
+      // Chance the next drop is watermark + 1 level, keyed by watermark (51–79).
+      // Source: game-file probabilities (Ninebeat).
+      const NEXT_UP = {
+        51: 66.67, 52: 66.67, 53: 66.64, 54: 66.60, 55: 66.49,
+        56: 66.33, 57: 66.07, 58: 65.71, 59: 65.24, 60: 64.64,
+        61: 63.88, 62: 62.96, 63: 61.85, 64: 60.53, 65: 59.00,
+        66: 57.23, 67: 55.21, 68: 52.91, 69: 50.33, 70: 47.46,
+        71: 44.25, 72: 40.70, 73: 36.81, 74: 32.53, 75: 27.87,
+        76: 22.81, 77: 17.32, 78: 11.39, 79: 5.00,
+      };
+
+      const state = { weapon: MIN, armor: MIN, accessory: MIN };
+      const keys = Object.keys(state);
+
+      // Restore saved category levels (persisted across visits).
+      try {
+        const saved = JSON.parse(localStorage.getItem(LS_KEY) || 'null');
+        if (saved && typeof saved === 'object') {
+          for (const k of keys) {
+            const v = Math.round(Number(saved[k]));
+            if (Number.isFinite(v)) state[k] = Math.max(MIN, Math.min(MAX, v));
+          }
+        }
+      } catch (e) {}
+
+      function save() {
+        try {
+          localStorage.setItem(LS_KEY, JSON.stringify(state));
+        } catch (e) {}
+      }
+
+      const numEls = {};
+      const cardEls = {};
+      const flagEls = {};
+      const labels = {};
+      root.querySelectorAll('[data-cat-card]').forEach((card) => {
+        const key = card.dataset.catCard;
+        cardEls[key] = card;
+        numEls[key] = card.querySelector('.wm-num');
+        flagEls[key] = card.querySelector('.wm-flag');
+        labels[key] = card.dataset.label;
+      });
+      const markEl = root.querySelector('[data-role="watermark"]');
+      const nextEl = root.querySelector('[data-role="next"]');
+      const lvlEl = root.querySelector('[data-role="nextlvl"]');
+      const probEl = root.querySelector('[data-role="prob"]');
+      const warnEl = root.querySelector('[data-role="warn"]');
+      const btns = root.querySelectorAll('.wm-btn');
+
+      function joinLabels(arr) {
+        if (arr.length <= 1) return arr[0] || '';
+        return arr.slice(0, -1).join(', ') + ' & ' + arr[arr.length - 1];
+      }
+
+      function render() {
+        for (const key of keys) numEls[key].textContent = state[key];
+
+        const sum = keys.reduce((total, k) => total + state[k], 0);
+        const watermark = Math.round(sum / 3);
+        markEl.textContent = watermark;
+
+        if (watermark >= MAX) {
+          nextEl.dataset.state = 'max';
+          probEl.textContent = 'MAX';
+        } else {
+          nextEl.dataset.state = '';
+          lvlEl.textContent = `Level ${watermark + 1}`;
+          probEl.textContent = `${NEXT_UP[watermark].toFixed(2)}%`;
+        }
+
+        // Warning flag: you can only ever drop watermark+1 in any category, so a
+        // category that reaches the cap is stuck until the watermark rises — which
+        // only happens when the LOWER categories catch up. Flag those laggards.
+        const cap = watermark + 1;
+        const leaderCapped = keys.some((k) => state[k] >= cap);
+        const laggingLabels = [];
+        for (const key of keys) {
+          const lagging = watermark < MAX && leaderCapped && state[key] < cap;
+          cardEls[key].classList.toggle('is-lagging', lagging);
+          flagEls[key].hidden = !lagging;
+          if (lagging) laggingLabels.push(labels[key]);
+        }
+        if (laggingLabels.length) {
+          warnEl.textContent = `You need to increase ${joinLabels(laggingLabels)} before you can raise your watermark.`;
+          warnEl.classList.add('is-visible');
+        } else {
+          warnEl.classList.remove('is-visible');
+        }
+
+        // Enforce the game cap: any single drop is at most watermark+1, so a
+        // category can never sit above that cap.
+        //  · "+" locks once a category reaches watermark+1 (raise the laggards
+        //    first to lift the watermark, then it unlocks).
+        //  · "-" locks when lowering a category would strand a higher category
+        //    above the (now lower) cap — an impossible spread.
+        btns.forEach((b) => {
+          const cat = b.dataset.cat;
+          const dir = Number(b.dataset.dir);
+          const v = state[cat];
+          if (dir > 0) {
+            b.disabled = v >= MAX || v > watermark;
+          } else if (v <= MIN) {
+            b.disabled = true;
+          } else {
+            const othersMax = Math.max(
+              ...keys.filter((k) => k !== cat).map((k) => state[k])
+            );
+            const newWatermark = Math.round((sum - 1) / 3);
+            b.disabled = othersMax > newWatermark + 1;
+          }
+        });
+      }
+
+      btns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const cat = btn.dataset.cat;
+          const next = state[cat] + Number(btn.dataset.dir);
+          state[cat] = Math.max(MIN, Math.min(MAX, next));
+          save();
+          render();
+        });
+      });
+
+      render();
+    })();
+  </script>
+</div>
+
+<style>
+  .wm {
+    margin: 1.5em 0;
+  }
+  .wm-row {
+    display: flex;
+    justify-content: center;
+    gap: clamp(0.75rem, 4vw, 1.5rem);
+    flex-wrap: wrap;
+  }
+
+  /* ---- Category card (grouped pill stepper) ---- */
+  .wm-cat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 8.5rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.75rem;
+    background: var(--sl-color-gray-7);
+  }
+  .wm-head {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--sl-color-white);
+  }
+  .wm-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    flex: 0 0 auto;
+  }
+  .wm-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .wm-num {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--sl-color-white);
+    font-variant-numeric: tabular-nums;
+  }
+  .wm-group {
+    display: inline-flex;
+    border: 1px solid var(--sl-color-gray-4);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  button.wm-btn {
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1;
+    padding: 0.4rem 1.3rem;
+    color: var(--sl-color-white);
+    background: var(--sl-color-gray-6);
+    border: none;
+  }
+  button.wm-btn:first-child {
+    border-right: 1px solid var(--sl-color-gray-4);
+  }
+  button.wm-btn:hover:not(:disabled) {
+    background: var(--sl-color-gray-5);
+  }
+  button.wm-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  /* ---- Lagging-category warning flag ---- */
+  .wm-cat.is-lagging {
+    border-color: var(--sl-color-orange);
+    box-shadow: 0 0 0 1px var(--sl-color-orange);
+  }
+  .wm-flag[hidden] {
+    display: none;
+  }
+  .wm-flag {
+    position: absolute;
+    top: -0.6rem;
+    right: -0.6rem;
+    display: grid;
+    place-items: center;
+    width: 1.4rem;
+    height: 1.4rem;
+    font-size: 0.7rem;
+    border-radius: 50%;
+    background: var(--sl-color-orange);
+    color: #1a1a1a;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ---- Lagging warning line ---- */
+  .wm-warn {
+    margin: 1.1rem auto 0;
+    min-height: 1.4rem; /* reserve the line so toggling never shifts layout */
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--sl-color-orange);
+    visibility: hidden;
+  }
+  .wm-warn.is-visible {
+    visibility: visible;
+  }
+
+  /* ---- Result row: watermark + next-level chance side by side ---- */
+  .wm-result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 5vw, 2rem);
+    flex-wrap: wrap;
+    margin-top: 1.75rem;
+  }
+  .wm-mark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .wm-mark-ring {
+    display: grid;
+    place-items: center;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    border: 4px solid var(--sl-color-accent);
+    box-shadow: 0 0 0 6px
+      color-mix(in srgb, var(--sl-color-accent) 18%, transparent);
+  }
+  .wm-mark-ring span {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--sl-color-white);
+  }
+  .wm-mark-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sl-color-gray-2);
+  }
+
+  /* ---- Next-level (+1) indicator ---- */
+  .wm-next {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .wm-next-arrow {
+    width: 2.4rem;
+    height: 2.4rem;
+    color: var(--sl-color-green);
+    flex: 0 0 auto;
+  }
+  .wm-next-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+  .wm-next-lvl {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--sl-color-gray-2);
+  }
+  .wm-next-pct {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--sl-color-green);
+    font-variant-numeric: tabular-nums;
+  }
+  .wm-next[data-state='max'] .wm-next-arrow,
+  .wm-next[data-state='max'] .wm-next-lvl {
+    display: none;
+  }
+  .wm-next[data-state='max'] .wm-next-pct {
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    color: var(--sl-color-gray-3);
+  }
+</style>
