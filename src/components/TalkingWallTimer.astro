@@ -1,0 +1,55 @@
+---
+// TalkingWallTimer: shows the approximate next Talking Wall event in the viewer's
+// LOCAL time. The event recurs every 3h17m; anchored to a known occurrence
+// (Sat 2026-07-04 6:03 PM Pacific). Approximate — flagged BETA — since it assumes
+// a perfectly regular cadence.
+---
+
+<p class="tw-timer not-content">
+  Next event time: <strong data-role="tw-next">…</strong>
+  <span class="tw-beta">BETA</span>
+</p>
+
+<script is:inline>
+  (() => {
+    const el = document.querySelector('.tw-timer [data-role="tw-next"]');
+    if (!el) return;
+    // Known event: Sat 2026-07-04 6:03 PM Pacific (PDT, UTC-7) = 2026-07-05 01:03 UTC
+    const ANCHOR = Date.UTC(2026, 6, 5, 1, 3, 0);
+    const INTERVAL = 197 * 60 * 1000; // 3h 17m
+    function update() {
+      const n = Math.ceil((Date.now() - ANCHOR) / INTERVAL);
+      const next = new Date(ANCHOR + n * INTERVAL);
+      el.textContent = next.toLocaleTimeString([], {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+      });
+    }
+    update();
+    setInterval(update, 30000);
+  })();
+</script>
+
+<style>
+  .tw-timer {
+    text-align: center;
+    font-size: 1.05rem;
+    margin: 0.75rem 0 1.25rem;
+  }
+  .tw-timer strong {
+    color: var(--sl-color-accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .tw-beta {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--sl-color-orange);
+    border: 1px solid var(--sl-color-orange);
+    border-radius: 0.35rem;
+    padding: 0.05rem 0.3rem;
+    vertical-align: middle;
+    margin-left: 0.25rem;
+  }
+</style>
