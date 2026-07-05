@@ -21,7 +21,7 @@ sidebar:
 
 | Boss | Hit Time |
 |---|---|
-| Thuban | 23:54 |
+| Thuban | 23:53 |
 | Porfos | 24:03 |
 
 ## Field Bosses

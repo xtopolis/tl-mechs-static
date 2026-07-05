@@ -1,7 +1,7 @@
 ---
 // TalkingWallTimer: shows the approximate time of the next Talking Wall event in
-// the viewer's LOCAL time. Recurs every 3h17m, anchored to a known occurrence
-// (Sat 2026-07-04 6:03 PM Pacific). BETA — assumes a perfectly regular cadence.
+// the viewer's LOCAL time. Recurs every 3h16m17s, anchored to a known occurrence
+// (Sun 2026-07-05 1:43:43 PM Pacific). BETA — assumes a perfectly regular cadence.
 ---
 
 <p class="tw-timer not-content">
@@ -13,9 +13,9 @@
   (() => {
     const el = document.querySelector('.tw-timer [data-role="tw-time"]');
     if (!el) return;
-    // Anchor: Sat 2026-07-04 6:03 PM Pacific (PDT, UTC-7) = 2026-07-05 01:03 UTC
-    const ANCHOR = Date.UTC(2026, 6, 5, 1, 3, 0);
-    const INTERVAL = 197 * 60 * 1000; // 3h 17m
+    // Anchor: Sun 2026-07-05 1:43:43 PM Pacific (PDT, UTC-7) = 2026-07-05 20:43:43 UTC
+    const ANCHOR = Date.UTC(2026, 6, 5, 20, 43, 43);
+    const INTERVAL = (3 * 3600 + 16 * 60 + 17) * 1000; // 3h 16m 17s
 
     function update() {
       const now = Date.now();
