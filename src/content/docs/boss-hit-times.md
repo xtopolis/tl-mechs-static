@@ -4,7 +4,7 @@ sidebar:
   order: 2
 ---
 
-> From [Grobs video](https://youtu.be/NF0SVq5lgg4?t=966)
+> From <a href="https://youtu.be/NF0SVq5lgg4?t=966" target="_blank" rel="noopener">Grobs video</a>
 
 Bosses can be hit with skills when the remaining time timer reaches the values below.
 
