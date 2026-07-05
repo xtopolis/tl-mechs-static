@@ -6,7 +6,7 @@ sidebar:
 
 > From [Grobs video](https://youtu.be/NF0SVq5lgg4?t=966)
 
-Bosses can be hit with skills when the remaining time timer reaches the values below.
+<div class="boss-tables">
 
 ## Archbosses
 
@@ -42,3 +42,5 @@ Bosses can be hit with skills when the remaining time timer reaches the values b
 | Morokai | 24:00 |
 | Nirma | 24:00 |
 | Talus | 23:59 |
+
+</div>

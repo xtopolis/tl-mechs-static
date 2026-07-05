@@ -51,3 +51,13 @@ img.mech-diagram {
   border: 0;
   border-radius: 8px;
 }
+
+/* Boss Hit Times: smaller, tighter group headings */
+.sl-markdown-content .boss-tables h2 {
+  font-size: var(--sl-text-xl);
+  margin-top: 1.25rem;
+  margin-bottom: 0.4rem;
+}
+.sl-markdown-content .boss-tables h2:first-child {
+  margin-top: 0.5rem;
+}
