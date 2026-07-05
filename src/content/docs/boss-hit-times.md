@@ -4,6 +4,8 @@ sidebar:
   order: 2
 ---
 
+> From [Grobs video](https://youtu.be/NF0SVq5lgg4?t=966)
+
 Bosses can be hit with skills when the remaining time timer reaches the values below.
 
 ## Archbosses
@@ -12,8 +14,15 @@ Bosses can be hit with skills when the remaining time timer reaches the values b
 |---|---|
 | Bellandir | 49:52 |
 | Cordy | 49:49 |
-| Delulu | 49:52 |
+| Delu | 49:52 |
 | Tevent | 49:34 |
+
+## Nix Bosses
+
+| Boss | Hit Time |
+|---|---|
+| Thuban | 23:54 |
+| Porfos | 24:03 |
 
 ## Field Bosses
 
