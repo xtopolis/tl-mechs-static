@@ -1,31 +1,48 @@
 ---
-// TalkingWallTimer: shows the approximate time of the next Talking Wall event in
-// the viewer's LOCAL time. Recurs every 3h16m17s, anchored to a known occurrence
-// (Sun 2026-07-05 1:43:43 PM Pacific). BETA — assumes a perfectly regular cadence.
+// TalkingWallTimer: shows the Talking Wall event in the viewer's LOCAL time.
+// Math is anchored to a known 10-min warning (Mon 2026-07-06 7:04:43 PM Pacific);
+// the shown start time is that + 10 min (the real warning->start gap is ~9m37s,
+// rounded to 10m — close enough). Recurs every 3h16m45s. For the first 5 min after
+// a start the page shows the in-progress event, then switches to the next one.
+// BETA — assumes a perfectly regular cadence.
 ---
 
 <p class="tw-timer not-content">
-  <span>Next event at <span class="tw-time" data-role="tw-time">…</span></span>
+  <span><span data-role="tw-label">Next event at </span><span class="tw-time" data-role="tw-time">…</span></span>
   <span class="tw-beta">(beta)</span>
 </p>
 
 <script is:inline>
   (() => {
-    const el = document.querySelector('.tw-timer [data-role="tw-time"]');
-    if (!el) return;
-    // Anchor: Sun 2026-07-05 1:43:43 PM Pacific (PDT, UTC-7) = 2026-07-05 20:43:43 UTC
-    const ANCHOR = Date.UTC(2026, 6, 5, 20, 43, 43);
-    const INTERVAL = (3 * 3600 + 16 * 60 + 17) * 1000; // 3h 16m 17s
+    const timeEl = document.querySelector('.tw-timer [data-role="tw-time"]');
+    const labelEl = document.querySelector('.tw-timer [data-role="tw-label"]');
+    if (!timeEl || !labelEl) return;
+    // Anchor: 10-min warning Mon 2026-07-06 7:04:43 PM Pacific (PDT, UTC-7) = 2026-07-07 02:04:43 UTC
+    const ANCHOR = Date.UTC(2026, 6, 7, 2, 4, 43);
+    const INTERVAL = (3 * 3600 + 16 * 60 + 45) * 1000; // 3h 16m 45s
+    const DISPLAY_OFFSET = 10 * 60 * 1000; // warning -> shown start time (~10 min)
+    const LIVE_WINDOW = 5 * 60 * 1000;     // keep showing the event 5 min past its start
 
-    function update() {
-      const now = Date.now();
-      const n = Math.floor((now - ANCHOR) / INTERVAL) + 1;
-      const next = new Date(ANCHOR + n * INTERVAL);
-      el.textContent = next.toLocaleTimeString([], {
+    function fmt(t) {
+      return new Date(t).toLocaleTimeString([], {
         hour: 'numeric',
         minute: '2-digit',
         hour12: true,
       });
+    }
+
+    function update() {
+      const now = Date.now();
+      const firstStart = ANCHOR + DISPLAY_OFFSET;
+      const n = Math.floor((now - firstStart) / INTERVAL);
+      const currentStart = firstStart + n * INTERVAL;
+      if (now < currentStart + LIVE_WINDOW) {
+        labelEl.textContent = 'Event in progress — started ';
+        timeEl.textContent = fmt(currentStart);
+      } else {
+        labelEl.textContent = 'Next event at ';
+        timeEl.textContent = fmt(currentStart + INTERVAL);
+      }
     }
 
     update();
