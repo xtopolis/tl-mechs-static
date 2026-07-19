@@ -1,0 +1,300 @@
+---
+// PotentialsAndCores: searchable/filterable tables of weapon skill modifiers —
+// "Potential" enchants (roll on gear) and "Skill Cores" (from item perk pools).
+// Split into two sections by the slot the modifier equips into:
+//   "Weapon"             — Potentials + weapon Skill Cores (slot: weapon)
+//   "Armor/Accessories"  — Skill Cores that roll on armor + accessory pieces
+// Slot is carried in the data (src/data/*.json), re-derived from each core's
+// rolled_by items. Rows render server-side; the client script toggles row
+// visibility by active weapon + active type + fuzzy search (Levenshtein, shared
+// with TalkingWall), then hides a section when it has no visible rows. A core's
+// affected-skill names are folded into the searchable text.
+import potentials from '../data/potential-enchants.json';
+import cores from '../data/skill-cores.json';
+
+// Fixed weapon order for the filter bar (matches in-game weapon list).
+const WEAPONS = [
+  'Longbow', 'Crossbow', 'Staff', 'Wand & Tome', 'Dagger',
+  'Sword & Shield', 'Greatsword', 'Spear', 'Orb', 'Gauntlet',
+];
+
+const items = [
+  ...potentials.map((p) => ({
+    name: p.name,
+    type: 'Potential',
+    slot: p.slot,
+    weapon: p.weapon,
+    description: p.description,
+    search: `${p.name} ${p.weapon} ${p.description}`,
+  })),
+  ...cores.map((c) => ({
+    name: c.name,
+    type: 'Skill Core',
+    slot: c.slot,
+    weapon: c.weapon,
+    description: c.description,
+    // Include affected skill names so searching e.g. "Valiant Brawl" finds its core.
+    search: `${c.name} ${c.weapon} ${c.description} ${(c.skills || []).join(' ')}`,
+  })),
+];
+
+const bySection = (slot) =>
+  items
+    .filter((i) => i.slot === slot)
+    .sort(
+      (a, b) =>
+        WEAPONS.indexOf(a.weapon) - WEAPONS.indexOf(b.weapon) ||
+        a.type.localeCompare(b.type) ||
+        a.name.localeCompare(b.name),
+    );
+
+const sections = [
+  { id: 'weapon', title: 'Weapon', rows: bySection('weapon') },
+  { id: 'armoracc', title: 'Armor/Accessories', rows: bySection('armor/accessory') },
+];
+---
+
+<div class="pe not-content">
+  <input
+    type="search"
+    id="pe-search"
+    class="pe-search"
+    placeholder="Search by name, effect, or skill…"
+    autocomplete="off"
+    aria-label="Filter skill modifiers"
+  />
+
+  <div class="pe-filters" role="group" aria-label="Filter by type">
+    <button type="button" class="pe-chip pe-type is-active" data-type="">All types</button>
+    <button type="button" class="pe-chip pe-type" data-type="Potential">Potential</button>
+    <button type="button" class="pe-chip pe-type" data-type="Skill Core">Skill Core</button>
+  </div>
+
+  <div class="pe-filters" role="group" aria-label="Filter by weapon">
+    <button type="button" class="pe-chip pe-weapon is-active" data-weapon="">All weapons</button>
+    {WEAPONS.map((w) => (
+      <button type="button" class="pe-chip pe-weapon" data-weapon={w}>{w}</button>
+    ))}
+  </div>
+
+  <p class="pe-count"><span id="pe-shown">{items.length}</span> shown</p>
+
+  {sections.map((section) => (
+    <section class="pe-section" data-section={section.id}>
+      <h3 class="pe-section-title">{section.title}</h3>
+      <table class="pe-table">
+        <thead>
+          <tr><th>Name</th><th>Type</th><th>Weapon</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          {section.rows.map((e) => (
+            <tr
+              class="pe-row"
+              data-weapon={e.weapon}
+              data-type={e.type}
+              data-text={e.search.toLowerCase()}
+            >
+              <td class="pe-name">{e.name}</td>
+              <td>
+                <span class={`pe-badge pe-badge-type ${e.type === 'Skill Core' ? 'is-core' : 'is-potential'}`}>
+                  {e.type}
+                </span>
+              </td>
+              <td><span class="pe-badge">{e.weapon}</span></td>
+              <td class="pe-desc">{e.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  ))}
+
+  <p class="pe-empty" id="pe-empty" hidden>No matching entries.</p>
+</div>
+
+<script is:inline>
+(() => {
+  const searchEl = document.getElementById('pe-search');
+  const shownEl  = document.getElementById('pe-shown');
+  const emptyEl  = document.getElementById('pe-empty');
+  const weaponChips = Array.from(document.querySelectorAll('.pe-weapon'));
+  const typeChips   = Array.from(document.querySelectorAll('.pe-type'));
+  const sections    = Array.from(document.querySelectorAll('.pe-section'));
+
+  // Pre-split each row's searchable text into words for fuzzy matching.
+  const rows = Array.from(document.querySelectorAll('.pe-row')).map((tr) => ({
+    tr,
+    weapon: tr.dataset.weapon,
+    type: tr.dataset.type,
+    words: (tr.dataset.text || '').match(/[a-z0-9]+/g) || [],
+  }));
+
+  let activeWeapon = ''; // '' = All
+  let activeType = '';   // '' = All
+
+  // Levenshtein edit distance, bailing out once it exceeds `max`.
+  function withinEdits(a, b, max) {
+    const la = a.length, lb = b.length;
+    if (Math.abs(la - lb) > max) return false;
+    let prev = new Array(lb + 1);
+    let curr = new Array(lb + 1);
+    for (let j = 0; j <= lb; j++) prev[j] = j;
+    for (let i = 1; i <= la; i++) {
+      curr[0] = i;
+      let rowMin = curr[0];
+      for (let j = 1; j <= lb; j++) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        curr[j] = Math.min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost);
+        if (curr[j] < rowMin) rowMin = curr[j];
+      }
+      if (rowMin > max) return false;
+      [prev, curr] = [curr, prev];
+    }
+    return prev[lb] <= max;
+  }
+
+  // A query token matches a word by substring, fuzzy whole-word, or fuzzy prefix.
+  function tokenMatchesWord(token, word) {
+    if (word.includes(token)) return true;
+    const k = token.length < 4 ? 0 : token.length < 7 ? 1 : 2;
+    if (k === 0) return false;
+    if (withinEdits(token, word, k)) return true;
+    if (word.length > token.length &&
+        withinEdits(token, word.slice(0, token.length), k)) return true;
+    return false;
+  }
+
+  // Every token must match some word in the row (AND across tokens).
+  function rowMatches(tokens, words) {
+    for (const token of tokens) {
+      let hit = false;
+      for (const word of words) {
+        if (tokenMatchesWord(token, word)) { hit = true; break; }
+      }
+      if (!hit) return false;
+    }
+    return true;
+  }
+
+  function filter() {
+    const tokens = searchEl.value.toLowerCase().match(/[a-z0-9]+/g) || [];
+    let shown = 0;
+    for (const r of rows) {
+      const weaponOk = !activeWeapon || r.weapon === activeWeapon;
+      const typeOk = !activeType || r.type === activeType;
+      const textOk = tokens.length === 0 || rowMatches(tokens, r.words);
+      const match = weaponOk && typeOk && textOk;
+      r.tr.hidden = !match;
+      if (match) shown++;
+    }
+    // Hide a section (title + table) when it has no visible rows.
+    for (const s of sections) {
+      const anyVisible = s.querySelector('.pe-row:not([hidden])');
+      s.hidden = !anyVisible;
+    }
+    shownEl.textContent = shown;
+    emptyEl.hidden = shown !== 0;
+  }
+
+  function wireChips(chips, onPick) {
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        onPick(chip);
+        chips.forEach((c) => c.classList.toggle('is-active', c === chip));
+        filter();
+      });
+    });
+  }
+
+  wireChips(weaponChips, (chip) => { activeWeapon = chip.dataset.weapon; });
+  wireChips(typeChips, (chip) => { activeType = chip.dataset.type; });
+
+  searchEl.addEventListener('input', filter);
+  filter();
+})();
+</script>
+
+<style>
+  .pe-search {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.8rem;
+    font-size: 1rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background: var(--sl-color-black);
+    color: var(--sl-color-white);
+  }
+  .pe-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.6rem 0 0.15rem;
+  }
+  .pe-chip {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.85rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 999px;
+    background: var(--sl-color-black);
+    color: var(--sl-color-gray-2);
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+  }
+  .pe-chip:hover { border-color: var(--sl-color-accent); }
+  .pe-chip.is-active {
+    background: var(--sl-color-accent);
+    border-color: var(--sl-color-accent);
+    color: var(--sl-color-white);
+  }
+  .pe-count {
+    margin: 0.6rem 0 0.4rem;
+    font-size: 0.85rem;
+    color: var(--sl-color-gray-3);
+  }
+  .pe-section { margin-top: 1.25rem; }
+  .pe-section[hidden] { display: none; }
+  .pe-section-title {
+    margin: 0 0 0.4rem;
+    font-size: 1rem;
+    color: var(--sl-color-white);
+    border-bottom: 2px solid var(--sl-color-accent);
+    padding-bottom: 0.2rem;
+  }
+  .pe-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .pe-table th,
+  .pe-table td {
+    text-align: left;
+    padding: 0.45rem 0.5rem;
+    border-bottom: 1px solid var(--sl-color-gray-6);
+    vertical-align: top;
+  }
+  .pe-table th { font-size: 0.8rem; color: var(--sl-color-gray-3); }
+  .pe-row[hidden] { display: none; }
+  .pe-name { font-weight: 600; min-width: 9rem; }
+  .pe-desc { line-height: 1.4; white-space: pre-line; }
+  .pe-badge {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    border-radius: 999px;
+    background: var(--sl-color-gray-6);
+    color: var(--sl-color-gray-1);
+  }
+  .pe-badge-type.is-potential {
+    background: color-mix(in srgb, var(--sl-color-accent) 30%, transparent);
+    color: var(--sl-color-white);
+  }
+  .pe-badge-type.is-core {
+    background: color-mix(in srgb, var(--sl-color-orange, #c25e00) 35%, transparent);
+    color: var(--sl-color-white);
+  }
+  .pe-empty {
+    color: var(--sl-color-gray-3);
+    font-style: italic;
+  }
+</style>
