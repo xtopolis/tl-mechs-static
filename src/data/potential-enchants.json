@@ -1,0 +1,362 @@
+[
+  {
+    "name": "Ambidexterity Enchant",
+    "weapon": "Crossbow",
+    "slot": "weapon",
+    "description": "Boosts Ambidexterity Off-hand Weapon Max Damage by 14%."
+  },
+  {
+    "name": "Mortal Mark Enchant",
+    "weapon": "Crossbow",
+    "slot": "weapon",
+    "description": "Boosts bonus damage dealt to Mortal Mark targets by 50%."
+  },
+  {
+    "name": "Mother Nature's Protest Enchant",
+    "weapon": "Crossbow",
+    "slot": "weapon",
+    "description": "Boosts additional projectile damage of Mother Nature's Protest, Gale Shot, Flame Shot, Frost Shot, and Lightning Shot by 50%."
+  },
+  {
+    "name": "Nimble Leap Enchant",
+    "weapon": "Crossbow",
+    "slot": "weapon",
+    "description": "Boosts the amount of increased Critical Damage of Nimble Leap by 80%."
+  },
+  {
+    "name": "Piercing Strike Enchant",
+    "weapon": "Crossbow",
+    "slot": "weapon",
+    "description": "Boosts Bonus Damage of Piercing Strike by 30% and boosts Stamina Regen by 30%."
+  },
+  {
+    "name": "Quick Fire Enchant",
+    "weapon": "Crossbow",
+    "slot": "weapon",
+    "description": "Boosts Quick Fire Damage by 15%."
+  },
+  {
+    "name": "Ankle Strike Enchant",
+    "weapon": "Dagger",
+    "slot": "weapon",
+    "description": "Decreases Ankle Strike's cooldown by 9s."
+  },
+  {
+    "name": "Cleaving Moonlight Enchant",
+    "weapon": "Dagger",
+    "slot": "weapon",
+    "description": "Boosts Cleaving Moonlight Damage by 24%."
+  },
+  {
+    "name": "Destructive Fang Enchant",
+    "weapon": "Dagger",
+    "slot": "weapon",
+    "description": "Additionally increases Destructive Fang Defense Reduction by 50."
+  },
+  {
+    "name": "Inject Venom Enchant",
+    "weapon": "Dagger",
+    "slot": "weapon",
+    "description": "Boosts Inject Venom Chain Skill Damage by 200%."
+  },
+  {
+    "name": "Murderous Energy Enchant",
+    "weapon": "Dagger",
+    "slot": "weapon",
+    "description": "Increases Poison and Thunderclouds duration as well as Poison Damage proportional to Murderous Energy growth tier during the day.\nBoosts Poison Damage proportional to Murderous Energy growth tier at night.\nBoosts Magic Heavy Attack Reduction by 50% if Fatal Fatigue is active."
+  },
+  {
+    "name": "Vampiric Strike Enchant",
+    "weapon": "Dagger",
+    "slot": "weapon",
+    "description": "Boosts Vampiric Strike Damage by 150%."
+  },
+  {
+    "name": "Blood Combustion Enchant",
+    "weapon": "Gauntlet",
+    "slot": "weapon",
+    "description": "Decreases Eclipse of Blood Health consumption by 25%."
+  },
+  {
+    "name": "Fortifying Shell Enchant",
+    "weapon": "Gauntlet",
+    "slot": "weapon",
+    "description": "Decreases Fortifying Shell's cooldown by 25%."
+  },
+  {
+    "name": "Incapacitate Enchant",
+    "weapon": "Gauntlet",
+    "slot": "weapon",
+    "description": "Increases the duration of Incapacitate by 2.5s.\nIncreases the duration by 2.5s when Threat Analysis is active."
+  },
+  {
+    "name": "Master of Provocation Enchant",
+    "weapon": "Gauntlet",
+    "slot": "weapon",
+    "description": "Increases Aggro rate and Melee and Ranged Defense of Master of Provocation by 30%."
+  },
+  {
+    "name": "Short Jab, Bloodstorm Enchant",
+    "weapon": "Gauntlet",
+    "slot": "weapon",
+    "description": "Boosts Short Jab and Bloodstorm Damage by 20%."
+  },
+  {
+    "name": "Threat Boost Enchant",
+    "weapon": "Gauntlet",
+    "slot": "weapon",
+    "description": "Increases Threat Boost duration by 2s."
+  },
+  {
+    "name": "Death Blow Enchant",
+    "weapon": "Greatsword",
+    "slot": "weapon",
+    "description": "Boosts Death Blow Damage by 15%."
+  },
+  {
+    "name": "Devastating Tornado Enchant",
+    "weapon": "Greatsword",
+    "slot": "weapon",
+    "description": "On hit with Devastating Tornado and Ice Tornado, further boosts damage by 30%."
+  },
+  {
+    "name": "Guillotine Blade Enchant",
+    "weapon": "Greatsword",
+    "slot": "weapon",
+    "description": "Boosts Guillotine Blade Damage by 15%."
+  },
+  {
+    "name": "Indomitable Armor Enchant",
+    "weapon": "Greatsword",
+    "slot": "weapon",
+    "description": "Boosts Indomitable Armor's Magic, Melee, and Ranged Defense by 30%. Increases Max Stacks by 2."
+  },
+  {
+    "name": "Vital Force Enchant",
+    "weapon": "Greatsword",
+    "slot": "weapon",
+    "description": "Increases Vital Force's Skill Damage Boost by 50%. When Vital Conversion is active, boosts Skill Damage Resistance by 50%."
+  },
+  {
+    "name": "Willbreaker Enchant",
+    "weapon": "Greatsword",
+    "slot": "weapon",
+    "description": "Boosts Willbreaker's Defense Reduction by 30%."
+  },
+  {
+    "name": "Blitz Enchant",
+    "weapon": "Longbow",
+    "slot": "weapon",
+    "description": "Decreases Blitz Cooldown by 10s"
+  },
+  {
+    "name": "Deadly Marker Enchant",
+    "weapon": "Longbow",
+    "slot": "weapon",
+    "description": "Additionally increases Magic, Melee, and Ranged Critical Hit Chance by 240 when attacking a Marked target.\nFurther increases the value by 360 when attacking from the side or rear."
+  },
+  {
+    "name": "Distorted Sanctuary Enchant",
+    "weapon": "Longbow",
+    "slot": "weapon",
+    "description": "Increases Skill Healing over Time by 2.5% per party member within 16m.\nIncreases Attack Range per party member by 10% when Combat Sanctuary is active."
+  },
+  {
+    "name": "Purifying Touch Enchant",
+    "weapon": "Longbow",
+    "slot": "weapon",
+    "description": "Increases the number of debuffs removed by Purifying Touch to 3."
+  },
+  {
+    "name": "Sniper's Sense Enchant",
+    "weapon": "Longbow",
+    "slot": "weapon",
+    "description": "Boosts Critical Damage by 100% per 1m distance."
+  },
+  {
+    "name": "Zephyr's Nock Enchant",
+    "weapon": "Longbow",
+    "slot": "weapon",
+    "description": "Increases damage by 0.7% per 1m distance of Zephyr's Nock."
+  },
+  {
+    "name": "Astral Overseer Enchant",
+    "weapon": "Orb",
+    "slot": "weapon",
+    "description": "Each time an Orb Effect is triggered by an Active Skill, additionally increases Critical Hit Chance by 20. When Celestial Guard is active, additionally increases Shield Health by 2%."
+  },
+  {
+    "name": "Guardian Defensive Wall Enchant",
+    "weapon": "Orb",
+    "slot": "weapon",
+    "description": "Boosts Guardian Defensive Wall Health by 30%"
+  },
+  {
+    "name": "Healing Star Enchant",
+    "weapon": "Orb",
+    "slot": "weapon",
+    "description": "Boosts Healing Star's passive recovery effect by 30%"
+  },
+  {
+    "name": "Healing Wave Enchant",
+    "weapon": "Orb",
+    "slot": "weapon",
+    "description": "Boosts Healing Wave Recovery by 30%"
+  },
+  {
+    "name": "Pulsating Galaxy Enchant",
+    "weapon": "Orb",
+    "slot": "weapon",
+    "description": "When Pulsating Galaxy is active, additionally increases Magic Damage by 0.8%"
+  },
+  {
+    "name": "Supernova Collapse Enchant",
+    "weapon": "Orb",
+    "slot": "weapon",
+    "description": "Decreases Supernova Collapse cooldown by 30s"
+  },
+  {
+    "name": "Culling Arc Enchant",
+    "weapon": "Spear",
+    "slot": "weapon",
+    "description": "Boosts the damage of Culling Arc, Flaming Arc, and Spiral Slash by 20%"
+  },
+  {
+    "name": "Imposing Form Enchant",
+    "weapon": "Spear",
+    "slot": "weapon",
+    "description": "Increases Imposing Form's Skill Damage Boost by 50%."
+  },
+  {
+    "name": "Javelin Surge Enchant",
+    "weapon": "Spear",
+    "slot": "weapon",
+    "description": "Decreases Javelin Surge's cooldown by 4s"
+  },
+  {
+    "name": "Mortal Wrath Enchant",
+    "weapon": "Spear",
+    "slot": "weapon",
+    "description": "Boosts damage of Mortal Wrath and Mortal Gambit by 35%.\nIf Vampirism Wrath is active, increases Health recovery by 35%."
+  },
+  {
+    "name": "Rising Slash Enchant",
+    "weapon": "Spear",
+    "slot": "weapon",
+    "description": "Increases Rising Slash's Damage Boost based on Burst, Ignite, and Shock stacks by 40%"
+  },
+  {
+    "name": "Tempest Strike Enchant",
+    "weapon": "Spear",
+    "slot": "weapon",
+    "description": "Decreases Tempest Strike's cooldown by 10s."
+  },
+  {
+    "name": "Chain Lightning Enchant",
+    "weapon": "Staff",
+    "slot": "weapon",
+    "description": "Chain Lightning Damage +30%"
+  },
+  {
+    "name": "Flame Condensation Enchant",
+    "weapon": "Staff",
+    "slot": "weapon",
+    "description": "Flame Condensation Burning Damage +30%"
+  },
+  {
+    "name": "Frost Master Enchant",
+    "weapon": "Staff",
+    "slot": "weapon",
+    "description": "Adds an effect that boosts Icebound Skill Damage by 10% for 3s when applying Frost from Frost Master.\nWhen Master of Storms is active, changes Icebound Skill Damage to Lightning Skill Damage and increases damage boost by 16%."
+  },
+  {
+    "name": "High Focus Enchant",
+    "weapon": "Staff",
+    "slot": "weapon",
+    "description": "High Focus Cooldown -15s"
+  },
+  {
+    "name": "Ice Spear Enchant",
+    "weapon": "Staff",
+    "slot": "weapon",
+    "description": "Increases Ice Spear and Ice Spear Bombardment Movement Speed Reduction Duration by 1.5s.\nWhen Specialization Bind is active, increases Bind Duration by 1.5s."
+  },
+  {
+    "name": "Icebound Tomb Enchant",
+    "weapon": "Staff",
+    "slot": "weapon",
+    "description": "Icebound Tomb Movement Speed Reduction +22%"
+  },
+  {
+    "name": "Chain Hook Enchant",
+    "weapon": "Sword & Shield",
+    "slot": "weapon",
+    "description": "Decreases Chain Hook, Controlling Rake cooldown by 6s"
+  },
+  {
+    "name": "Gerad's Patience Enchant",
+    "weapon": "Sword & Shield",
+    "slot": "weapon",
+    "description": "Additionally increases all CC Resistance Increase by 9"
+  },
+  {
+    "name": "Shield Strike Enchant",
+    "weapon": "Sword & Shield",
+    "slot": "weapon",
+    "description": "Boosts Shield Strike and Piercing Attack damage by 15%"
+  },
+  {
+    "name": "Spectrum of Agony Enchant",
+    "weapon": "Sword & Shield",
+    "slot": "weapon",
+    "description": "Boosts Spectrum of Agony and Spectrum of Annihilation damage by 20%"
+  },
+  {
+    "name": "Stalwart Bastion Enchant",
+    "weapon": "Sword & Shield",
+    "slot": "weapon",
+    "description": "Additionally increases Damage Reduction of self and party members by 40 while active"
+  },
+  {
+    "name": "Strategic Rush Enchant",
+    "weapon": "Sword & Shield",
+    "slot": "weapon",
+    "description": "Increases Strategic Rush Collision: Push chance by 20%"
+  },
+  {
+    "name": "Clay's Salvation Enchant",
+    "weapon": "Wand & Tome",
+    "slot": "weapon",
+    "description": "Clay's Salvation Cooldown -9s"
+  },
+  {
+    "name": "Devotion and Emptiness Enchant",
+    "weapon": "Wand & Tome",
+    "slot": "weapon",
+    "description": "Skill Healing +15% and healing skills cooldown -10% during the day.\nSkill Damage over time +15% and curse skills cooldown -10% at night."
+  },
+  {
+    "name": "Karmic Haze Enchant",
+    "weapon": "Wand & Tome",
+    "slot": "weapon",
+    "description": "Increases Karmic Haze's max number of Curse Propagation targets to 6."
+  },
+  {
+    "name": "Ray of Disaster Enchant",
+    "weapon": "Wand & Tome",
+    "slot": "weapon",
+    "description": "Ray of Disaster Damage +30%"
+  },
+  {
+    "name": "Selfless Soul Enchant",
+    "weapon": "Wand & Tome",
+    "slot": "weapon",
+    "description": "When using Healing Skills on an ally, increases Healing per stack by 4%.\nOn hit when Immaculate Fury is active, increases Base Damage per stack by 0.8%."
+  },
+  {
+    "name": "Touch of Despair Enchant",
+    "weapon": "Wand & Tome",
+    "slot": "weapon",
+    "description": "Boosts Touch of Despair damage by 20% per stack of Weaken: Curse."
+  }
+]

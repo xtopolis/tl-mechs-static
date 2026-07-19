@@ -1,0 +1,2085 @@
+[
+  {
+    "name": "Acidic Poison",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "At 25 stacks of Gale, creates an Acidic Poison area within a 3m radius for 2s that deals 120% of Base Damage to all enemies in the area every 0.5s and applies Weaken: Acidic Poison\nWeaken: Acidic Poison reduces all Defense by 100 and Movement Speed by 20% for 1s and stacks up to 10 times.",
+    "skills": []
+  },
+  {
+    "name": "Akman's Fragment",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "While Selfless Diffusion is active, when Quick Fire connects, shoots an additional projectile that deals 120% of Base Damage and can be transferred up to 2 times to other enemies within a 3m radius. The projectile does not activate effects on hit, but applies the Gale effect.\n\nDoes not apply additional effects from additional projectiles.",
+    "skills": [
+      "Selfless Diffusion",
+      "Quick Fire"
+    ]
+  },
+  {
+    "name": "Black Anvil Passion",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "Sollant Bonus Increase 50%\nWeapon Mastery EXP Bonus Increase 50%\nDoes not stack with other Black Anvil weapon effects",
+    "skills": []
+  },
+  {
+    "name": "Blade Storm",
+    "slot": "armor/accessory",
+    "weapon": "Crossbow",
+    "description": "Changes Rapid Shot to [Blade Storm].\nAttacks the target 5 times to deal damage proportional to Base Damage and applies a Weaken effect that decreases Magic, Melee, and Ranged Magic Defense by 250 for 6s.\n\nDoes not apply Multi-Shot's Specialization Shield Removal effect",
+    "skills": [
+      "Multi-Shot"
+    ]
+  },
+  {
+    "name": "Blessing Steal",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "On hit with Wind Snatcher, has a(n) 90% chance to remove 1 buff from target.\n\nApplicable skill effects\n Invincible Wall, Stalwart Bastion, Fortifying Shell, Trance, Counter Barrier, Unyielding Sentinel, Blessed Barrier, Restoring Constellation, Nature's Blessing, DaVinci's Courage, Starving Shadow, High Focus, Selfless Diffusion, Pain Harvest, Brilliant Moonlight, Umbral Spirit, Distortion Veil, Healing Touch, Inner Peace",
+    "skills": [
+      "Wind Snatcher",
+      "Selfless Diffusion"
+    ]
+  },
+  {
+    "name": "Disruption Shot",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "On Recoil Shot hit, has a(n) 100% chance to apply a Weaken effect for 60s that decreases Magic, Melee, and Ranged Hit Chance by 60 and Magic, Melee, and Ranged Evasion by 60. On Wave Shot hit, applies 3 stacks",
+    "skills": [
+      "Recoil Shot"
+    ]
+  },
+  {
+    "name": "Double Trap",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "Explosive Trap can now be charged up to 2 times, the number that can be set up simultaneously increases by 1, and explosion time decreases by 1s.",
+    "skills": [
+      "Explosive Trap"
+    ]
+  },
+  {
+    "name": "Enraged Akman's Fragment",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "While Selfless Diffusion is active, when Quick Fire connects, shoots an additional projectile that deals 180% of Base Damage and can be transferred up to 2 times to other enemies within a 3m radius. The projectile does not activate effects on hit, but applies the Gale effect.\n\nDoes not apply additional effects from additional projectiles.",
+    "skills": [
+      "Selfless Diffusion",
+      "Quick Fire"
+    ]
+  },
+  {
+    "name": "Enraged Giant Cordy's Bog",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "At 25 Gale stacks, an explosion deals 400% of Base Damage to all enemies within 3.5m, with an 80% chance to apply Collision: Pull, pulling the target into the center.",
+    "skills": []
+  },
+  {
+    "name": "Enraged Queen Bellandir's Corruptive Venom",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "On Critical Hit with crossbows, has 20% chance to apply Weaken: Poison, which deals 170% of Base Damage over time every sec for 5s. Stacks up to 3 times. Damage Reduction decreases by 28 for the Poisoned targets.",
+    "skills": []
+  },
+  {
+    "name": "Explosive Arrow",
+    "slot": "armor/accessory",
+    "weapon": "Crossbow",
+    "description": "Changes Recoil Shot and Wave Shot to [Explosive Arrow].\nWhen using Recoil Shot, deals damage proportional to Base Damage to all foes within a 3m radius, and has a(n) 80% chance to apply Burning identical to Serial Fire Bombs to the target.\nWhen using Wave Shot, deals damage to all foes within a 4m radius of the target and has a(n) 80% chance to apply Burning identical to Serial Fire Bombs.\nWhen Gale specialization is active, applies 2 additional stacks of Burning.",
+    "skills": [
+      "Recoil Shot"
+    ]
+  },
+  {
+    "name": "Focused Barrage",
+    "slot": "armor/accessory",
+    "weapon": "Crossbow",
+    "description": "When casting Merciless Barrage or Wild Barrage after installing an Arbalest with Support Fire, the Arbalest uses the same skill.\n\nDecreases PvP Damage dealt with Merciless Barrage or Wild Barrage by 30%",
+    "skills": [
+      "Merciless Barrage"
+    ]
+  },
+  {
+    "name": "Frost Expansion",
+    "slot": "armor/accessory",
+    "weapon": "Crossbow",
+    "description": "Changes Rapid Shot to [Frost Expansion].\nDeals damage proportional to Base Damage to hit enemies and has a(n) 80% chance to apply Frost and Weaken that decreases Movement Speed by 40% for 1.5s.\n\nDoes not apply Multi-Shot's Specialization Shield Removal effect\nWhen Blade Storm is active, does not apply Frost Expansion",
+    "skills": [
+      "Multi-Shot"
+    ]
+  },
+  {
+    "name": "Giant Cordy's Bog",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "At 25 Gale stacks, an explosion deals 375% of Base Damage to all enemies within 3m, with an 80% chance to apply Collision: Pull, pulling the target into the center.",
+    "skills": []
+  },
+  {
+    "name": "Kowazan's Flame Spirit",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "When attacking during the day, increases Attack Speed by 1% and Bonus Damage by 4 for 2s. When attacking at night, reduces target's Movement Speed by 2% and Damage Reduction by 4 for 2s. Stacks up to 15 times.",
+    "skills": []
+  },
+  {
+    "name": "Lionheart King's Hunger",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "Heals 61 Health whenever making Off-Hand Weapon attacks for 6s after a successful hit with Off-Hand Weapon. Cooldown 30s",
+    "skills": []
+  },
+  {
+    "name": "Malakar's Blazing Wind",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "Base Damage +2.5% for all party members within 16m.",
+    "skills": []
+  },
+  {
+    "name": "Night Panther",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "Quick Fire cooldown -100% when using Nimble Leap",
+    "skills": [
+      "Quick Fire",
+      "Nimble Leap"
+    ]
+  },
+  {
+    "name": "Queen Bellandir's Corruptive Venom",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "On Critical Hit with crossbows, has 20% chance to apply Weaken: Poison, which deals 110% of Base Damage over time every sec for 5s. Stacks up to 3 times.",
+    "skills": []
+  },
+  {
+    "name": "Silver Reaper's Soul Harvest",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "When an enemy you attack dies within 10s or when you use Mana Exchange [Effect Boost], gains 25 stacks of Soul Harvest. Each projectile attack consumes 1 stack to fire an additional projectile that deals 35% of Base Damage.\n\nDoes not apply additional effects from additional projectiles.",
+    "skills": [
+      "Mana Exchange"
+    ]
+  },
+  {
+    "name": "Soul Reaper's Tragedy",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "On skill hit, the Max Damage increases by 25 for 6s and recover 21 mana. Cooldown 30s",
+    "skills": []
+  },
+  {
+    "name": "Support Fire",
+    "slot": "armor/accessory",
+    "weapon": "Crossbow",
+    "description": "Changes Explosive Trap to [Support Fire]\nInstalling an Arbalest at the designated location and using Quick Fire, Recoil Shot, Wave Shot, or Explosive Arrow triggers the Arbalest to use the same skill against the target.\n\nDecreases PvP Damage dealt with Quick Fire, Recoil Shot, Wave Shot, or Explosive Arrow by 30%\nExplosive Trap's Duration ▲ specialization not applied",
+    "skills": [
+      "Explosive Trap",
+      "Quick Fire",
+      "Recoil Shot"
+    ]
+  },
+  {
+    "name": "Wild Barrage",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "Merciless Barrage now attacks all enemies in a 30-degree cone. Damage increases by 15%. Movement Speed decreases by 20% while using the skill.",
+    "skills": [
+      "Merciless Barrage"
+    ]
+  },
+  {
+    "name": "Will of Fonsiné",
+    "slot": "armor/accessory",
+    "weapon": "Crossbow",
+    "description": "When Quick Fire is cast, decreases the cooldown of Multi-Shot, Rapid Shot, Collision Shot, Blade Storm, and Frost Expansion by 1.5s.\nIncreases the number of Blade Storm attacks by 2 and applies Gale to the target for 6s.\nUpon hitting a target with Frost Expansion, has a(n) 80% chance to change the effect to Bind: Icebound for 1.5s and increases Bind duration by 1.5s when Icebound is applied to an already Icebound target.\n\nIncreases damage against monsters by 50% when using Multi-Shot, Rapid Shot, Collision Shot, Blade Storm, and Frost Expansion.\nDecreases PvP Damage of Multi-Shot, Rapid Shot, Collision Shot, Blade Storm, and Frost Expansion by 50%.",
+    "skills": [
+      "Quick Fire",
+      "Multi-Shot"
+    ]
+  },
+  {
+    "name": "Wind's Guidance",
+    "slot": "weapon",
+    "weapon": "Crossbow",
+    "description": "Increases Movement Speed of self and party members within 16m by 8% and increases Magic, Melee, and Ranged Evasion by 160",
+    "skills": []
+  },
+  {
+    "name": "Ambush",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "When using Shadow Strike, if your Critical Hit Chance is less than 3,000, increases Critical Hit Chance by 700 for 3s.If your Critical Hit Chance is 3,000 or higher, increases Critical Damage by 35% for 3s.",
+    "skills": [
+      "Shadow Strike"
+    ]
+  },
+  {
+    "name": "Ancient Demonic Beast's Strike",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "Each attack with Vampiric Strike has a(n) 70% chance to deal fixed damage equal to 400% of Base Damage.",
+    "skills": [
+      "Vampiric Strike"
+    ]
+  },
+  {
+    "name": "Black Anvil Passion",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "Sollant Bonus Increase 50%\nWeapon Mastery EXP Bonus Increase 50%\nDoes not stack with other Black Anvil weapon effects",
+    "skills": []
+  },
+  {
+    "name": "Contagion",
+    "slot": "armor/accessory",
+    "weapon": "Dagger",
+    "description": "When the Fatal Stigma effect ends, applies Fatal Stigma to up to 4 targets within a 4m radius after 0.4s. The transferred Fatal Stigma deals damage that is reduced by 50% after 0.4s.",
+    "skills": [
+      "Fatal Stigma"
+    ]
+  },
+  {
+    "name": "Creeping Death",
+    "slot": "armor/accessory",
+    "weapon": "Dagger",
+    "description": "When Venomous Edge activates, has a(n) 10% chance to create a 3m radius Poison Cloud that follows the attacked target. The Poison Cloud lasts for 3s and deals damage proportional to Base Damage every second to targets within range. Increases damage by 3% per Poison stack.\n\nDoes not apply additional effects from Poison Cloud Damage.",
+    "skills": []
+  },
+  {
+    "name": "Deluzhnoa's Barrier",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "Phantom Smokescreen's cooldown is decreased by 30%, and has a(n) 80% chance to apply Petrification: Icebound to all enemies within range for 1.5s every sec. Disabled upon getting hit once.",
+    "skills": [
+      "Phantom Smokescreen"
+    ]
+  },
+  {
+    "name": "Destruction Empress's Gale",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "Base Damage +25 for 3s upon using Daggers Mobility Skills",
+    "skills": []
+  },
+  {
+    "name": "Enraged Deluzhnoa's Barrier",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "Decreases Phantom Smokescreen's cooldown by 30% and increases the area radius by 2m. Has a(n) 80% chance to apply Petrification: Icebound to all enemies within range for 1.5s every sec. Disabled upon getting hit once.",
+    "skills": [
+      "Phantom Smokescreen"
+    ]
+  },
+  {
+    "name": "Enraged Leviathan's Specter",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "Umbral Spirit and Thunder Spirit damage increases 30%, Duration on Melee Critical Hit increases 0.2s (up to 20s max)",
+    "skills": [
+      "Umbral Spirit"
+    ]
+  },
+  {
+    "name": "Enraged Tevent's Furious Rage",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "Increases Hit Chance by 250 for 5s after expiration of Camouflage Cloak, and resets cooldown on target kills or kill assists within that duration. Cooldown: 10s\nCamouflage Cloak deals 410% of Base Damage to all enemies in a 4m radius, with a 70% chance to apply Collision: Push.",
+    "skills": [
+      "Camouflage Cloak"
+    ]
+  },
+  {
+    "name": "Execution",
+    "slot": "armor/accessory",
+    "weapon": "Dagger",
+    "description": "When Fatal Stigma deals PvP damage, if the target's Health is 10% or lower, instantly kills the damaged target.",
+    "skills": [
+      "Fatal Stigma"
+    ]
+  },
+  {
+    "name": "Foretold Agony",
+    "slot": "armor/accessory",
+    "weapon": "Dagger",
+    "description": "Venomous Edge Damage ignores Evasion and Resistance before dealing damage.\nIf Creeping Death or Venomous Swamp is active, Poison Cloud Damage also ignores Evasion and Resistance before dealing damage.",
+    "skills": []
+  },
+  {
+    "name": "Frenzied Slash",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "Every Frenzied Sword Dance attack creates an area that deals 60% of Base Damage to all enemies in a 3m radius around the caster.",
+    "skills": [
+      "Frenzied Sword Dance"
+    ]
+  },
+  {
+    "name": "Hemotoxic Dagger",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "When using Poison Dagger or Dagger Throw, fires a Hemotoxic Dagger. On hit, the target takes 100% of Base Damage and damage equal to 8% of Max Health per stack. Ignores Shield Health of PvP targets. Against monsters, applies as damage equal to 250% of Base Damage.",
+    "skills": []
+  },
+  {
+    "name": "Kowazan's Frenzy",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "When attacking a target below 50% Health with a dagger at night, increases Critical Damage by 20% for 3s.\nWhen attacking a target below 50% Health with a dagger during the day, increases Critical Hit Chance by 650 for 3s.",
+    "skills": []
+  },
+  {
+    "name": "Leviathan's Specter",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "Umbral Spirit and Thunder Spirit damage increases 20%, Duration on Melee Critical Hit increases 0.2s (up to 20s max)",
+    "skills": [
+      "Umbral Spirit"
+    ]
+  },
+  {
+    "name": "Massacre",
+    "slot": "armor/accessory",
+    "weapon": "Dagger",
+    "description": "Changes Fatal Stigma Specialization Area Damage to [Massacre].\nIncreases AoE Damage range by 2m, and AoE Damage deals the same damage proportional to the Poison and Thundercloud stacks on the target with the Stigma.\n\nIncreases damage against monsters by 60%.\nDecreases PvP Damage by 90%.",
+    "skills": [
+      "Fatal Stigma"
+    ]
+  },
+  {
+    "name": "Minezerok's Lamentation",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "On hit with Daggers, has an 8% chance to apply Weaken: Curse, which decreases the target's Magic, Melee, and Ranged Defense by 250 for 3s.",
+    "skills": []
+  },
+  {
+    "name": "Mortal Stigma",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "Fatal Stigma range +343% of Attack Range, Damage +24%. Ignore Block Chance.",
+    "skills": [
+      "Fatal Stigma"
+    ]
+  },
+  {
+    "name": "Spineflower Warden's Seduction",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "On skill hit, creates a(n) 80% chance of reducing All Endurance of the target by 12 for 3s. Increase user's Base Damage by 3. Stacks up to 10 times.",
+    "skills": []
+  },
+  {
+    "name": "Tevent's Furious Rage",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "Resets Camouflage Cloak cooldown on target kills or kill assists within 5s of its expiration. Cooldown: 10s\nCamouflage Cloak deals 205% of Base Damage to all enemies in a 3m radius, with a 70% chance to apply Collision: Push.",
+    "skills": [
+      "Camouflage Cloak"
+    ]
+  },
+  {
+    "name": "Thuban's Verdict",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "On hit with Fatal Stigma, boosts Off-Hand Weapon Activation Chance by 25% for the duration of the mark, and accumulates damage dealt to the marked target up to 50000%. When the mark ends, it explodes to deal additional damage equal to 15% of the accumulated damage.",
+    "skills": [
+      "Fatal Stigma"
+    ]
+  },
+  {
+    "name": "Thunder Bombardment",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "When using Thundering Bomb, if the target is Wet or affected by your Frost status, deals additional damage proportional to the target's Weaken: Thunderclouds stacks and the same damage to other enemies within a 3m radius.",
+    "skills": [
+      "Brutal Incision"
+    ]
+  },
+  {
+    "name": "Thunder Call",
+    "slot": "weapon",
+    "weapon": "Dagger",
+    "description": "Boosts Cleaving Moonlight damager by 10%. On Cleaving Moonlight skill hit, if the target has Weaken: Thunderclouds, removes 3 stacks of the effect and calls down lightning to attack the enemy and deal 400% damage.",
+    "skills": [
+      "Cleaving Moonlight"
+    ]
+  },
+  {
+    "name": "Venomous Swamp",
+    "slot": "armor/accessory",
+    "weapon": "Dagger",
+    "description": "Melee critical hits now activate Venomous Edge, and has a(n) 10% chance to create a 6m radius Poison Cloud that lingers at the activation location for 3s. Boosts damage by 3% per Poison stack.\n\nBoosts damage against monsters by 80%.\nDecreases PvP Damage by 90%\n\nDoes not apply additional effects with Poison Cloud Damage.",
+    "skills": []
+  },
+  {
+    "name": "Aftershock",
+    "slot": "armor/accessory",
+    "weapon": "Gauntlet",
+    "description": "Increases Earthquake hit count by 2.",
+    "skills": []
+  },
+  {
+    "name": "Attack Defense Swap",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "When using Eclipse of Blood, increases Critical Damage and Heavy Attack Damage by 16% for 10s.\nWhen using Composure, increases Critical Damage Resistance and Heavy Attack Damage Resistance by 16% for 10s.",
+    "skills": []
+  },
+  {
+    "name": "Battle",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "On each Critical Hit or Heavy Attack hit, increases Block Chance by 1.6% for 3s. Stacks up to 10 times.",
+    "skills": []
+  },
+  {
+    "name": "Black Anvil Passion",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "Sollant Bonus Increase 50%\nWeapon Mastery EXP Bonus Increase 50%\nDoes not stack with other Black Anvil weapon effects",
+    "skills": []
+  },
+  {
+    "name": "Crimson Echo",
+    "slot": "armor/accessory",
+    "weapon": "Gauntlet",
+    "description": "Boosts Blood Explosion Damage by 10%, and the target's Bleed Damage over time can no longer be removed.",
+    "skills": []
+  },
+  {
+    "name": "Crimson Imprint",
+    "slot": "armor/accessory",
+    "weapon": "Gauntlet",
+    "description": "Decreases Blood Explosion Damage by 35%, but deals fixed damage.",
+    "skills": []
+  },
+  {
+    "name": "Crimson Pursuit",
+    "slot": "armor/accessory",
+    "weapon": "Gauntlet",
+    "description": "If a target attacked with Blood Explosion dies within 3s, decreases the skill's cooldown by 12s.\n\nDecreases Blood Explosion PvP Damage by 90%.\nIncreases Blood Explosion Damage against monsters by 35%.",
+    "skills": []
+  },
+  {
+    "name": "Deception",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "Increases Threat Boost and Taunt duration by 3s.",
+    "skills": []
+  },
+  {
+    "name": "Deluzhnoa's Torrent",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "On Chain Strike: Uppercut hit, summons a vortex in a 3m radius area that deals 80% of Base Damage per sec for 3s.\nOn Bloodstorm: Blood Talon use, deals 160% of Base Damage in a 5m radius area per sec for 3s.\n\nDamaged targets have a 80% chance to be affected by Collision: Airborne for 1.5s.\n\nBoosts damage against monsters by 160%.",
+    "skills": []
+  },
+  {
+    "name": "Enraged Deluzhnoa's Torrent",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "On Chain Strike: Uppercut hit, summons a vortex in a 3m radius area that deals 120% of Base Damage per sec for 3s.\nOn Bloodstorm: Blood Talon use, summons a vortex that deals 240% of Base Damage per sec for 3s in a 5m radius area.\n\nHas a(n) 80% chance to apply Collision: Airborne for 1.5s to damaged targets.\n\nIncreases damage against monsters by 160%.",
+    "skills": []
+  },
+  {
+    "name": "Enraged Leviathan's Incineration",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "When using Evaporation, additionally decreases damage taken by 20% and additionally decreases Movement Speed by 25%. Deals additional fixed damage equal to 400% of Base Damage to targets within the area every 0.5s.",
+    "skills": []
+  },
+  {
+    "name": "Enraged Queen Bellandir's Gravity Field",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "On Explosive Flurry or Bloodstorm Dance hit, applies Collision: Pull to all targets within a 5m radius. This effect ignores the target's Evasion.",
+    "skills": []
+  },
+  {
+    "name": "Fear Erosion",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "When Afterimage's additional effect trait is applied, increases Terror duration by 1s. Additionally, decreases Movement Speed by 40% and decreases all Defense by 500",
+    "skills": []
+  },
+  {
+    "name": "Hit Stack",
+    "slot": "armor/accessory",
+    "weapon": "Gauntlet",
+    "description": "When a target is hit 3 times by Earthquake, has an 80% chance to Stun the target for 3s.",
+    "skills": []
+  },
+  {
+    "name": "Immortal Armor",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "When Fortifying Shell is active, further increases Damage Reduction and Bonus Damage Reduction by 6.",
+    "skills": []
+  },
+  {
+    "name": "Imprint of Pain",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "Boosts Incapacitate and Bleed duration by 20%, and decreases all CC Resistances of affected targets by 250.",
+    "skills": []
+  },
+  {
+    "name": "Orthodox",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "Increases Main Weapon Damage by 90.",
+    "skills": []
+  },
+  {
+    "name": "Queen Bellandir's Gravity Field",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "On Explosive Flurry or Bloodstorm Dance hit, applies Collision: Pull to all targets within a 5m radius.",
+    "skills": []
+  },
+  {
+    "name": "Recoil",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "Boosts Earthquake Damage by 30%, and has a(n) 80% chance to apply Collision: Airborne status for 2s to targets hit by the Last Hit.",
+    "skills": []
+  },
+  {
+    "name": "Shatter",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "Boosts Short Jab and Bloodstorm damage by 10%.",
+    "skills": []
+  },
+  {
+    "name": "Southpaw",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "Increases Off-hand Weapon Damage by 90.",
+    "skills": []
+  },
+  {
+    "name": "Variation",
+    "slot": "weapon",
+    "weapon": "Gauntlet",
+    "description": "Increases the effect of Unpredictable by 50%.",
+    "skills": []
+  },
+  {
+    "name": "Wave Resonance",
+    "slot": "armor/accessory",
+    "weapon": "Gauntlet",
+    "description": "Decreases remaining cooldown of Earthquake and Blood Spiral by 2.5% proportional to the number of targets hit by Sweep.\nFor each target hit by Earthquake or Blood Spiral, decreases remaining cooldown of Sweep by 2.5%.\n\nIncreases PvP Damage Taken by 100%\n.Decreases PvP Damage Dealt by 90%.",
+    "skills": []
+  },
+  {
+    "name": "Adentus's Fury",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "When attacking with a Greatsword, increases Base Damage by 0.4% per 1,000 of current Health. Increases by up to 14.4% of Base Damage.",
+    "skills": []
+  },
+  {
+    "name": "Battlefield Momentum",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "Precision Dash can be charged up to 3 times. When the dash ends, creates a 7m radius area that increases allies' Defense by 5% and decreases enemies' Defense by 5% for 3s. Reusing it within 3s removes the effect for the target.",
+    "skills": [
+      "Precision Dash"
+    ]
+  },
+  {
+    "name": "Black Anvil Passion",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "Sollant Bonus Increase 50%\nWeapon Mastery EXP Bonus Increase 50%\nDoes not stack with other Black Anvil weapon effects",
+    "skills": []
+  },
+  {
+    "name": "Blazing Tornado",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "Devastating Tornado's Attack Speed +100%, Movement Speed +20% for skill's duration. Attacks apply Serial Fire Bombs' Burning effect.",
+    "skills": [
+      "Devastating Tornado"
+    ]
+  },
+  {
+    "name": "Blood Valley Fury",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "Melee Heavy Attack +95 for 6s upon applying Stun or Shock with Stunning Blow",
+    "skills": [
+      "Stunning Blow"
+    ]
+  },
+  {
+    "name": "Burning Purgatory's Vigor",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "On using DaVinci's Courage, Health Regen effect disappears. Base Damage increases by 16, and Duration increases by 1.5s.",
+    "skills": [
+      "DaVinci's Courage"
+    ]
+  },
+  {
+    "name": "Cold Snap Erosion",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "When using Frost Cleaving, the area persists for 4s. Applies 2 stacks of Frost to targets in the area, identical to DaVinci's Chill and Ice Tornado. When applying Frost with DaVinci's Chill or Ice Tornado skills within the area, applies 1 additional stack. Boosts Ice Tornado skill damage to Icebound targets by 50%",
+    "skills": [
+      "Gaia Crash",
+      "DaVinci's Courage",
+      "Devastating Tornado"
+    ]
+  },
+  {
+    "name": "Devotion Barrier",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "When using Blood Devotion or Devoted Sanctuary, removes Shield Health Decrease and Shield Health Received Decrease effects applied to you, then creates a Shield with Health equal to 15% of Max Health that ignores shield removal effects for 6s",
+    "skills": [
+      "Blood Devotion"
+    ]
+  },
+  {
+    "name": "Enraged Giant Cordy's Spore Poison",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "On hit with the Death Blow skill, creates a 3m-wide Poison Cloud that ignores Block Chance around the target for 4s. Enemies within the cloud will take damage over time equal to 132% of Base Damage every 0.5s, and Magic, Melee, and Ranged Evasion are reduced by 300. Damage increases by 100% against monsters. In PvP, deals Defense-ignoring damage equal to 2% of the target's max Health per sec.",
+    "skills": [
+      "Death Blow"
+    ]
+  },
+  {
+    "name": "Enraged Pakilo Naru's Cruelty",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "Boosts Valiant Brawl, Cruel Smite, and Slash Wave Damage by 25% and Boosts their Cooldown Reduction effect by 50%.",
+    "skills": [
+      "Valiant Brawl"
+    ]
+  },
+  {
+    "name": "Enraged Tevent's Despair Trap",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "Upon applying Collision, Shock, or Stun with Greatsword Skills, creates an area in a 1.5m radius around the target that explodes in 1.5s, dealing 325% of Base Damage within the area. It explodes one more time after 1.5s outside the area, and deals 325% damage to the additional 1.5m area. Damage increases by 50% against monsters.",
+    "skills": []
+  },
+  {
+    "name": "Flash",
+    "slot": "armor/accessory",
+    "weapon": "Greatsword",
+    "description": "When hitting a monster with a Greatsword Active Skill to Stun or Shock it, decreases cooldown by 0.8s.\nWhen hitting a monster with Devastating Tornado or Ice Tornado, decreases Devastating Smash cooldown by 0.2s.\n\nIncreases PvP Damage taken by 100%.\nDecreases PvP Damage dealt by 90%.",
+    "skills": [
+      "Devastating Tornado",
+      "Devastating Smash"
+    ]
+  },
+  {
+    "name": "Giant Cordy's Spore Poison",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "On hit with the Death Blow skill, creates a 3m-wide Poison Cloud that ignores Block Chance around the target for 4s. Enemies within the cloud will take damage over time equal to 120% of Base Damage every 0.5s, and Magic, Melee, and Ranged Evasion are reduced by 300. Damage increases by 100% against monsters.",
+    "skills": [
+      "Death Blow"
+    ]
+  },
+  {
+    "name": "Gravity",
+    "slot": "armor/accessory",
+    "weapon": "Greatsword",
+    "description": "On the 1st, 4th, 7th, and 10th hit of Devastating Tornado, Blazing Tornado, or Ice Tornado, has a(n) 40% chance to apply Collision: Pull toward the player.\n\nIncreases PvP Damage taken by 100% while using Devastating Tornado, Blazing Tornado, or Ice Tornado.",
+    "skills": [
+      "Devastating Tornado"
+    ]
+  },
+  {
+    "name": "Judgment",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "Boosts Guillotine Blade Damage by 50% when used on targets with 50% Health or less.",
+    "skills": [
+      "Guillotine Blade"
+    ]
+  },
+  {
+    "name": "Judgment Wave",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "Gaia Crash attacks the same location 4 times instead of moving forward. Last attack's range +33% and damage +30%",
+    "skills": [
+      "Gaia Crash"
+    ]
+  },
+  {
+    "name": "Junobote's Void",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "When hitting an enemy at 50% Health or lower with a Greatsword skill that applies Shock or Stun, increases Shock and Stun durations by 1.5s, and disables Item Use for 3s.",
+    "skills": []
+  },
+  {
+    "name": "Morokai's Thunderbolt",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "When applying Shock or Stun, has a 50% chance to deal 600% of Base Damage. The effect chains up to 2 times to other enemies within 10m of the target, amplifying damage by 50% with each chain.",
+    "skills": []
+  },
+  {
+    "name": "Pakilo's Cruelty",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "Boosts Valiant Brawl, Cruel Smite, and Slash Wave Damage by 15% and Boosts their Cooldown Reduction effect by 50%.",
+    "skills": [
+      "Valiant Brawl"
+    ]
+  },
+  {
+    "name": "Rear Strike",
+    "slot": "armor/accessory",
+    "weapon": "Greatsword",
+    "description": "When hitting a target with Greatsword Mobility Skills, applies an effect that treats all attacks as back attacks for 3s.",
+    "skills": []
+  },
+  {
+    "name": "Rift Fracture",
+    "slot": "armor/accessory",
+    "weapon": "Greatsword",
+    "description": "When Valiant Brawl, Cruel Smite, or Slash Wave hits, has a(n) 80% chance to decrease the target's Shield Health Received by 80% for 9s. Deals Fixed Damage equal to 300% of Base Damage to Shielded targets.\n\nDoes not apply Valiant Brawl's Weaken Shield specialization",
+    "skills": [
+      "Valiant Brawl"
+    ]
+  },
+  {
+    "name": "Silver Reaper's Gag Order",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "On Heavy Attack, has a(n) 80% chance to silence the target for 5s. Cooldown: 15 sec",
+    "skills": []
+  },
+  {
+    "name": "Slash Wave",
+    "slot": "armor/accessory",
+    "weapon": "Greatsword",
+    "description": "Changes Valiant Brawl, Cruel Smite to [Slash Wave]\nAttacks 3 times in a row, with each sword slash dealing damage proportional to Base Damage.",
+    "skills": [
+      "Valiant Brawl"
+    ]
+  },
+  {
+    "name": "Tevent's Despair Trap",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "Upon applying Collision, Shock, or Stun with Greatsword Skills, creates an area in a 1.5m radius around the target that explodes in 1.5s, dealing 325% of Base Damage. Damage increases by 50% against monsters.",
+    "skills": []
+  },
+  {
+    "name": "Wave",
+    "slot": "armor/accessory",
+    "weapon": "Greatsword",
+    "description": "Slash Wave can be used up to 3 times.\nDeals damage proportional to Base Damage to all targets in its path. Decreases Movement Speed by 50% while casting.\n\nDecreases PvP Damage of Valiant Brawl, Cruel Smite, and Slash Wave by 90%\nBoosts damage of Valiant Brawl, Cruel Smite, and Slash Wave against monsters by 30%.",
+    "skills": [
+      "Valiant Brawl"
+    ]
+  },
+  {
+    "name": "Will Eruption",
+    "slot": "weapon",
+    "weapon": "Greatsword",
+    "description": "Changes Willbreaker into a support skill that increases Species Damage Boost by 120 and PvP Damage Dealt by 5% for all party members within 15m for 6s.",
+    "skills": [
+      "Willbreaker"
+    ]
+  },
+  {
+    "name": "Angel Above the Frontier's Mind's Eye",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Range +9% for the user and their party members within 16m",
+    "skills": []
+  },
+  {
+    "name": "Black Anvil Passion",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Sollant Bonus Increase 50%\nWeapon Mastery EXP Bonus Increase 50%\nDoes not stack with other Black Anvil weapon effects",
+    "skills": []
+  },
+  {
+    "name": "Deadly Grave",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Creates an area in a 3m radius around Brutal Arrow's target location that deals 40% of Base Damage every 0.5s for 5s",
+    "skills": [
+      "Brutal Arrow"
+    ]
+  },
+  {
+    "name": "Deluzhnoa's Cold",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Arrow Vortex cooldown -30%. Deals 100% of Base Damage to the first enemy hit by Arrow Vortex. Also deals 120% of Base Damage to all enemies within 3m of the initial target. Has an 80% chance to apply Collision: Push and send target airborne for 3s. Damage boost +50% against monsters. The effect is transferred to another target within a 5m radius area once. Deals damage up to 6 times.",
+    "skills": [
+      "Arrow Vortex"
+    ]
+  },
+  {
+    "name": "Enraged Deluzhnoa's Cold",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Arrow Vortex cooldown -30%. Deals 100% of Base Damage to the first enemy hit by Arrow Vortex. Also deals 120% of Base Damage to all enemies within 3m of the initial target. Has an 80% chance to apply Collision: Push and send target airborne for 3s and remove one shield type. Damage boost +50% against monsters. The effect is transferred to another target within a 5m radius area once. Deals damage up to 6 times.",
+    "skills": [
+      "Arrow Vortex"
+    ]
+  },
+  {
+    "name": "Enraged Leviathan's Sting",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Zephyr's Nock shoots an additional projectile at up to 2 targets within 5m, dealing damage equal to 450% of Base Damage. Zephyr's Nock damage also increases by 12%.",
+    "skills": [
+      "Zephyr's Nock"
+    ]
+  },
+  {
+    "name": "Enraged Tevent's Bombardment",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Shoots a bonus projectile whenever using Strafing, dealing 82% of Base Damage",
+    "skills": [
+      "Strafing"
+    ]
+  },
+  {
+    "name": "Eye of Ventius",
+    "slot": "armor/accessory",
+    "weapon": "Longbow",
+    "description": "Creates an aftershock 1s after the Decisive Sniping arrow passes, and applies damage up to 3 times on all the targets within a 3m radius.\n\nBoosts damage against monsters by 260%\nDecreases PvP Damage by 90%",
+    "skills": [
+      "Decisive Sniping"
+    ]
+  },
+  {
+    "name": "Gale Arrow",
+    "slot": "armor/accessory",
+    "weapon": "Longbow",
+    "description": "Changes Strafing to [Gale Arrow].\nDecreases Base Mana cost, but increases Mana cost with each arrow fired.\n\nStrafing's Mobility specialization can be applied. Strafing's Consecutive Use specialization not applied",
+    "skills": [
+      "Strafing"
+    ]
+  },
+  {
+    "name": "Grand Aelon's Spirit",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Upon Nature's Blessing use, heals 40% of Base Damage +135 Health per sec for 6s. Healing is doubled when it rains.",
+    "skills": [
+      "Nature's Blessing"
+    ]
+  },
+  {
+    "name": "Leviathan's Sting",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Zephyr's Nock shoots an additional projectile at up to 2 targets within 5m, dealing damage equal to 340% of Base Damage. Zephyr's Nock damage also increases by 8%.",
+    "skills": [
+      "Zephyr's Nock"
+    ]
+  },
+  {
+    "name": "Lofty Last Shot",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "On Critical Hit with Decisive Sniping, cooldown is reduced by 3s. On Critical Hit with Decisive Bombardment, cooldown is reduced by 2s every hit up to 3 times. Critical Hit of Decisive Sniping and Decisive Bombardment is increased by 500 as well.",
+    "skills": [
+      "Decisive Sniping"
+    ]
+  },
+  {
+    "name": "Pierce Shot",
+    "slot": "armor/accessory",
+    "weapon": "Longbow",
+    "description": "Changes Decisive Sniping and Decisive Bombardment to [Pierce Shot]\nWhen Decisive Sniping and Decisive Bombardment deal damage, has a 100% chance to deal 70% of Base Damage + 100 damage per sec for 6s and apply Weaken: Pierce Shot, which decreases Healing Received by 80%",
+    "skills": [
+      "Decisive Sniping"
+    ]
+  },
+  {
+    "name": "Purifying Cry",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Changes Purifying Touch skill to Purifying Cry. The skill now removes debuffs from party members in front, cooldown changes to 27s and Mana Cost changes to 260.",
+    "skills": [
+      "Purifying Touch"
+    ]
+  },
+  {
+    "name": "Rock Arrow",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Changes Brutal Arrow skill to Rock Arrow. Applies stun for 3s upon 4 hits.",
+    "skills": [
+      "Brutal Arrow"
+    ]
+  },
+  {
+    "name": "Seed of the World Tree",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Changes [Nature's Blessing] to [Seed of the World Tree]\nYou can now place 3 seeds at target locations, each lasting for 10s. Changes Mana Cost to 90. For allies that step on a seed, increases Health Regen by 228, which is then boosted by 12%, and increases Mana Regen by 294 for 4s. When the effect is applied, removes 1 Weaken effect, and the seed disappears after granting its effect. Seeds can be replanted within 6s. Specialization 3 [Whirlpool] only applies to the first placement.",
+    "skills": [
+      "Nature's Blessing"
+    ]
+  },
+  {
+    "name": "Shining Moon",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Attack Speed +6% per friendly target within the Nature's Blessing area. Effect duration: 6s.",
+    "skills": [
+      "Nature's Blessing"
+    ]
+  },
+  {
+    "name": "Stealthy Arrowhead",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Enchants additional projectiles from Roxie's Arrowhead and Roxie's Arrow Storm, increasing the Activation Rate by 12% and damage by 50% of Base Damage.\n\nDoes not apply additional effects from additional projectiles.",
+    "skills": [
+      "Roxie's Arrowhead"
+    ]
+  },
+  {
+    "name": "Target Lock",
+    "slot": "armor/accessory",
+    "weapon": "Longbow",
+    "description": "Adds Strafing's Bullseye and Gale effects once",
+    "skills": [
+      "Strafing"
+    ]
+  },
+  {
+    "name": "Tevent's Bombardment",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Shoots a bonus projectile whenever using Strafing, dealing 54% of Base Damage",
+    "skills": [
+      "Strafing"
+    ]
+  },
+  {
+    "name": "Torrent",
+    "slot": "armor/accessory",
+    "weapon": "Longbow",
+    "description": "While in a Whirlpool area, Zephyr's Nock and Strafing transform into a multi-shot skill that deals damage to up to 6 targets within a 3m radius upon landing a hit.\n\nIncreases damage against monsters by 185%\nDecreases PvP Damage by 90%",
+    "skills": [
+      "Zephyr's Nock",
+      "Strafing"
+    ]
+  },
+  {
+    "name": "Triple Snipe",
+    "slot": "armor/accessory",
+    "weapon": "Longbow",
+    "description": "Changes Decisive Sniping to a movement skill that can use [Triple Snipe] 3 times.\n\nDecisive Sniping's Charging Time ▲, Charging Time ▼, and Mobility specializations not applied",
+    "skills": [
+      "Decisive Sniping"
+    ]
+  },
+  {
+    "name": "Whirlpool Awakening",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Increases Whirlpool range by 2m, and increases duration by 3s.",
+    "skills": []
+  },
+  {
+    "name": "Witch Worshipper's Anathema",
+    "slot": "weapon",
+    "weapon": "Longbow",
+    "description": "Ensnaring Arrow changes to a location/directional skill. On hit, deals damage equal to 130% of Base Damage. Explodes in 3s to bind enemies within 3m from the target and deals the same damage. If the target is killed before the explosion, it explodes immediately. Bosses immune to bind become oppressed instead.",
+    "skills": [
+      "Ensnaring Arrow"
+    ]
+  },
+  {
+    "name": "Ancient Demonic Beast's Command",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "When using Summon Constellation, the Milky Way skill can be used 1 time within 6s",
+    "skills": [
+      "Summon Constellation"
+    ]
+  },
+  {
+    "name": "Black Anvil Passion",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "Sollant Bonus Increase 50%\nWeapon Mastery EXP Bonus Increase 50%\nDoes not stack with other Black Anvil weapon effects",
+    "skills": []
+  },
+  {
+    "name": "Echoes of Nebula",
+    "slot": "armor/accessory",
+    "weapon": "Orb",
+    "description": "Adds an effect where the Decrease Base Damage by 25% effect is not applied when Nebula's Resonance effect ends due to consuming all Resonance stacks",
+    "skills": []
+  },
+  {
+    "name": "Enraged Giant Cordy's Forest Resonance",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "Boosts Guardian Defensive Wall Health by 50%. Using a Guardian Defensive Wall has a(n) 80% chance to apply Collision: Push to enemies within range and push them outside the range. If strengthened with 2 or more Orbs, applies Collision Immunity to party members within range.",
+    "skills": [
+      "Guardian Defensive Wall"
+    ]
+  },
+  {
+    "name": "Enraged Primal Brothers' Thunder Strike",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "Upon summoning an Orb, generates a 3m radius area of thunder after 2s at a random enemy location within a 6m radius of the summoned Orb that deals 420% of Base Damage.",
+    "skills": []
+  },
+  {
+    "name": "Enraged Tevent's Corruption",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "Applies a Consuming Aura for 10s to the enemy first hit by Star Destroyer or to the nearest enemy within 6m when a Supernova Collapse area is generated. Enemies within 3m of the Aura's range has a(n) 80% chance to receive damage equal to 90% of Base Damage every 0.5s. Damage increases by 300% against monsters. Applies a Weaken effect that increases Debuff Duration per stack by 12%. (Stacks up to 5 times)",
+    "skills": [
+      "Star Destroyer",
+      "Supernova Collapse"
+    ]
+  },
+  {
+    "name": "False Time",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "Activating an Orb Effect increases duration of Orbs within a 30m radius by 0.5s.",
+    "skills": []
+  },
+  {
+    "name": "Giant Cordy's Forest Resonance",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "Boosts Guardian Defensive Wall Health by 30%. Using a Guardian Defensive Wall has a(n) 80% chance to apply Collision: Push to enemies within range and push them outside the range. If strengthened with 2 or more Orbs, applies Collision Immunity to party members within range.",
+    "skills": [
+      "Guardian Defensive Wall"
+    ]
+  },
+  {
+    "name": "Guardian Constellation",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "When the Restoring Constellation effect is active, increases Skill Damage Resistance by 130 for 9s",
+    "skills": [
+      "Restoring Constellation"
+    ]
+  },
+  {
+    "name": "Healing Melody",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "When an Orb Effect activates after using Healing Wave, reactivates Healing Wave 1 time",
+    "skills": [
+      "Void Slash"
+    ]
+  },
+  {
+    "name": "Magical Harmony",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "Attacking with an Orb Effect reduces remaining Stellar Dash cooldown by 3%. Activates up to 5 times per sec.",
+    "skills": [
+      "Stellar Dash"
+    ]
+  },
+  {
+    "name": "Nebula's Protection",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "After Temporal Leap effect ends, reduces damage taken by 40% for 2s\nAfter completing Space Transition, reduces damage taken by 40% for 1s",
+    "skills": [
+      "Temporal Leap"
+    ]
+  },
+  {
+    "name": "Nebula's Pulsation",
+    "slot": "armor/accessory",
+    "weapon": "Orb",
+    "description": "Adds an effect where blocking Fury and Wrath attacks with Defensive Skills does not consume Resonance stacks",
+    "skills": []
+  },
+  {
+    "name": "Nebula's Resonance",
+    "slot": "armor/accessory",
+    "weapon": "Orb",
+    "description": "Changes Restoring Constellation to [Nebula's Resonance].\nGrants 5 stacks of Resonance to a friendly target for 9s. Each stack increases Base Damage by 2%, and 1 stack is consumed each time damage is taken. When all stacks are consumed and the effect ends, Base Damage decreases by 25% for 6s.\n\nDoes not apply Restoring Constellation's Time Dilation, Additional Effect, and Echoes of Distortion specializations",
+    "skills": [
+      "Restoring Constellation"
+    ]
+  },
+  {
+    "name": "Primal Brothers' Thunder Strike",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "Upon summoning an Orb, generates a 3m radius area of thunder after 2s at a random enemy location within a 6m radius of the summoned Orb that deals 300% of Base Damage.",
+    "skills": []
+  },
+  {
+    "name": "Purifying Star",
+    "slot": "armor/accessory",
+    "weapon": "Orb",
+    "description": "Changes Healing Star to [Purifying Star].\nSummons an orb that follows the designated party member for a set duration and grants an effect that removes 1 status effect from all party members within a 4m radius every 3s.\n\nDoes not apply Star Destroyer's Gravity Star Destroyer, Increase Range, Time, and Additional Effect specializations",
+    "skills": [
+      "Star Destroyer"
+    ]
+  },
+  {
+    "name": "Redemptive Star",
+    "slot": "armor/accessory",
+    "weapon": "Orb",
+    "description": "Adds an effect that restores Health by 160% of Base Damage + 470 when successfully removing a CC effect with Purifying Star",
+    "skills": []
+  },
+  {
+    "name": "Sacred King's Judgment",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "When an enemy is defeated with an Orb, increases Base Damage by 15 for 6s",
+    "skills": []
+  },
+  {
+    "name": "Star of Peace",
+    "slot": "armor/accessory",
+    "weapon": "Orb",
+    "description": "While within 4m during Purifying Star's duration, applies a buff that increases party members' damage against all species by 100",
+    "skills": []
+  },
+  {
+    "name": "Star's Orbit",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "Boosts Milky Way damage by 10%, and grants 1 additional use",
+    "skills": [
+      "Summon Constellation"
+    ]
+  },
+  {
+    "name": "Talus's Transcendent Barrier",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "Upon using Distortion Veil, applies a Distortion Veil to the nearest ally without Distortion Veil within a 5m radius from the target.",
+    "skills": [
+      "Distortion Veil"
+    ]
+  },
+  {
+    "name": "Tectonic Shift",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "Changes Interstellar Explosion to [Tectonic Shift] and consumes only 1 orb at the designated location to trigger a tectonic shift after 1s. Deals 560% of Base Damage + 120 damage to up to 5 targets within a 5m radius and has a(n) 80% chance to apply Collision: Pull.",
+    "skills": [
+      "Interstellar Explosion"
+    ]
+  },
+  {
+    "name": "Tevent's Corruption",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "Applies a Consuming Aura for 10s to the enemy first hit by Star Destroyer or to the nearest enemy within 6m when a Supernova Collapse area is generated. Enemies within 3m of the Aura's range has a(n) 80% chance to receive damage equal to 60% of Base Damage every 0.5s. Damage increases by 300% against monsters. Applies a Weaken effect that increases Debuff Duration per stack by 8%. (Stacks up to 5 times)",
+    "skills": [
+      "Star Destroyer",
+      "Supernova Collapse"
+    ]
+  },
+  {
+    "name": "Void Echo",
+    "slot": "weapon",
+    "weapon": "Orb",
+    "description": "When Void Slash's Orb effect activates, re-activates Void Slash from all activated orbs to deal 420% of Base Damage.",
+    "skills": [
+      "Void Slash"
+    ]
+  },
+  {
+    "name": "Battlefield Frenzy",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "Changes Death Knell to Battlefield Frenzy. Increases Skill Damage Boost by 30 and Attack Speed by 3% for 6s on hit with Spear Active Skills. Stacks up to 3 times. At 3 stacks, applies a 15 cooldown.",
+    "skills": [
+      "Death Knell"
+    ]
+  },
+  {
+    "name": "Black Anvil Passion",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "Sollant Bonus Increase 50%\nWeapon Mastery EXP Bonus Increase 50%\nDoes not stack with other Black Anvil weapon effects",
+    "skills": []
+  },
+  {
+    "name": "Blue Flash",
+    "slot": "armor/accessory",
+    "weapon": "Spear",
+    "description": "Changes Javelin Inferno and Explosive Fury to [Lightning Javelin] and [Explosive Lightning Slash].\n\n[Lightning Javelin]\nThrows a spear at the designated target to deal damage proportional to Base Damage, then chains up to 3 times to 4 random targets within a 4m radius. Lightning Javelin can only be used while the Lightning effect is active.\n\n[Explosive Lightning Slash]\nDeals damage proportional to Base Damage to enemies within an area 1.6x Attack Range. Can be used up to 3 times in succession, and obtains the Lightning effect when dealing damage to enemies.\n\nDoes not apply Vicious Fury's Additional Condition specialization",
+    "skills": [
+      "Javelin Surge",
+      "Vicious Fury"
+    ]
+  },
+  {
+    "name": "Corrupt Hero's Lantern",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "Damage dealt by Vicious Fury, Brutal Fury, and Explosive Fury increases by 8%. On Critical Hit, cooldown of Cyclonic Fury and Phoenix Barrage decrease by 5% proportional to time remaining.",
+    "skills": [
+      "Vicious Fury",
+      "Cyclonic Fury"
+    ]
+  },
+  {
+    "name": "Criticality Explosion",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "When using Phoenix Barrage, increases Skill Damage by 8% per stack of Weaken: Burst applied by you. When each hit of Phoenix Barrage lands as a Critical Hit, applies 3 stacks of Weaken: Ignite. When Phoenix Barrage hits a target with 10 stacks of Weaken: Ignite, deals explosion damage equal to 690% of Base Damage + 399 damage.",
+    "skills": [
+      "Cyclonic Fury"
+    ]
+  },
+  {
+    "name": "Deluzhnoa's Waves",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "Increases damage dealt by Rising Slash by 60%. Rising Slash can be used in the target direction. 80% chance to apply Collision: Push on targets while charging. Targets that collide with a wall are Stunned for 3s.",
+    "skills": [
+      "Rising Slash"
+    ]
+  },
+  {
+    "name": "Divine Retribution",
+    "slot": "armor/accessory",
+    "weapon": "Spear",
+    "description": "Changes the effect of Ascending Cleave.\nCollision: Prone, Push, and Stun effects only apply to monsters, and Ascending Cleave's cooldown decreases by 12s when those status effects hit.",
+    "skills": [
+      "Abyssal Cleave"
+    ]
+  },
+  {
+    "name": "Enraged Deluzhnoa's Waves",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "Increases damage dealt by Rising Slash by 60%. Rising Slash can be used in the target direction. Has an 80% chance to apply Collision: Push on targets while charging. When applying Collision: Push, has a(n) 80% chance to apply a Weaken effect that decreases Heavy Attack Damage Resistance by 20% for 6s. Targets that collide with a wall are Stunned for 3s.",
+    "skills": [
+      "Rising Slash"
+    ]
+  },
+  {
+    "name": "Enraged Pakilo Naru's Barrier",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "On damaging a target with a Spear skill, increases all CC Resistances by 32 for 4s (once per skill). Stacks up to 10 times.",
+    "skills": []
+  },
+  {
+    "name": "Enraged Queen Bellandir's Hunger",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "Reduces cooldown of Death From Above by 15s and applies Collision: Pull on Feared enemies through the Death From Above skill. Death From Above Damage +600%",
+    "skills": [
+      "Death From Above"
+    ]
+  },
+  {
+    "name": "Hour of Judgment",
+    "slot": "armor/accessory",
+    "weapon": "Spear",
+    "description": "After Ascending Cleave ends, increases PvP Melee Heavy Attack Chance by 300% and Heavy Attack Damage by 10% for 6s.",
+    "skills": [
+      "Abyssal Cleave"
+    ]
+  },
+  {
+    "name": "Junobote's Inferno",
+    "slot": "armor/accessory",
+    "weapon": "Spear",
+    "description": "Upon using Bloodleech Aura, creates a flame zone centered around you that deals 120% of Base Damage per sec for 5s to targets within the area. Applies Ignite effect on Critical Hit.",
+    "skills": [
+      "Bloodleech Aura"
+    ]
+  },
+  {
+    "name": "Junobote's Inferno",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "Upon using Bloodleech Aura, creates a flame zone centered around you that deals 120% of Base Damage per sec for 5s to targets within the area. Applies Ignite effect on Critical Hit.",
+    "skills": [
+      "Bloodleech Aura"
+    ]
+  },
+  {
+    "name": "Night of Thunderstorms",
+    "slot": "armor/accessory",
+    "weapon": "Spear",
+    "description": "Changes the max number of uses for Explosive Lightning Slash to 5.",
+    "skills": []
+  },
+  {
+    "name": "Pakilo Naru's Barrier",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "On damaging a target with a Spear skill, all CC Resistances increase by 25 for 3s (once per skill). Stacks up to 10 times.",
+    "skills": []
+  },
+  {
+    "name": "Piercing Thunder",
+    "slot": "armor/accessory",
+    "weapon": "Spear",
+    "description": "Changes Lightning Javelin's use type to a directional and location skill.\n\nIncreases damage against monsters by 50%.\nDecreases PvP Damage Dealt by 90%.",
+    "skills": []
+  },
+  {
+    "name": "Porfos Breath",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "When your Health drops below 20% while using Bloodleech Aura, restores Health by 20000 for 1 time. Each time you remove a recovery effect from an enemy through Starving Shadow, removes 1 Health or Shield Health reduction effect from self.",
+    "skills": [
+      "Bloodleech Aura"
+    ]
+  },
+  {
+    "name": "Queen Bellandir's Hunger",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "Reduces cooldown of Death From Above by 15s and applies Collision: Pull on Feared enemies through the Death From Above skill.",
+    "skills": [
+      "Death From Above"
+    ]
+  },
+  {
+    "name": "Scared to Death",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "Upon defeating an enemy with a spear, 25% chance to inflict Fear on up to 2 enemies within an 8m-radius for 5s.",
+    "skills": []
+  },
+  {
+    "name": "Scorched Earth",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "Changes Javelin Surge to pierce enemies, and has an 80% chance to apply a Weaken effect that decreases enemies' Heavy Attack Damage Resistance by 25% for 4s.",
+    "skills": [
+      "Javelin Surge"
+    ]
+  },
+  {
+    "name": "Slaughtering Execution",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "Changes Enforcer to Slaughtering Execution When casting the skill, increases all CC Chance by 90 per target within a 8m radius for 6s (up to 5 targets). Increases Magic, Melee, and Ranged, Accuracy by 410 for 6s.",
+    "skills": []
+  },
+  {
+    "name": "Spiral Assault",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "Boosts Culling Arc and Flaming Arc damage by 20% and grants 4 extra Spiral Slash uses.",
+    "skills": [
+      "Culling Arc"
+    ]
+  },
+  {
+    "name": "Wave of Punishment",
+    "slot": "armor/accessory",
+    "weapon": "Spear",
+    "description": "When applying Collision: Prone or Stun with Ascending Cleave to a monster, creates a shockwave from the target that deals 750% of Base Damage to up to 6 targets within a 5m radius.\n\nBoosts damage against monsters by 500%\nDecreases PvP Damage by 90%",
+    "skills": [
+      "Abyssal Cleave"
+    ]
+  },
+  {
+    "name": "Wind Blades",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "When Spiral Slash lands as a heavy attack, Spiral Slash is used 1 additional time. (Max 1 time)",
+    "skills": []
+  },
+  {
+    "name": "Witch Worshipper's Corrosive Curse",
+    "slot": "weapon",
+    "weapon": "Spear",
+    "description": "On Bloodleech Aura skill hit, has a(n) 80% chance to Weaken the target, which applies Melee Defense -600 for 3s.",
+    "skills": [
+      "Bloodleech Aura"
+    ]
+  },
+  {
+    "name": "Absolute Zero",
+    "slot": "armor/accessory",
+    "weapon": "Staff",
+    "description": "Increases Frost Smokescreen's Specialization [Designated Ground Targeting] range to a 6m radius and has a 100% chance to apply Weaken: Frostbite that decreases Movement Speed by 20% per stack per sec for 3s to enemies within the area. Applies Bind: Icebound at 5 stacks.\n\nFrost Smokescreen's Burning Smokescreen specialization not applied",
+    "skills": [
+      "Frost Smokescreen"
+    ]
+  },
+  {
+    "name": "Aridus's Fury",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Increases Base Damage by 12% if the user is stationary for 3s. Lasts for 2s after moving.",
+    "skills": []
+  },
+  {
+    "name": "Black Anvil Passion",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Sollant Bonus Increase 50%\nWeapon Mastery EXP Bonus Increase 50%\nDoes not stack with other Black Anvil weapon effects",
+    "skills": []
+  },
+  {
+    "name": "Black Rage's Boost",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Magic, Melee, and Ranged Critical Hit Chance +20 per 1m of distance between the user and the target",
+    "skills": []
+  },
+  {
+    "name": "Daigon's Fury",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Staff Fire Skill's damage increases 5%, Burning damage increases 15%",
+    "skills": []
+  },
+  {
+    "name": "Dead Man's Armor",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Changes Icebound Armor skill to Dead Man's Armor. Deals 80% of Base Damage as Icebound damage per sec and applies Frost to nearby foes, and has a(n) 80% chance to apply Terror: Pull.",
+    "skills": [
+      "Icebound Tomb"
+    ]
+  },
+  {
+    "name": "Deluzhnoa's Hail",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Hellfire Rain changes into Ice Rain. The Casting Speed increases by 50%, the range changes to 5m, and Rain quantity increases to 18. Removes Burning effects. Increases damage by 15%, and has a(n) 80% chance to Weaken targets, reducing their Movement Speed by 51% for 2.5s. Staff Ice Skill Damage Boost +10%.",
+    "skills": [
+      "Infernal Meteor"
+    ]
+  },
+  {
+    "name": "Enraged Daigon's Fury",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Staff Fire Skill's damage increases 8%, Burning damage increases 25%",
+    "skills": []
+  },
+  {
+    "name": "Enraged Deluzhnoa's Hail",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Hellfire Rain changes into Ice Rain. The Casting Speed increases by 50%, the range changes to 5m, and Rain quantity increases to 18. Removes Burning effects, but increases damage by 15% and has a(n) 80% chance to Weaken targets, decreasing Movement Speed by 51% for 2.5s, and decreasing All Heavy Attack Evasion by 150 for 6s. Staff Ice Skill Damage Boost +10%.",
+    "skills": [
+      "Infernal Meteor"
+    ]
+  },
+  {
+    "name": "Enraged Queen Bellandir's Explosive Insect",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "On applying Weaken: Burning with Staff Skills, has a 7% chance to apply the Explosive Insect effect. Explosive Insects explode after 3s, dealing 540% of Base Damage to the target and 1080% of Base Damage to all other enemies in a 4m radius.",
+    "skills": []
+  },
+  {
+    "name": "Ice Mist",
+    "slot": "armor/accessory",
+    "weapon": "Staff",
+    "description": "Grants Stealth 1 time while within the area of Frost Smokescreen Specialization [Designated Ground Targeting]. If Stealth is removed or you leave and re-enter the area, Stealth will no longer be applied.\nDoes not share cooldown with Camouflage Cloak or Temporal Leap.",
+    "skills": [
+      "Frost Smokescreen"
+    ]
+  },
+  {
+    "name": "Icebound Explosion",
+    "slot": "armor/accessory",
+    "weapon": "Staff",
+    "description": "When Frost Smokescreen's Specialization [Designated Ground Targeting] applies Weaken: Frostbite, deals Single Target Damage proportional to Base Damage. When Bind: Icebound ends, deals AoE Damage proportional to Base Damage to up to 6 targets within a 1.5m radius.\n\nIncreases damage against monsters by 80%\nDecreases PvP Damage by 90%",
+    "skills": [
+      "Frost Smokescreen"
+    ]
+  },
+  {
+    "name": "Icebound Gust",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Binds enemies within the Frost Smokescreen area for 1.4s. Applying the Additional Damage specialization increases damage by 150%.",
+    "skills": [
+      "Frost Smokescreen"
+    ]
+  },
+  {
+    "name": "Icebound Spike",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Icebound Tomb Skill changes to Icebound Spike. Deals 760% of Base Damage + 84 damage as Icebound damage and applies Frost. Creates an ice spike in a straight line forward, increasing damage taken by 10% for 5s. Hits up to 30m based on charging time.",
+    "skills": [
+      "Icebound Tomb"
+    ]
+  },
+  {
+    "name": "Lightning Condensation",
+    "slot": "armor/accessory",
+    "weapon": "Staff",
+    "description": "Decreases the radius of Thunder's Blessing and Thunder Shadow to 2.5m, but increases damage by x%. Boosts damage by 30% per Weaken: Thunderclouds stack",
+    "skills": [
+      "Inner Peace"
+    ]
+  },
+  {
+    "name": "Lightning Spear",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Ice Spear changes to a Lightning skill. No longer decreases Movement Speed. Attacking a target that the user has Burned deals additional damage equal to 40% of the remaining Burning Damage. If the target is Frosted or Wet, Damage is transferred once to other enemies within 5m.",
+    "skills": [
+      "Ice Spear"
+    ]
+  },
+  {
+    "name": "Mana Absorption",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Increases Redemptive Barrier's cooldown by 10s, but adds an effect that absorbs 900 Mana from nearby foes.",
+    "skills": []
+  },
+  {
+    "name": "Multi Hit",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Reduces the duration of the High Focus specialization's target expansion to 5s, but does not apply a reduced effect.",
+    "skills": [
+      "High Focus"
+    ]
+  },
+  {
+    "name": "Queen Bellandir's Explosive Insect",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "On applying Weaken: Burning with Staff Skills, has a 5% chance to apply the Explosive Insect effect. Explosive Insects explode in 3s, dealing 540% of Base Damage to the target and 1080% of Base Damage to all other enemies in a 3m radius.",
+    "skills": []
+  },
+  {
+    "name": "Swift Judgment",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Removes the cast time of Judgment Lightning, instantly casting it 2 times upon the application of the [Consecutive Use] specialization. When the second Judgment Lightning hits a monster as a Heavy Attack, decreases the skill's cooldown by 50%",
+    "skills": [
+      "Judgment Lightning"
+    ]
+  },
+  {
+    "name": "Talus's Glacier",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "When Stunned, trigger Petrification: Freeze for 1s to protect the user. Cooldown: 24s",
+    "skills": []
+  },
+  {
+    "name": "Thunder Shadow",
+    "slot": "armor/accessory",
+    "weapon": "Staff",
+    "description": "Changes Inner Peace Specialization 1 [Thunder's Blessing] to [Thunder Shadow]\nDeals damage to the target in proportion to the Base Damage and applies Weaken: Thunderclouds.",
+    "skills": [
+      "Inner Peace"
+    ]
+  },
+  {
+    "name": "Thunder of Hatred and Disillusionment",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Staff Lightning Skill Damage increases by 5%, Lightning skill's Mana Cost decreases by 10%",
+    "skills": []
+  },
+  {
+    "name": "Thunderclouds Explosion",
+    "slot": "armor/accessory",
+    "weapon": "Staff",
+    "description": "Decreases falling lightning strikes of Thunder's Blessing and Thunder Shadow to 2 times per sec and deals AoE Damage proportional to the Base Damage to up to 3 targets within a 1m radius.\n\nIncreases Thunderclouds Explosions Damage against monsters by 50%\nDecreases Thunderclouds Explosions PvP Damage by 90%",
+    "skills": [
+      "Inner Peace"
+    ]
+  },
+  {
+    "name": "Witch Worshipper's Temptation",
+    "slot": "weapon",
+    "weapon": "Staff",
+    "description": "Salvation Chain changes to Witch Worshipper's Temptation. On skill hit, has a(n) 80% chance to apply Fear: Seduction to a target, making the target follow the caster for 4s and increases PvP damage taken by 15%.",
+    "skills": [
+      "Salvation Chain"
+    ]
+  },
+  {
+    "name": "Ahzreil's Magic Defensive Wall",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Damage Reduction +280 when using Shield Survival Technique",
+    "skills": [
+      "Shield Survival Technique"
+    ]
+  },
+  {
+    "name": "Ancient Demonic Beast's Footsteps",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "When affected by Collision: Prone from Ascending Cleave, Ascending Slash, Ankle Strike, Desperate Clash, or Tempest Strike, Shield Survival Technique can be used. Immediately removes Bind, Collision, Fear, Silence, Sleep and Stun, dealing 100% of Base Damage to enemies within 3m, and has a 80% chance to apply Collision: Push. Cooldown: 2 min",
+    "skills": [
+      "Fierce Clash",
+      "Shield Survival Technique"
+    ]
+  },
+  {
+    "name": "Assault Stance",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "On Collision: Push hit with Strategic Rush, increases Collision Chance by 60 for 4s. Max 5 stacks.",
+    "skills": [
+      "Strategic Rush"
+    ]
+  },
+  {
+    "name": "Barrier Crusher",
+    "slot": "armor/accessory",
+    "weapon": "Sword & Shield",
+    "description": "When dealing damage with A Shot at Victory, Annihilation Blade, or Earth Strike, has a(n) 80% chance to decrease Shield Health Received by 80% for 9s. If the target is already Shielded, applies Fixed Damage equal to 900% of Base Damage.",
+    "skills": [
+      "A Shot at Victory"
+    ]
+  },
+  {
+    "name": "Beast King's Dream Demon",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Blocking a melee attack decreases the attacker's Move and Attack Speed by 30% for 3s and applies Sleep: Curse for the next 3s (6s for monsters). Cooldown 30s.",
+    "skills": []
+  },
+  {
+    "name": "Black Anvil Passion",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Sollant Bonus Increase 50%\nWeapon Mastery EXP Bonus Increase 50%\nDoes not stack with other Black Anvil weapon effects",
+    "skills": []
+  },
+  {
+    "name": "Chernobog's Sleep Venom",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Upon using Annihilating Slash, has a(n) 80% chance to apply Slow to up to 6 enemies within 5m for 3s, then puts them to Sleep for 6s. Against players, duration is halved. Cooldown: 30s",
+    "skills": [
+      "Annihilating Slash"
+    ]
+  },
+  {
+    "name": "Cornelius's Shock",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "On hit with Provoking Roar or Cleaving Roar with [Bonus Damage] Specialization, creates a 4m radius area that explodes after 3s, dealing 400% of Base Damage to targets within the area. Reduces Bonus Damage of targets hit by the explosion by 250% for 5s.",
+    "skills": [
+      "Provoking Roar"
+    ]
+  },
+  {
+    "name": "Daigon's Storm",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Whirling Shield damage increases by 25%, and Whirling Shield's deflect effect increases to 7 times. The shield can hit the same target multiple times. After using Whirling Shield, for 6s, upon landing a Shield Strike, grants a 80% chance to fire a Whirling Shield projectile that deals 135% of Base Damage.",
+    "skills": [
+      "Shield Throw",
+      "Shield Strike"
+    ]
+  },
+  {
+    "name": "Dark Order's Shock Wave",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "On Shield Strike, Stun the target for 0.3s",
+    "skills": [
+      "Shield Strike"
+    ]
+  },
+  {
+    "name": "Deluzhnoa's Touch",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Increases Controlling Rake's hit area to 4m and reduces Movement Speed of all enemies in the area by 60%.\nOn a successful hit, Damage Reduction +6 for 5s. Stacks up to 10 times.",
+    "skills": [
+      "Chain Hook"
+    ]
+  },
+  {
+    "name": "Devastating Chain",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Chain Hook additionally attacks 3 enemies in a 5m radius around the target",
+    "skills": [
+      "Chain Hook"
+    ]
+  },
+  {
+    "name": "Earth Strike",
+    "slot": "armor/accessory",
+    "weapon": "Sword & Shield",
+    "description": "Changes A Shot at Victory to [Earth Strike].\nDeals damage proportional to Base Damage to all targets within a 3m radius, and grants an effect that increases damage of sword skills for a set duration after using the skill.\n\nDoes not apply A Shot at Victory's Annihilation Blade specialization",
+    "skills": [
+      "A Shot at Victory"
+    ]
+  },
+  {
+    "name": "Enraged Daigon's Storm",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Whirling Shield damage increases by 35%, and Whirling Shield's deflect effect increases to 7 times. The shield can hit the same target multiple times. After using Whirling Shield, for 6s, upon landing a Shield Strike, grants a 80% chance to fire a Whirling Shield projectile that deals 200% of Base Damage.",
+    "skills": [
+      "Shield Throw",
+      "Shield Strike"
+    ]
+  },
+  {
+    "name": "Enraged Deluzhnoa's Touch",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Increases Controlling Rake's hit area to 4m and reduces Movement Speed of all enemies in the area by 60%.\nOn a successful hit, Damage Reduction +6 for 5s. Stacks up to 10 times.\nOn Collision: Pull, has a(n) 80% chance to apply Weaken, reducing All Defense by 500 for 6s.",
+    "skills": [
+      "Chain Hook"
+    ]
+  },
+  {
+    "name": "Enraged Queen Bellandir's Quicksand",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Creates 5m radius of Quicksand on the spot where Annihilating Slash was used. Quicksand decreases enemy Movement Speed by 60% and has a 90% chance to apply Collision: Pull to enemies within the radius when it disappears after 2s. Cooldown 18s",
+    "skills": [
+      "Annihilating Slash"
+    ]
+  },
+  {
+    "name": "Immortal Bond",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Immortal Pride Specialization 1 changes Blessing of Immortality to [Immortal Bond], and increases cooldown by 30s. Grants all party members within a 15m radius an effect that increases Max Health and Current Health by up to 35% proportional to Immortal Pride's level for 6s, and additionally increases Current Health by the amount Max Health is increased.",
+    "skills": [
+      "Immortal Pride"
+    ]
+  },
+  {
+    "name": "Kaiser's Thirst",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Witty Retort damage increases 50%, Witty Retort Recovery Effects increase 100%",
+    "skills": [
+      "Witty Retort"
+    ]
+  },
+  {
+    "name": "Nirma's Magic Pulse",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Has a 70% chance to apply Collision: Push to a target upon using Shield Strike.",
+    "skills": [
+      "Shield Strike"
+    ]
+  },
+  {
+    "name": "Purgatorial Barrier",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Healing Received +30% during Counter Barrier",
+    "skills": [
+      "Counter Barrier"
+    ]
+  },
+  {
+    "name": "Queen Bellandir's Quicksand",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Creates 5m radius of Quicksand on the spot where Annihilating Slash was used. Quicksand decreases enemy Movement Speed by 60% and has a 70% chance to apply Collision: Pull to enemies within the radius when it disappears after 2s. Cooldown 34s",
+    "skills": [
+      "Annihilating Slash"
+    ]
+  },
+  {
+    "name": "Resolute Breakthrough",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Boosts Shield Strike, Piercing Strike, and Annihilating Slash damage by 25%. Shield Strike and Piercing Strike grant Collision: Enchant upon landing a Heavy Attack. Stacks up to 5 times.\nAt 5 stacks, this effect is consumed, and if Strategic Rush hits within 10s, ignores Collision Resistance and has a 100% chance to apply Collision: Push.\nCollision: Enchant stacks only once per skill.",
+    "skills": [
+      "Shield Strike",
+      "Annihilating Slash",
+      "Strategic Rush"
+    ]
+  },
+  {
+    "name": "Roar of Rage",
+    "slot": "armor/accessory",
+    "weapon": "Sword & Shield",
+    "description": "Changes Cleaving Roar to [Roar of Rage].\nIncreases Roar of Rage range to 10m and has a(n) 70% chance to apply Weaken: Provoke, which decreases all Endurance and all Heavy Attack Evasion for a set duration.\n\nDoes not apply Provoking Roar's Cooldown Reduction ▼ and Bonus Damage specializations",
+    "skills": [
+      "Provoking Roar"
+    ]
+  },
+  {
+    "name": "Roaring Shackles",
+    "slot": "armor/accessory",
+    "weapon": "Sword & Shield",
+    "description": "When Roar of Rage's Weaken: Provoke effect hits a PvP target, applies an effect that decreases Movement Speed by 50% for 6s.",
+    "skills": []
+  },
+  {
+    "name": "Roaring Shield",
+    "slot": "armor/accessory",
+    "weapon": "Sword & Shield",
+    "description": "Creates a shield equal to 3000 of Health for 6s when applying Weaken: Provoke to a monster",
+    "skills": []
+  },
+  {
+    "name": "Rock Shield Throw",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Changes Shield Throw to [Rock Shield Throw] and boosts damage by 50%. Deals 270% of Base Damage and has a(n) 80% chance to apply a Weaken effect that decreases Movement Speed by 35% for 3s",
+    "skills": [
+      "Shield Throw"
+    ]
+  },
+  {
+    "name": "Strength Barrier",
+    "slot": "weapon",
+    "weapon": "Sword & Shield",
+    "description": "Increases Critical Damage Resistance by 40% while Counter Barrier is active",
+    "skills": [
+      "Counter Barrier"
+    ]
+  },
+  {
+    "name": "Victory Strike",
+    "slot": "armor/accessory",
+    "weapon": "Sword & Shield",
+    "description": "Increases Earth Strike range by 3m.\n\nDoes not apply A Shot at Victory's Annihilation Blade specialization",
+    "skills": [
+      "A Shot at Victory"
+    ]
+  },
+  {
+    "name": "Black Anvil Passion",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "Sollant Bonus Increase 50%\nWeapon Mastery EXP Bonus Increase 50%\nDoes not stack with other Black Anvil weapon effects",
+    "skills": []
+  },
+  {
+    "name": "Blessed Haze",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "Changes Karmic Haze to Blessed Haze. Instead of spreading curses to enemies, spreads your Enchanting Time and Valorous Barrier to allies at 33% of their remaining duration.",
+    "skills": [
+      "Karmic Haze",
+      "Blessed Barrier"
+    ]
+  },
+  {
+    "name": "Chaos Grasp",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "Has a(n) 7.5% chance to apply Touch of Chaos to enemy targets.",
+    "skills": []
+  },
+  {
+    "name": "Clay's Purification",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "Changes Clay's Salvation specialization's Weaken removal effect to debuff removal.",
+    "skills": [
+      "Clay's Salvation"
+    ]
+  },
+  {
+    "name": "Deckman's Rampage",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "Ray of Disaster damage increases by 25%. Inflicts the Corrupted Magic Circle effect on the targets. Target number increases to 4 with target expansion.",
+    "skills": [
+      "Ray of Disaster",
+      "Corrupted Magic Circle"
+    ]
+  },
+  {
+    "name": "Destructive Monarch's Barrier",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "Adds an effect to Invincible Wall that reduces Damage Taken by -5% and increases Healing Received by 10%",
+    "skills": [
+      "Invincible Wall"
+    ]
+  },
+  {
+    "name": "Enraged Deckman's Rampage",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "Ray of Disaster damage increases by 35%. Inflicts the Corrupted Magic Circle effect on the targets. Target number increases to 4 with target expansion.",
+    "skills": [
+      "Ray of Disaster",
+      "Corrupted Magic Circle"
+    ]
+  },
+  {
+    "name": "Enraged Giant Cordy's Blessing",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "Becomes immune to Bind, Fear, Petrification, Silence, Sleep, and Stun for 2s when casting Invincible Wall, and boosts the effect by 85%.",
+    "skills": [
+      "Invincible Wall"
+    ]
+  },
+  {
+    "name": "Enraged Tevent's Hunger",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "On applying Curse of the Wand, has a 15% chance to apply Weaken: Curse, which deals 35% of Base Damage per sec and decreases Defense by 10% for 30s. Damage increases by 100% against monsters.",
+    "skills": []
+  },
+  {
+    "name": "Excavator's Barrier",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "When using Swift Healing on a target below 30% Health, applies a Shield equal to 450% of Base Damage +1500. Cooldown: 30s",
+    "skills": [
+      "Swift Healing"
+    ]
+  },
+  {
+    "name": "Giant Cordy's Blessing",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "Becomes immune to Bind, Petrification, Silence, Sleep, Stun, and Fear for 2s when you cast Invincible Wall, and the effect is boosted by 50%",
+    "skills": [
+      "Invincible Wall"
+    ]
+  },
+  {
+    "name": "Invigorating Salvation",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "On hit with Clay's Salvation or Janice's Rage, heals additional 50% of Health per sec for 6s.",
+    "skills": [
+      "Clay's Salvation"
+    ]
+  },
+  {
+    "name": "Magic Circle Expansion",
+    "slot": "armor/accessory",
+    "weapon": "Wand & Tome",
+    "description": "Increases Corrupted Magic Circle's radius to 7.5m, and decreases cooldown by 20s.\n\nCorrupted Magic Circle's Decaying Touch specialization not applied",
+    "skills": [
+      "Corrupted Magic Circle"
+    ]
+  },
+  {
+    "name": "Nightmare Concerto",
+    "slot": "armor/accessory",
+    "weapon": "Wand & Tome",
+    "description": "Deals 600% of Base Damage + 200 damage when waking a target affected by Sleep: Curse or Sleep: Nightmare Melody, or against Sleeping targets.\nFor targets affected by Sleep: Nightmare Melody and Drowsy, additionally reduces cooldown by 30%.\n\nIncreases damage against monsters by 150%\nDecreases PvP Damage by 90%",
+    "skills": []
+  },
+  {
+    "name": "Nightmare Conductor",
+    "slot": "armor/accessory",
+    "weapon": "Wand & Tome",
+    "description": "When applying Sleep: Curse through Cursed Nightmare, applies Weaken: Nightmare Terror, which increases the target's damage taken by 4%.\nIf Sleep: Nightmare Melody is applied through Cursed Nightmare, applies Weaken: Nightmare Terror, which increases the target's damage taken by6%.",
+    "skills": [
+      "Cursed Nightmare"
+    ]
+  },
+  {
+    "name": "Nightmare Melody",
+    "slot": "armor/accessory",
+    "weapon": "Wand & Tome",
+    "description": "Changes the Cursed Nightmare skill to [Nightmare Melody]\nApplies Sleep: Nightmare Melody that deals damage proportional to Base Damage.\n\nIncreases damage against monsters by 50%",
+    "skills": [
+      "Cursed Nightmare"
+    ]
+  },
+  {
+    "name": "Nightmarish Magic Circle",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "Corrupted Magic Circle changes to a skill that covers 5m around the user for 5s, cursing any enemy entering the area. The curse deals 25% more damage than Corrupted Magic Circle.",
+    "skills": [
+      "Corrupted Magic Circle"
+    ]
+  },
+  {
+    "name": "Prismatic Beam",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "Changes [Ray of Disaster] to [Prismatic Beam]\nYou can now place 3 prisms at target locations that last for 6s. Changes Mana Cost to 250. Links Ray of Disaster between the prisms and yourself. Enemies hit take damage equal to 50% of Base Damage in addition to existing Ray of Disaster Damage and reduces the target's Mana by 120. Prisms can be placed again within 6s. When prisms are removed, deals 140% of Base Damage + 17 damage to enemies within a 2.5m radius. Also casts Dark Explosion after 1s, dealing 50% damage that does not remove curse effects. Boosts damage by 5% per Touch of Despair stack.",
+    "skills": [
+      "Ray of Disaster",
+      "Touch of Despair"
+    ]
+  },
+  {
+    "name": "Redemptive Barrier",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "Increases the effect range of Blessed Barrier Specialization's Expanded Targets by 5m.",
+    "skills": [
+      "Blessed Barrier"
+    ]
+  },
+  {
+    "name": "Reversal Spell",
+    "slot": "armor/accessory",
+    "weapon": "Wand & Tome",
+    "description": "Increases the cooldown of Corrupted Magic Circle and Sacred Magic Circle by 8s and additionally applies an effect that reflects some of the damage received by party members within the field as magic damage.\n\nCorrupted Magic Circle's Decaying Touch specialization not applied",
+    "skills": [
+      "Corrupted Magic Circle"
+    ]
+  },
+  {
+    "name": "Sacred Magic Circle",
+    "slot": "armor/accessory",
+    "weapon": "Wand & Tome",
+    "description": "Changes Corrupted Magic Circle to [Sacred Magic Circle]\nRemoves the damage effect per sec, but increases party members' species damage by 120 for 6s.\n\nCorrupted Magic Circle's Decaying Touch and Bonus Damage specializations not applied",
+    "skills": [
+      "Corrupted Magic Circle"
+    ]
+  },
+  {
+    "name": "Silver Reaper's Sentence",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "On Touch of Despair hit, has a(n) 80% chance to decrease all Healing Received by 99.99% and apply a Weaken effect that deals 200% of Base Damage whenever the target is healed for 3s. Cooldown: 10s",
+    "skills": [
+      "Touch of Despair"
+    ]
+  },
+  {
+    "name": "Tevent's Hunger",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "On applying Curse of the Wand, has a 15% chance to apply Weaken: Curse, dealing 35% of Base Damage per sec for 30s. Damage increases by 100% against monsters.",
+    "skills": []
+  },
+  {
+    "name": "Wretched Sin's Ambush",
+    "slot": "weapon",
+    "weapon": "Wand & Tome",
+    "description": "When the user's Health falls below 20%, becomes Stealthed for 3s. Cooldown 120s.",
+    "skills": []
+  }
+]
