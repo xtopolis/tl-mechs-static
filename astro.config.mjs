@@ -166,6 +166,7 @@ export default defineConfig({
           items: [
             { label: 'Elite Spawn Locations', link: '/nix/elite-spawn-locations/' },
             { label: 'Mystic Key Locations', link: '/nix/mystic-key-locations/' },
+            { label: 'Nix Currents', link: '/nix/nix-currents/' },
             { label: 'Potentials', link: '/nix/potentials/' },
             { label: 'Talking Wall', link: '/nix/talking-wall/' },
             { label: 'Watermark', link: '/nix/watermark/' },
